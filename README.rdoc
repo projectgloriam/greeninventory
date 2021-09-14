@@ -1,0 +1,66 @@
+== Green Inventory
+
+This is an employee portal I developed for a company. It takes inventory of IT equipment, employee can book a leave appointment, schedule a round trip for the next day and a lot more. 
+
+Things you may need:
+
+* Ruby version 2.3.3
+
+* Rails version 4.2.6
+
+* You might need to install GnuWin32 for the paperclip gem.
+
+==== How to get started
+
+Clone the repository:
+<tt>$ git clone https://github.com/projectgloriam/greeninventory.git</tt>.
+
+Change to the directory
+
+<tt>$ cd elyonel</tt>.
+
+Install the gems
+
+<tt>$ bundle install </tt>.
+
+Migrate the database:
+
+<tt>$ rails db:migrate </tt>.
+
+Run the app
+
+<tt>$ rails s </tt>.
+
+====== Configure domain
+
+You have to update the adauth gem configurations at:
+
+<tt> config\initializers\adauth.rb </tt>.
+
+====== Configure domain
+
+You can also schedule a task to run using the rufus scheduler gem at
+
+<tt> config\initializers\schedule.rb </tt>.
+
+====== Mailer Configuration
+
+You might need to update the mailer configurations at:
+
+<tt> config\environments\development.rb </tt>
+
+to send email  notifications.
+
+Change the following:
+
+<tt> config.action_mailer.default_url_options = { :host => 'example.com' } </tt>.
+
+and
+
+<tt> 
+	config.action_mailer.smtp_settings = {
+      :address              => "smtp.domain.com",
+      :port                 => 25,
+      :domain               => "example.com",
+	} 
+</tt>.

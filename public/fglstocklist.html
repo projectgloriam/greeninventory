@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Price List</title>
+
+	<meta charset="UTF-8"> 
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="all" >
+
+	<!-- Default CSS -->
+	<link rel="stylesheet" href="css/default.css" media="all" >
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<script type="text/javascript" src="javascript/header.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+	<script>
+		var stockXML = new XMLHttpRequest(); /*Creating a request to any database file and store the request as a variable called ratesXML*/
+		var url = "stock.txt"; /*Storing path to the database file as a variable*/
+
+		stockXML.onreadystatechange = function(){ /*At any stage of the request: stage 1, 2, 3 & 4 - final stage*/
+			if(stockXML.readyState == 4 && stockXML.status == 200){ /*If the file is found... 200 means the file has been accessed unlike 404 error which means file not found. 4 means stage 4*/
+				var obj = JSON.parse(stockXML.responseText); /*The database file is a JSON language file. JSON.parse means parse or understand the file and convert to a Javascript Object variable*/
+				header(obj); /*Sending the object as a value for a function created below called header()*/
+			}
+		};
+
+		stockXML.open("GET",url,true);	
+		stockXML.send();
+		var head = ""; /*For receiving JSON data for navigation tag*/
+		var role = ""; /*For checking if it is the first data row*/
+		var content=""; /*For receiving JSON data for content tags*/
+
+
+
+		  // This is a functions that scrolls to #{blah}link
+		function goToByScroll(id){
+		      // Remove "link" from the ID
+		    id = id.replace("link", "");
+		      // Scroll
+		    $('html,body').animate({
+		        scrollTop: $("#"+id).offset().top},
+		        'slow');
+		}
+
+
+
+
+
+
+
+		function header(item){ /*Function fetches data from an object variable, 
+								organises them into html tags with bootstrap styles & functions 
+								and attaches them to some html tags in the body*/
+			for(i=0;i<item["INDEX"].length;i++){
+
+				/*Looping through the index's categories*/
+				head += '<li>';
+					head += '<a href="#'+(i+1)+'" id="category'+(i+1)+'">';
+					head += item["INDEX"][i]["CATEGORY"];
+					head += '</a>';
+				head += '</li>';
+
+				$("#category"+(i+1)).click(function(e) { 
+				      // Prevent a page reload when a link is pressed
+				    e.preventDefault(); 
+				      // Call the scroll function
+				    goToByScroll(this.id);           
+				});
+			}
+
+			head += '<li class="divider"></li>';
+			head += '<li><a href="#all">All</a></li>';
+
+			//Put few products for carousel
+
+			//display categories for columns
+
+
+			document.getElementById("amazon").innerHTML = head;
+
+			//beginning of panel group...to contain a group of panels
+			content += '<div class="panel-group">';
+			//its an object, not an array. 
+			//So treat object like an array so that you can fetch its contents..(be it other objects).
+			Object.keys(item).forEach(function(category, a) {
+				//if its not equal to the first item, which is called INDEX,...display the category
+			    if (a !== 0) {		
+			    			//Main parent div to house every products belonging to the category
+		    				content += '<div id="'+a+'">';
+		    				content += '<h3>'+category+'</h3>';
+				    for(j=0;j<item[category].length;j++){
+
+				    			content += '<div class="media">';
+								  content += '<div class="media-left">';
+									//I used a javascript function that gets the url of the first image from google search by using the product's part number
+							    		content += '<img src="" alt="" class="media-object" style="width:60px">';
+								  content += '</div>';
+								  content += '<div class="media-body">';
+								    content += '<h4 class="media-heading">'+item[category][j]["PRODUCT DESCRIPTION"] + '</h4>';
+								    content += '<p>';
+										content += '<b>Part No.:</b> ' + item[category][j]["PART NUMBER"] + '<br>';
+										content += '<b>Quantity:</b> ' + item[category][j]["QUANTITY"] + '<br>';
+										content += '<b>Price:</b> $' + item[category][j]["PRICE"];
+								    content += '</p>';
+								  content += '</div>';
+								  content += '<hr>';
+								content += '</div>';
+
+						//end of looping through category
+					}
+							content += '</div>';
+				//end of skipping first index
+			   }
+
+			});
+
+			//end of bootstrap panel group
+			content += '</div>'; 
+
+
+			document.getElementById("showroom").innerHTML = content;
+		}
+
+
+
+		//Search function
+		$(document).on('keyup', '.form-control', function() {
+			var categoryid;
+
+			// Retrieve the input field text and reset the count to zero
+			var filter = $(this).val(), count = 0;
+
+			//the heading has the name of the product
+			$(".media h4").each(function(){
+	 			
+	 			categoryid = $(this).parentsUntil().attr("id");
+	 			//To avoid repetition, i made the grand parent a variable
+	 			var parent = $(this).parentsUntil(".media");
+	 			var grandparent = $(this).parentsUntil("#"+categoryid);
+
+	            // If the list item does not contain the text phrase fade it out
+	            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+	                parent.fadeOut("fast");
+	                grandparent.children("h3").fadeOut("fast");
+	                parent.children("hr").fadeOut("fast");
+
+	                //hide hr so that they wont appear
+	                //$(this).parent().siblings("hr").fadeOut("fast");
+
+	
+	            // Show the list item if the phrase matches and increase the count by 1
+	            } else {
+	                parent.show();
+					//hide hr so that they wont appear
+	                grandparent.children("h3").show();
+	                parent.children("hr").show();
+	                count++;
+	            }
+	        }); 
+
+	        //alert($("#" + categoryid + " p:first").text());
+	 
+	        // Update the count
+	        var numberItems = count;
+
+	        // Loop through the comment list
+	        $(".filter-count").text(count+" products found."); 
+
+	        setTimeout(function() {
+		        $(".filter-count").hide('blind', {}, 500)
+		    }, 5000);
+		})
+
+
+
+		//amazon search function
+		$(document).ready(function(e){
+		    $('.search-panel .dropdown-menu').find('a').click(function(e) {
+		    	e.preventDefault();
+				var param = $(this).attr("href").replace("#","");
+				var concept = $(this).text();
+				$('.search-panel span#search_concept').text(concept);
+				$('.input-group #search_param').val(param);
+			});
+		});
+
+	</script>
+
+</head>
+
+<body class="public">
+	<!--[if lt IE 9]>
+	    <script src="lib/html5shiv-master/dist/html5shiv.min.js"></script>
+	    <script src="lib/Respond-master/dest/respond.min.js"></script>
+	<![endif]-->
+
+	<div id="pageheader" data-spy="affix" data-offset-top="10" style="z-index:1;"></div>
+
+	<div class="container-fluid">
+	    <div class="row">    
+	        <div class="col-xs-8 col-xs-offset-2">
+	    	    <div class="input-group">
+	                <div class="input-group-btn search-panel">
+	                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+	                    	<span id="search_concept">All</span> <span class="caret"></span>
+	                    </button>
+	                    <!--This is where the list of categories display-->
+	                    <ul class="dropdown-menu" role="menu" id='amazon'></ul>
+	                </div>
+	                <input type="hidden" name="search_param" value="all" id="search_param">         
+	                <input type="text" class="form-control" name="x" placeholder="Search">
+	                <span class="input-group-btn">
+	                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+	                </span>
+	            </div>
+	        </div>
+		</div>
+	</div>
+
+	<div class="row">
+	  <div class="col-sm-2"></div>
+
+	  <div class="col-sm-7">
+	  	<div class="filter-count"></div>
+	  	<div id="showroom"></div>
+	  </div>
+
+	  <div class="col-sm-3"></div>
+	</div>
+
+</body>
+</html>

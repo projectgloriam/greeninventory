@@ -1,0 +1,14 @@
+
+<div class="listview-outlook" data-role="listview">
+    <div class="list">
+        <div class="list-content">
+            <span class="list-title">Serial Number</span>
+            <span class="list-subtitle"><%= @serial.serial_number %></span>
+            <span class="list-remark"><%= @serial.equipment.model %></span>
+        </div>
+    </div>
+</div>
+
+<%= link_to 'Edit', edit_serial_path(@serial), class: 'button' %>
+<%= link_to 'New', new_serial_path, class: 'button' %>
+<%= link_to 'Back', serials_path, class: 'button' %>

@@ -1,0 +1,124 @@
+<script type="text/javascript">
+   $(document).ready(function(){        //if the document is ready
+
+
+   // variable to ensure we wait to check the input we are receiving
+    // you will see how this works further down
+    var pressed = false; 
+    // Variable to keep the barcode when scanned. When we scan each
+    // character is a keypress and hence we push it onto the array. Later we check
+    // the length and final char to ensure it is a carriage return - ascii code 13
+    // this will tell us if it is a scan or just someone writing on the keyboard
+    var chars = []; 
+    // trigger an event on any keypress on this webpage
+    $(window).keypress(function(e) {
+        // check the keys pressed are numbers
+        //if (e.which >= 48 && e.which <= 57) {
+            // if a number is pressed we add it to the chars array
+            chars.push(String.fromCharCode(e.which));
+        //}
+        // debug to help you understand how scanner works
+        console.log(e.which + ":" + chars.join("|"));
+        // Pressed is initially set to false so we enter - this variable is here to stop us setting a
+        // timeout everytime a key is pressed. It is easy to see here that this timeout is set to give 
+        // us 1 second before it resets everything back to normal. If the keypresses have not matched 
+        // the checks in the readBarcodeScanner function below then this is not a barcode
+        if (pressed == false) {
+            // we set a timeout function that expires after 1 sec, once it does it clears out a list 
+            // of characters 
+            setTimeout(function(){
+                // check we have a long length e.g. it is a barcode
+                if (chars.length >= 10) {
+                    // join the chars array to make a string of the barcode scanned
+                    var barcode = chars.join("");
+                    // debug barcode to console (e.g. for use in Firebug)
+                    console.log("Barcode Scanned: " + barcode);
+                    // assign value to some input (or do whatever you want)
+                                          //alert(barcode);
+                    //send ajax request to a controller for serials to create new serial.
+                    $.ajax({
+                      url: '<%= url_for( :controller=>"serials", :action=>"create" ) %>', 
+                      data: {'serial[serial_number]' : barcode, 
+                            'serial[equipment_id]' : <%= session[:equipment_id] %>
+                             },
+                      type: 'POST',
+                      //on success, display alert
+                      success: function(){
+                        $.Notify({
+                          caption: 'New Serial added',
+                          content: 'Successfully added Serial number: '+barcode,
+                          type: 'success',
+                          timeout: 7000
+                        });
+
+                        $( "#table_id" ).load( "<%= url_for :controller=>:serials, :action=>:index %> #table_id" );
+                      },
+                      //if not successful, show error
+                      error: function(){
+                        $.Notify({
+                          caption: 'Serial number error',
+                          content: 'Couldnt add serial number',
+                          type: 'warning',
+                          timeout: 7000
+                        });
+                      }
+                    });
+                }
+                chars = [];
+                pressed = false;
+            },500);
+        }
+        // set press to true so we do not reenter the timeout function above
+        pressed = true;
+    });
+// this bit of code just ensures that if you have focus on the input which may be in a form
+// that the carriage return does not cause your form to be submitted. Some scanners submit
+// a carriage return after all the numbers have been passed.
+
+
+      $(window).keypress(function(e) {
+          if(e.which == 13) {
+              e.preventDefault();
+          }
+      });
+    });
+</script>
+
+<h1>Listing Serials for <%= @equipment.model %></h1>
+
+<table id="table_id" width="100%" class="display" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Serial number</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @serials.each_with_index do |serial, index| %>
+
+      <script type="text/javascript">
+        $.contextMenu({
+            selector: '#context-menu-<%= index %>', 
+            trigger: 'right',
+            items: {
+                "edit": {name: '<%= link_to edit_serial_path(serial), id: "edit"+index.to_s do %><span class="mif-pencil"></span> Edit<%end%>',
+                  callback: function(key, options) { $('#edit<%= index %>').get(0).click(); } },
+                "sep1": "---------",
+              "delete": {name: '<%= link_to serial, method: :delete, data: {confirm:"Are you sure?"}, id: "delete"+index.to_s do %><span class="mif-bin"></span> Delete<%end%>',
+                  callback: function(key, options) { $('#delete<%= index %>').get(0).click(); } }
+            }
+        });
+      </script>
+
+      <tr id="context-menu-<%= index %>" onclick="window.location='<%= url_for serial %>';" >
+        <td><%= serial.serial_number %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+  <%= link_to new_serial_path, class: 'button' do %>
+    <span class="mif-folder-plus"></span> New Serial Number
+  <% end %>

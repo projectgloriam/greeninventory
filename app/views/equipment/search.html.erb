@@ -1,0 +1,245 @@
+<% @datarole = "page"
+    @page_title = "Advanced Search"
+ %>
+
+ <script>
+  $( document ).ready(function(){
+    $.Notify({
+      caption: 'Info',
+      content: 'You can choose to omit the other fields',
+      type: 'info'
+  });
+});
+  </script>
+
+<form method="GET" action="<%= url_for :action => :searchresult %>">
+  <div class="grid">
+    <div class="row">
+      <div class="cell"><h2 class="sub-leader">Equipment Details</h2></div>
+    </div>
+    <div class="row cells3">
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" id="equipment" name="equipment" class="flexdatalist" list="equipmentlist" />
+            <span class="label">Equipment</span>
+            <span class="informer"><br>e.g. Dell Desktop</span>
+            <span class="placeholder">Equipment</span>
+            <span class="icon mif-phonelink"></span>
+          </div>
+          <datalist id="equipmentlist">
+            <% @equipment_name.each do |item|  %>
+              <option><%= item.equipment_name %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" name="model" id="model" class="flexdatalist" list="modellist" />
+            <span class="label">Model / Model Number</span>
+            <span class="informer"><br>e.g. Optiplex 720</span>
+            <span class="placeholder">Model / Model Number</span>
+            <span class="icon mif-versions"></span>
+          </div>
+          <datalist id="modellist">
+            <% @models.each do |item| %>
+                    <option><%= item.model %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" id="serial" name="serial" class="flexdatalist" list="seriallist" />
+            <span class="label">Serial Number</span>
+            <span class="informer"><br>e.g. 4QKY65J</span>
+            <span class="placeholder">Serial Number</span>
+            <span class="icon mif-barcode"></span>
+          </div>
+          <datalist  id="seriallist">
+            <% @serials.each do |item|  %>
+                    <option><%= item.serial_number %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cell"><h2 class="sub-leader">Technician Details</h2></div>
+    </div>
+    <div class="row cells3">
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" name="engineer" id="engineer" class="flexdatalist" list="engineerlist" />
+            <span class="label">Engineer</span>
+            <span class="informer"><br>e.g. Edward Addo</span>
+            <span class="placeholder">Engineer</span>
+            <span class="icon mif-user"></span>
+          </div>
+          <datalist  id="engineerlist">
+            <% @engineers.each do |item| %>
+                    <option><%= item.engineer %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" name="jobsheet" id="jobsheet" class="flexdatalist" list="joblist" />
+            <span class="label">Job Sheet Number</span>
+            <span class="informer"><br>e.g. H239203003</span>
+            <span class="placeholder">Job Sheet Number</span>
+            <span class="icon mif-files-empty"></span>
+          </div>
+          <datalist id="joblist">
+            <% @job_sheet_numbers.each do |item| %>
+                    <option><%= item.job_sheet_number %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+      <div class="cell">
+        <div>
+          <label>Date</label>
+          <div class="input-control text" data-role="datepicker" data-date="1972-12-21" data-format="d mmm, yyyy">
+            <input type="text" name="date" id="date" />
+            <button class="button"><span class="mif-calendar"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row cells3">
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" id="supplier" name="supplier" class="flexdatalist" list="supplierlist" />
+            <span class="label">Supplier</span>
+            <span class="informer"><br>e.g. NSure</span>
+            <span class="placeholder">Supplier</span>
+            <span class="icon mif-truck"></span>
+          </div>
+          <datalist id="supplierlist">
+            <% @suppliers.each do |item| %>
+                    <option><%= item.supplier %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <div class="row">
+      <div class="cell"><h2 class="sub-leader">Specification Details</h2></div>
+    </div>
+    <div class="row cells3">
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" id="case" name="case" class="flexdatalist" list="caselist" />
+            <span class="label">Case Number</span>
+            <span class="informer"><br>e.g. 20160808170816</span>
+            <span class="placeholder">Case Number</span>
+            <span class="icon mif-file-binary"></span>
+          </div>
+          <datalist id="caselist">
+            <% @specification_cases.each do |item| %>
+                    <option><%= item.case %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" id="title" name="title" class="flexdatalist" list="titlelist" />
+            <span class="label">Case Title</span>
+            <span class="informer"><br>e.g. Desktops for SSNIT</span>
+            <span class="placeholder">Case Title</span>
+            <span class="icon mif-file-text"></span>
+          </div>
+          <datalist id="titlelist">
+            <% @specification_titles.each do |item| %>
+                    <option><%= item.title %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" id="author" name="author" class="flexdatalist" list="authorlist" />
+            <span class="label">Case Author</span>
+            <span class="informer"><br>e.g. Akissi Blandine</span>
+            <span class="placeholder">Case Author</span>
+            <span class="icon mif-user"></span>
+          </div>
+          <datalist id="authorlist">
+            <% @specification_authors.each do |item| %>
+                    <option><%= item.author %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cell"><h2 class="sub-leader">Client Details</h2></div>
+    </div>
+    <div class="row cells3">
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" id="client" name="client" class="flexdatalist" list="clientlist" />
+            <span class="label">Client</span>
+            <span class="informer"><br>e.g. SSNIT</span>
+            <span class="placeholder">Client</span>
+            <span class="icon mif-organization"></span>
+          </div>
+          <datalist id="clientlist">
+            <% @specification_clients.each do |item| %>
+              <option><%= item.client %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" id="contact" name="contact" class="flexdatalist" list="contactlist" />
+            <span class="label">Contact Person</span>
+            <span class="informer"><br>e.g. Richard Nunoo</span>
+            <span class="placeholder">Contact Person</span>
+            <span class="icon mif-profile"></span>
+          </div>
+          <datalist id="contactlist">
+            <% @specification_contact_persons.each do |item| %>
+              <option><%= item.contact_person %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" id="email" name="email" class="flexdatalist" list="emaillist" />
+            <span class="label">Contact Person's Email</span>
+            <span class="informer"><br>e.g. r.nunoo@ssnit.org.gh</span>
+            <span class="placeholder">Contact Person's Email</span>
+            <span class="icon mif-contacts-mail"></span>
+          </div>
+          <datalist id="emaillist">
+            <% @specification_emails.each do |item| %>
+              <option><%= item.email %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="submit" value="Search" class="button loading-pulse"/>
+</form>
+<a href="<%= url_for :action => :simplesearch %>" class="button link" >Simple Search</a>

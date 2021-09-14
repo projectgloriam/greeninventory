@@ -1,0 +1,20 @@
+<h1>Activities</h1>
+<%= page_entries_info @activities %>
+<div class="listview-outlook" data-role="listview">
+	<%= render_activities @activities %>
+</div>
+<div data-role="group" data-group-type="one-state">
+	<% 	#first number
+		a = 1
+
+		#start loop
+		begin
+		#display page number
+	%>
+	<%= link_to "#{a}", { :page => a }, :class => "button small-button" %>
+	<% #increase page number...
+		a += 1
+
+		#...till it reaches the number of pages available. 
+		end until a > @numberofpages %>
+</div>

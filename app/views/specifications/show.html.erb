@@ -1,0 +1,102 @@
+<div class="container page-content">
+  <div class="grid">
+    <div class="row cells2">
+      <div class="cell">
+        <div class="listview-outlook" data-role="listview">
+          <div class="list-group">
+            <span class="list-group-toggle">Specification Details</span> <!--Group title-->
+            <div class="list-group-content">
+              <!--The contents-->
+              <div class="list marked">
+                  <div class="list-content">
+                      <span class="list-title"></span>
+                      <span class="list-subtitle">Case</span>
+                      <span class="list-remark"><%= @specification.case %></span>
+                  </div>
+              </div>
+              <div class="list">
+                  <div class="list-content">
+                      <span class="list-title"></span>
+                      <span class="list-subtitle">Title</span>
+                      <span class="list-remark"><%= @specification.title %></span>
+                  </div>
+              </div>
+              <div class="list">
+                  <div class="list-content">
+                      <span class="list-title"></span>
+                      <span class="list-subtitle">Author</span>
+                      <span class="list-remark"><%= @specification.author %></span>
+                  </div>
+              </div>
+              <br>
+              <%= link_to equipment_index_path( :specification_id => @specification.id ), class: "button" do %>
+	              <% if @specification.tested != true then %>
+	              	<span class="mif-spell-check"></span> Test Equipment
+	              <% else %>
+	              	<span class="mif-checkmark fg-green"></span> Show Tested Equipment
+	              <% end %>
+              <% end %>
+              <br>
+              <div class="list">
+                  <div class="list-content">
+                      <span class="list-title"></span>
+                      <span class="list-subtitle">Image</span>
+                      <span class="list-remark"><div id="pdf" style="height: 600px;"></div><script>PDFObject.embed("<%= @specification.avatar.url %>", "#pdf");</script></span>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="listview-outlook" data-role="listview">
+          <div class="list-group">
+            <span class="list-group-toggle">Client Details</span> <!--Group title-->
+            <div class="list-group-content">
+              <!--The contents-->
+              <div class="list">
+                  <div class="list-content">
+                      <span class="list-title"></span>
+                      <span class="list-subtitle">Name</span>
+                      <span class="list-remark"><%= @specification.client %></span>
+                  </div>
+              </div>
+              <div class="list">
+                  <div class="list-content">
+                      <span class="list-title"></span>
+                      <span class="list-subtitle">Contact</span>
+                      <span class="list-remark"><%= @specification.contact_person %></span>
+                  </div>
+              </div>
+              <div class="list">
+                  <div class="list-content">
+                      <span class="list-title"></span>
+                      <span class="list-subtitle">Email</span>
+                      <span class="list-remark"><%= @specification.email %></span>
+                  </div>
+              </div>
+              <div class="list">
+                  <div class="list-content">
+                      <span class="list-title"></span>
+                      <span class="list-subtitle">Telephone</span>
+                      <span class="list-remark"><%= @specification.telephone %></span>
+                  </div>
+              </div>
+              <div class="list">
+                  <div class="list-content">
+                      <span class="list-title"></span>
+                      <span class="list-subtitle">Any additional comments</span>
+                      <span class="list-remark"><%= @specification.comment %></span>
+                  </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <%= link_to 'Edit', edit_specification_path(@specification), class: "button" %>
+  <%= link_to 'Back', specifications_path, class: "button" %>

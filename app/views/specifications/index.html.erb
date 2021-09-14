@@ -1,0 +1,49 @@
+<h1>Listing Specifications</h1>
+
+<table id="table_id" width="100%" class="hover" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Case Number</th>
+      <th>Title</th>
+      <th>Client</th>
+      <th>Author</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @specifications.each_with_index do |specification, index| %>
+
+      	<script type="text/javascript">
+		    $.contextMenu({
+		        selector: '#context-menu-<%= index %>', 
+		        trigger: 'right',
+		        items: {
+		        	"test": {name: '<%= link_to equipment_index_path( :specification_id => specification.id ), :class => "test"+index.to_s do %><% if specification.tested != true then %><span class="mif-spell-check"></span> Test Equipment <% else %><span class="mif-checkmark fg-green"></span> Show Tested Equipment <% end %><% end %>',
+		        			callback: function(key, options) { $('.test<%= index %>').get(0).click(); } },
+		            "sep1": "---------",
+		            "edit": {name: '<%= link_to edit_specification_path(specification), class: "edit"+index.to_s do %><span class="mif-pencil"></span> Edit<%end%>',
+		        			callback: function(key, options) { $('.edit<%= index %>').get(0).click(); } },
+		         	"delete": {name: '<%= link_to specification, method: :delete, data: {confirm:"Are you sure?"}, class: "delete"+index.to_s do %><span class="mif-bin"></span> Delete<%end%>',
+		        			callback: function(key, options) { $('.delete<%= index %>').get(0).click(); } }
+		        }
+		    });
+		</script>
+
+      <tr <% if specification.tested != true then %>
+          style="font-weight: bold;"
+          <% end %> id="context-menu-<%= index %>" onclick="window.location='<%= url_for specification %>';" >
+        <td><%= specification.case %></td>
+        <td><%= specification.title %></td>
+        <td><%= specification.client %></td>
+        <td><%= specification.author %></td>
+        <td><%= specification.created_at.strftime("%-d %B, %Y %H:%M:%S (%A)") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+  <%= link_to new_specification_path, class: 'button' do %>
+    <span class="mif-folder-plus"></span> New Specification
+  <% end %>

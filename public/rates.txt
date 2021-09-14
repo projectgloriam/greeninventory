@@ -1,0 +1,45 @@
+﻿[
+	{	"name":"Standard Business Hours",
+		"tabname":"standardBusinessHours",
+		"glyphicon":"glyphicon glyphicon-time",
+		"businessHours":"Standard Business Hours – Monday to Friday, 8:30am to 5:30pm (GMT) Time in Accra.",
+		"table":[
+				{"engineerLevel":"Level 1 Engineer","feePerHour":"-","definitions":"Initial support level responsible for basic customer issues","examples":"Username / password reset, installing / uninstalling basic software applications,..."},
+				{"engineerLevel":"Level 2 Engineer","feePerHour":"-","definitions":"Intermediate support engineer.","examples":"Installations or replacements of various hardware components, software repair, diagnostic testing, utilization of remote control tools to take over the user’s machine for troubleshooting,..."},
+				{"engineerLevel":"Level 3 Engineer","feePerHour":"-","definitions":"Advanced support engineer.","examples":"Servers and infrastructure issues."},
+				{"engineerLevel":"Specialist Engineer (Only available during standard business hours)","feePerHour":"-","definitions":"An expert engineer on specific solutions and technologies.","examples":"Cisco, specialised hardware, escalations from level 3,..."},
+				{"engineerLevel":"Project Manager","feePerHour":"-","definitions":"An expert responsible for planning, executing and delivering technology projects.","examples":"Deploying new technologies, re-engineering existing systems, managing complex projects,..."},
+				{"engineerLevel":"Call-out travel fees","feePerHour":"-","definitions":"","examples":"-"},
+				{"engineerLevel":"Emergency call-out fee under 3 days","feePerHour":"-","definitions":"Best efforts.","examples":"-"},
+				{"engineerLevel":"Emergency call-out fee under 1 day","feePerHour":"-","definitions":"Best efforts.","examples":"-"}
+				]
+	},
+
+	{	"name":"Outside Standard Business Hours",
+		"tabname":"outsideBusinessHours",
+		"glyphicon":"glyphicon glyphicon-home",
+		"businessHours":"Outside Standard Business Hours – Monday to Friday, 5:30pm to 8:30am (GMT) Time in Accra and Weekends.",
+		"table":[
+				{"engineerLevel":"Level 1 Engineer","feePerHour":"-","definitions":"Initial support level responsible for basic customer issues","examples":"Username / password reset, installing / uninstalling basic software applications,..."},
+				{"engineerLevel":"Level 2 Engineer","feePerHour":"-","definitions":"Intermediate support engineer.","examples":"Installations or replacements of various hardware components, software repair, diagnostic testing, utilization of remote control tools to take over the user’s machine for troubleshooting,..."},
+				{"engineerLevel":"Level 3 Engineer","feePerHour":"-","definitions":"Advanced support engineer.","examples":"Servers and infrastructure issues."},
+				{"engineerLevel":"Call-out travel fees","feePerHour":"-","definitions":"","examples":"-"},
+				{"engineerLevel":"Emergency call-out fee under 3 days","feePerHour":"-","definitions":"Best efforts.","examples":"-"},
+				{"engineerLevel":"Emergency call-out fee under 1 day","feePerHour":"-","definitions":"Best efforts.","examples":"-"}
+				]
+	},
+
+	{"name":"Ghanaian Public Holidays",
+	"tabname":"ghanaianPublicHolidays",
+	"glyphicon":"glyphicon glyphicon-calendar",
+	"businessHours":"",
+	"table":[
+			{"engineerLevel":"Level 1 Engineer","feePerHour":"","definitions":"Initial support level responsible for basic customer issues","examples":"Username / password reset, installing / uninstalling basic software applications,..."},
+			{"engineerLevel":"Level 2 Engineer","feePerHour":"","definitions":"Intermediate support engineer.","examples":"Installations or replacements of various hardware components, software repair, diagnostic testing, utilization of remote control tools to take over the user’s machine for troubleshooting,..."},
+			{"engineerLevel":"Level 3 Engineer","feePerHour":"","definitions":"Advanced support engineer.","examples":"Servers and infrastructure issues."},
+			{"engineerLevel":"Call-out travel fees","feePerHour":"","definitions":"","examples":"-"},
+			{"engineerLevel":"Emergency call-out fee under 3 days","feePerHour":"","definitions":"Best efforts.","examples":"-"},
+			{"engineerLevel":"Emergency call-out fee under 1 day","feePerHour":"","definitions":"Best efforts.","examples":"-"}
+			] 
+	}
+]

@@ -1,0 +1,4 @@
+Dear Support,
+<%= @equipment.model %> Warranty Status:
+===============================================
+Equipment: <%= @equipment.equipment_name %> (Model: <%= @equipment.model %>) will expire on <%= @equipment.customer_Warranty_end %>.

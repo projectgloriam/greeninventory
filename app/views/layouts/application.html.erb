@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Green Inventory</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  
+  <script type="text/javascript">
+    $(function(){
+      $('#table_id').DataTable({
+        ordering:  false
+      });
+      $(".popupwindow").popupwindow(
+        {height:400,width:400,scrollbars:1,resizable:1,center:1}
+        );
+      $('.flexdatalist').flexdatalist({ minLength: 2 });
+    });
+  </script>
+</head>
+
+<body class="metro">
+<% flash.each do |key, value| %>
+  <script>
+    $( document ).ready(function(){
+      $.Notify({
+        caption: 'Message',
+        content: '<%= value %>',
+        type: '<% if key == "notice" then %>success<% else %><%= key %><% end %>', /*if the key of the flash hash is notice,
+        by default, it should show success else it can show it's key*/
+        timeout: 7000
+        <% if @icon then %>, icon: '<%= @icon %>' <% end %>
+      });
+    });
+  </script>
+<% end %>
+
+<% flash.discard %>
+
+<% if @datarole != "dialog" then %><!--If it's not a dialog, the navigation bar should appear-->
+  <div class="app-bar darcula">
+    <a href="<%= url_for :controller => :welcome, :action => :index %>" class="app-bar-element white">
+      <%= image_tag("fairgreen_logo.svg", size: "100x30") %> &nbsp;
+      <span class="mif-home fg-white"></span> 
+    Home</a>
+    
+    <ul class="app-bar-menu place-right">
+    <span class="app-bar-divider"></span>
+      <li>
+      <a href="" class="dropdown-toggle">
+      <span class="mif-user fg-white"></span>
+       &nbsp;<%= session[:user_name] %>
+      </a>
+        <ul class="d-menu" data-role="dropdown">
+          <li><a href="/signout"><span class="mif-switch fg-white"></span> Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+<%= yield %>
+
+  <% else %>
+
+     <style>
+        .login-form {
+            width: 35rem;
+            height: 18.75rem;
+            position: fixed;
+            top: 50%;
+            margin-top: -9.375rem;
+            left: 50%;
+            margin-left: -12.5rem;
+            background-color: #ffffff;
+            opacity: 0;
+            -webkit-transform: scale(.8);
+            transform: scale(.8);
+        }
+        body{
+          background-color: DarkOliveGreen;
+        }
+    </style>
+
+    <script>
+
+        $(function(){
+            var form = $(".login-form");
+
+            form.css({
+                opacity: 1,
+                "-webkit-transform": "scale(1)",
+                "transform": "scale(1)",
+                "-webkit-transition": ".5s",
+                "transition": ".5s"
+            });
+        });
+    </script>
+
+    <div class="login-form padding20 block-shadow">
+      <h1 class='text-light'><%= @page_title %></h1>
+      <hr class='thin'/>
+      <br />
+      <%= yield %>
+    </div>
+<% end %>
+
+</body>
+</html>

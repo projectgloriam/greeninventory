@@ -1,0 +1,14 @@
+<div class="list">
+  <div class="list-content">
+      <span class="list-title"></span>
+      <% if activity.trackable then %>
+      <span class="list-remark"><%= activity.created_at.strftime("%-d %B, %Y %l:%M%P, %A") %></span>
+      <span class="list-subtitle">New Equipment <b><%= a.trackable.model %></b> created by <%= activity.owner ? activity.owner.name : 'a user' %></span>
+      <span class="list-remark"> <b>Case:</b> <%= a.trackable.specification.case %></span>
+    <% else %>
+      <span class="list-remark"><%= activity.created_at.strftime("%-d %B, %Y %l:%M%P, %A") %></span>
+  	  <span class="list-subtitle">New Equipment created by <%= activity.owner ? activity.owner.name : 'a user' %></span>
+  	  <span class="list-remark">It has been removed</span>
+	 <% end %>
+  </div>
+</div>

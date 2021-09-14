@@ -1,0 +1,52 @@
+<% @datarole = "dialog"
+    @page_title = "Simple Search"
+ %>
+
+      <form method="GET" action="<%= url_for :action => :searchresult %>">
+            <div class="input-control text full-size" data-role="input">
+              <input type="text" id="search" name="search" list="mylist" class="flexdatalist" placeholder="You can type: Equipment, Model, Serial, Client, Engineer, Supplier or Date"/>
+              <datalist id="mylist">
+                <% @serials.each do |item|  %>
+                  <option><%= item.serial_number %></option>
+                <% end %>
+                <% @equipment_name.each do |item|  %>
+                  <option><%= item.equipment_name %></option>
+                <% end %>
+                <% @models.each do |item|  %>
+                  <option><%= item.model %></option>
+                <% end %>
+                <% @specification_clients.each do |item|  %>
+                  <option><%= item.client %></option>
+                <% end %>
+                <% @engineers.each do |item|  %>
+                  <option><%= item.engineer %></option>
+                <% end %>
+                <% @suppliers.each do |item|  %>
+                  <option><%= item.supplier %></option>
+                <% end %>
+                <% @dates.each do |item|  %>
+                  <option><%= item.created_at.strftime("%-d %B, %Y %H:%M:%S (%A)") %></option>
+                <% end %>
+                <% @job_sheet_numbers.each do |item|  %>
+                  <option><%= item.job_sheet_number %></option>
+                <% end %>
+                <% @specification_cases.each do |item|  %>
+                  <option><%= item.case %></option>
+                <% end %>
+                <% @specification_titles.each do |item|  %>
+                  <option><%= item.title %></option>
+                <% end %>
+                <% @specification_authors.each do |item| %>
+                  <option><%= item.author %></option>
+                <% end %>
+                <% @specification_contact_persons.each do |item|  %>
+                  <option><%= item.contact_person %></option>
+                <% end %>
+                <% @specification_emails.each do |item|  %>
+                  <option><%= item.email %></option>
+                <% end %>
+              </datalist>
+              <button type="submit" class="button"><span class="mif-search"></span></button>
+            </div>
+      </form>
+      <a href="<%= url_for :action => :search %>" class="button link">Advanced</a>

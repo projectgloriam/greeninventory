@@ -1,0 +1,12 @@
+Title: <%= @spec.title %>
+===============================================
+ 
+<%= @spec.author %> has created a Client Specification case: <%= @spec.case %>.
+ 
+Client: <%= @spec.client %>.
+=======
+ 
+Any additional comments: <%= @spec.comment %>
+========================
+
+inventory@fairgreenlimited.com

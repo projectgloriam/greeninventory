@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Services Rate</title>
+
+	<meta charset="UTF-8"> 
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="all" >
+
+	 <!-- Default CSS -->
+	<link rel="stylesheet" href="css/default.css" media="all" >
+
+	<style type="text/css">
+		 body{text-align:center;}
+	</style>
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="javascript/header.js"></script>
+
+	<script>
+
+		var ratesXML = new XMLHttpRequest(); /*Creating a request to any database file and store the request as a variable called ratesXML*/
+		var url = "rates.txt"; /*Storing path to the database file as a variable*/
+
+		ratesXML.onreadystatechange = function(){ /*At any stage of the request: stage 1, 2, 3 & 4 - final stage*/
+			if(ratesXML.readyState == 4 && ratesXML.status == 200){ /*If the file is found... 200 means the file has been accessed unlike 404 error which means file not found. 4 means stage 4*/
+				var obj = JSON.parse(ratesXML.responseText); /*The database file is a JSON language file. JSON.parse means parse or understand the file and convert to a Javascript Object variable*/
+				header(obj); /*Sending the object as a value for a function created below called header()*/
+			}
+		};
+
+		ratesXML.open("GET",url,true);	
+		ratesXML.send();
+		var head = ""; /*For receiving JSON data for navigation tag*/
+		var role = ""; /*For checking if it is the first data row*/
+		var content=""; /*For receiving JSON data for content tags*/
+
+		function header(item){ /*Function fetches data from an object variable, 
+								organises them into html tags with bootstrap styles & functions 
+								and attaches them to some html tags in the body*/
+			for(i=0;i<item.length;i++){
+				if(i==0){
+				role = ' class="active';
+				} else if(i!=0){role='';}
+				/*Looping a list tag for each navigation tab*/
+				head += '<li'+role+' heads">';
+				head += '<a data-toggle="tab" href="#'+item[i]['tabname']+'">'+item[i]['name']+' <span class ="'+item[i]['glyphicon']+'"></span></a>';
+				head += '</li>';
+			}
+
+			document.getElementById("menuheading").innerHTML = head;
+
+			for(j=0;j<item.length;j++){
+				if(j==0){
+				role = " active";
+				} else if(j!=0){role="fade";}
+
+				content+='<div id="'+item[j]['tabname']+'" class="tab-pane '+role+'">'; /*div container for contents of navigation tab*/
+					content+='<br>';
+					content+='<p class="heads">'+item[j]['businessHours']+'</p>'; /*Business hours data in a paragraph*/
+					content+='<div class="row heads">'; /*Row for the table head*/
+					  	content+='<div class="col-sm-3" ></div>';
+					  	content+='<div class="col-sm-3" style="background-color:lavender; border: 1px solid white; border-radius: 2px; padding: 1%;">Fee Per Hour Ex GST</div>';
+					 	content+='<div class="col-sm-3" style="background-color:lavender; border: 1px solid white; border-radius: 2px; padding: 1%;">Definition</div>';
+					  	content+='<div class="col-sm-3" style="background-color:lavender; border: 1px solid white; border-radius: 2px; padding: 1%;">Examples</div>';
+					content+='</div>'; /*End of table head row*/
+
+					for(k=0;k<item[j]['table'].length;k++){
+						content+='<div class="row" style="border-bottom: 1px solid lavender; border-left: 1px solid lavender; border-right: 1px solid lavender; ">'; /*Row for each data*/
+							content+= '<div class="col-sm-3" style="border-radius: 2px; padding: 1%; ">'+item[j].table[k]['engineerLevel']+'</div>';
+							content+= '<div class="col-sm-3" style="border-radius: 2px; padding: 1%; ">'+item[j].table[k]['feePerHour']+'</div>';
+							content+= '<div class="col-sm-3" style="border-radius: 2px; padding: 1%; ">'+item[j].table[k]['definitions']+'</div>';
+							content+= '<div class="col-sm-3" style="border-radius: 2px; padding: 1%; ">'+item[j].table[k]['examples']+'</div>';
+						content+='</div>'; /*End of row for each data*/
+					}
+
+				content+='</div>';
+			}
+			
+			document.getElementById("contenttable").innerHTML = content;
+		}
+
+	</script>
+
+</head>
+<body class="public">
+	<!--[if lt IE 9]>
+	    <script src="lib/html5shiv-master/dist/html5shiv.min.js"></script>
+	    <script src="lib/Respond-master/dest/respond.min.js"></script>
+	<![endif]-->
+<nav id="pageheader" class="navbar navbar-default"></nav>
+
+		
+	<div class="jumbotron">
+		<h1>Need professional onsite or remote IT help for your business?</h1>
+		<h2>Check our 2016 IT Services Rate Card</h2>
+	</div>
+
+	<div class="jumbotron" style="background-color: yellowgreen; color:white;">
+		<h1>We offer the following services</h1>
+		<hr>
+		<div class="row" style="font-size:x-large;">
+			<div class="col-sm-4">
+				<span class="glyphicon glyphicon-hdd"></span> <br>
+				Data Center Service
+			</div>
+			<div class="col-sm-4">
+				<span class="glyphicon glyphicon-cd"></span> <br>
+				Data Protection and Security
+			</div>
+			<div class="col-sm-4">
+				<span class="glyphicon glyphicon-globe"></span> <br>
+				Networking
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="margin:auto;">
+
+		<ul class="nav nav-tabs" id="menuheading">
+			<!--Navigation tab: gets it's content from a javascript function above called header()-->
+		</ul>
+
+		<div class="tab-content" id="contenttable">
+			<!--Content for each navigation tab: from a javascript function above called header()-->
+		</div>
+	</div>
+		
+	<div class="jumbotron">
+		<h2></h2>
+	</div>
+
+	<div class="jumbotron">
+		<h2></h2>
+	</div>
+</body>
+</html>

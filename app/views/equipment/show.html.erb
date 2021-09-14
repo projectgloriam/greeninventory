@@ -1,0 +1,149 @@
+<div class="container page-content">
+  <div class="grid">
+    <div class="row cells2">
+      <div class="cell">
+          <div class="listview-outlook" data-role="listview">
+            <div class="list-group">
+              <span class="list-group-toggle">Equipment Details</span> <!--Group title-->
+              <div class="list-group-content">
+                <!--The contents-->
+                  <div class="list marked">
+                    <div class="list-content">
+                      <span class="list-title"></span>
+                      <span class="list-subtitle">Equipment</span>
+                      <span class="list-remark"><%= @equipment.equipment_name %></span>
+                    </div>
+                  </div>
+                <div class="list">
+                  <div class="list-content">
+                    <span class="list-title"></span>
+                    <span class="list-subtitle">Model</span>
+                    <span class="list-remark"><%= @equipment.model %></span>
+                  </div>
+                </div>
+                  <%= link_to('Serial Number(s)', {:controller => 'serials', :equipment_id => @equipment.id}, :class => "popupwindow button") %>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="cell">
+        <div class="listview-outlook" data-role="listview">
+          <div class="list-group">
+            <span class="list-group-toggle">Other Details</span> <!--Group title-->
+            <div class="list-group-content">
+              <!--The contents-->
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Date</span>
+                  <span class="list-remark"><%= @equipment.created_at.strftime("%-d %B, %Y %H:%M:%S (%A)") %></span>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Engineer</span>
+                  <span class="list-remark"><%= @equipment.engineer %></span>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Job sheet number</span>
+                  <span class="list-remark"><%= @equipment.job_sheet_number %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row cells2">
+      <div class="cell">
+        <div class="listview-outlook" data-role="listview">
+          <div class="list-group">
+            <span class="list-group-toggle">Supplier Details</span> <!--Group title-->
+            <div class="list-group-content">
+              <!--The contents-->
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Supplier</span>
+                  <span class="list-remark"><%= @equipment.supplier %></span>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Invoice number</span>
+                  <span class="list-remark"><%= @equipment.supplier_invoice_number %></span>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Warranty start</span>
+                  <span class="list-remark"><%= @equipment.supplier_Warranty_start %></span>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Warranty end</span>
+                  <span class="list-remark"><%= @equipment.supplier_Warranty_end %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="listview-outlook" data-role="listview">
+          <div class="list-group">
+            <span class="list-group-toggle">Client Related info</span> <!--Group title-->
+            <div class="list-group-content">
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Case Number</span>
+                  <span class="list-remark"><%= @equipment.specification.case %></span>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Warranty Status</span>
+                  <% if @equipment.warranty_alert == nil then %>
+                    <span class="list-remark" style="color:green;">Equipment's warranty is still valid</span>
+                  <% elsif @equipment.warranty_alert == 1 then %>
+                    <span class="list-remark" style="color:red;">90 days before equipment warrant expires.</span>
+                  <% elsif @equipment.warranty_alert == 2 then %>
+                    <span class="list-remark" style="color:red;">The equipment warrant has expired.</span>
+                  <% end %>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Warranty start</span>
+                  <span class="list-remark"><%= @equipment.customer_Warranty_start %></span>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-content">
+                  <span class="list-title"></span>
+                  <span class="list-subtitle">Warranty end</span>
+                  <span class="list-remark"><%= @equipment.customer_Warranty_end %></span>
+                </div>
+              </div>
+            </div><!--list-group-content-->
+          </div><!--list group-->
+        </div><!--list-outlook-->
+      </div><!--cell-->
+    </div><!--row cells4-->
+  </div><!--grid-->
+</div><!--container-->
+
+  <%= link_to 'Edit', edit_equipment_path(@equipment), class: 'button' %>
+  <%= link_to 'New', new_equipment_path, class: 'button' %>
+  <%= link_to 'Back', equipment_index_path, class: 'button' %>

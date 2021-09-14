@@ -1,0 +1,8 @@
+<h1>Editing Serial</h1>
+
+<%= render 'form' %>
+
+<div data-role="group" data-group-type="multi-state" data-button-style="class">
+	<%= link_to 'Show', action: 'show', id: @serial.id, class: 'button' %>
+	<%= link_to 'Back', serials_path, class: 'button' %>
+</div>

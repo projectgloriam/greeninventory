@@ -1,0 +1,15 @@
+.public{font-family:calibri,arial; font-size: 140%; font-weight:lighter;}
+
+#menuheading{font-size: 180%;}
+
+#contenttable{font-size: 150%;}
+
+.jumbotron{width: 100%; }
+
+.heads{font-weight:normal;}
+
+.logo{width: 97px; height:30px;}
+
+.public p{text-align:left;}
+
+.public a, .public a:hover, .public a:visited{color: black; text-decoration:none; }

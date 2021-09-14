@@ -1,0 +1,30 @@
+<% @datarole = "page"
+    @page_title = "Welcome"
+ %>
+<div class="tile-area tile-area-scheme-dark fg-white" style="height: 100%; max-height: 100% !important; background: url('<%= asset_path("fairgreen_logo.svg") %>') no-repeat center center fixed;">
+  <p style="color:green;">&nbsp; Please hover a tile for more details</p>
+
+  <span data-role="hint" data-hint-background="bg-grayDark" data-hint-position="top" data-hint-color="fg-white" data-hint="Search Inventory|Search for an equipment by model, client, contact, date and other details">
+  	<a href="<%= url_for :controller => :equipment, :action => :simplesearch %>" class="tile bg-green fg-white" data-role="tile">
+      <div class="tile-content iconic">
+          <span class="icon mif-search"></span>
+      </div>
+	  	<span class="tile-label">
+	  		Search Inventory
+	  	</span>
+  	</a>
+  </span>
+  <span data-role="hint" data-hint-background="bg-grayDark" data-hint-position="top" data-hint-color="fg-white" data-hint="Look through Client Specifications|Work on a specification job, equipment testing, or check for any recent speciication job">
+  	<a href="<%= url_for :controller => :specifications, :action => :index %>" data-transition="slide" class="tile bg-green fg-white" data-role="tile">
+          <div class="tile-content iconic">
+              <span class="icon mif-books"></span>
+          </div>
+        	<span class="tile-label">
+        		Look through Client Specifications
+        	</span>
+          <% if @notifications != 0 then %>
+            <span class="tile-badge bg-red"><%= @notifications %></span>
+          <% end %>
+  	</a>
+  </span>
+</div>

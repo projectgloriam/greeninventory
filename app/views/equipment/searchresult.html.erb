@@ -1,0 +1,64 @@
+<% @datarole = "page"
+    @page_title = "Search Results"
+ %>
+
+  <a class="command-button" href="<%= url_for :action => :simplesearch %>">
+      <span class="icon mif-search"></span>
+      Simple Search
+      <small>Use this option for simple search</small>
+  </a>
+  <a class="command-button icon-right bg-yellow fg-white" href="<%= url_for :action => :search %>">
+      <span class="icon mif-lamp"></span>
+      Advanced Search
+      <small>Use this option for detailed search</small>
+  </a>
+
+
+  <table id="table_id" width="100%" class="display" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Equipment</th>
+        <th>Model</th>
+        <th>Serial(s)</th>
+        <th>Date</th>
+        <th>Engineer</th>
+        <th>Supplier</th>
+        <th>Job sheet no.</th>
+        <th>Case</th>
+        <th>Case Title</th>
+        <th>Case Author</th>
+        <th>Client</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @equipment.each do |equipment| %>
+        <tr>
+          <td><%= equipment.equipment_name %></td>
+          <td><%= equipment.model %></td>
+          <td>
+            <%= link_to('S/N(s)', {:controller => 'serials', :equipment_id => equipment.id}, :class => "popupwindow button mini-button") %>
+          </td>
+          <td><%= equipment.created_at.strftime("%-d %B, %Y %H:%M:%S (%A)") %></td>
+          <td><%= equipment.engineer %></td>
+          <td><%= equipment.supplier %></td>
+          <td><%= equipment.job_sheet_number %></td>
+          <td><%= equipment.specification.case %></td>
+          <td><%= equipment.specification.title %></td>
+          <td><%= equipment.specification.author %></td>
+          <td><%= equipment.specification.client %></td>
+          <td><%= equipment.specification.contact_person %></td>
+          <td><%= equipment.specification.email %></td>
+          <td>
+            <span data-role="hint" data-hint-background="bg-white" data-hint-color="fg-black" data-hint-mode="2" data-hint="Show|More details">
+              <%= link_to({action: 'show', id: equipment.id, specification_id: equipment.specification.id}, class: 'popupwindow button mini-button') do %>
+                <span class="mif-folder-open"></span>
+              <% end %>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

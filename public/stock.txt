@@ -1,0 +1,1443 @@
+{
+  "INDEX": [
+    {
+      "CATEGORY": "HP TONERS"
+    },
+    {
+      "CATEGORY": "DELL TONERS"
+    },
+    {
+      "CATEGORY": "SHARP TONERS & DRUM"
+    },
+    {
+      "CATEGORY": "EPSON CARTRIDGES"
+    },
+    {
+      "CATEGORY": "CANON CARTRIDGES"
+    },
+    {
+      "CATEGORY": "TALLY RIBBONS"
+    },
+    {
+      "CATEGORY": "TAPE CARTRIDGES"
+    },
+    {
+      "CATEGORY": "OTHER CARTRIDGES"
+    },
+    {
+      "CATEGORY": "SCANNERS"
+    },
+    {
+      "CATEGORY": "TRANSFER KIT"
+    },
+    {
+      "CATEGORY": "UPS MODELS"
+    },
+    {
+      "CATEGORY": "BATTERIES & UPS BATTERIES"
+    },
+    {
+      "CATEGORY": "SURGE ARREST"
+    },
+    {
+      "CATEGORY": "AVRs MODELS"
+    },
+    {
+      "CATEGORY": "PROJECTORS & PROJECTOR SCREEN"
+    },
+    {
+      "CATEGORY": "DESKTOP"
+    },
+    {
+      "CATEGORY": "MONITORS "
+    },
+    {
+      "CATEGORY": "SERVERS"
+    },
+    {
+      "CATEGORY": "SWITCHES"
+    },
+    {
+      "CATEGORY": "PRINTERS"
+    },
+    {
+      "CATEGORY": "LAPTOPS"
+    },
+    {
+      "CATEGORY": "HARD DRIVES"
+    },
+    {
+      "CATEGORY": "CABINET"
+    },
+    {
+      "CATEGORY": "TRUNKING"
+    }
+  ],
+  "HP TONERS": [
+    {
+      "PART NUMBER": "CE400A",
+      "PRODUCT DESCRIPTION": "HP 507A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "10",
+      "PRICE": "144.50"
+    },
+    {
+      "PART NUMBER": "CE401A",
+      "PRODUCT DESCRIPTION": "HP 507A Cyan Original LaserJet Toner Cartridge",
+      "QUANTITY": "10",
+      "PRICE": "176.18"
+    },
+    {
+      "PART NUMBER": "CE402A",
+      "PRODUCT DESCRIPTION": "HP 507A Yellow Original LaserJet Toner Cartridge",
+      "QUANTITY": "10",
+      "PRICE": "211.40"
+    },
+    {
+      "PART NUMBER": "CE403A",
+      "PRODUCT DESCRIPTION": "HP 507A Magenta Original LaserJet Toner Cartridge",
+      "QUANTITY": "10",
+      "PRICE": "211.40"
+    },
+    {
+      "PART NUMBER": "CE310A",
+      "PRODUCT DESCRIPTION": "HP 126A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "19",
+      "PRICE": "47.95"
+    },
+    {
+      "PART NUMBER": "CE313A",
+      "PRODUCT DESCRIPTION": " HP 126A Magenta Toner Cartridge - cp1025",
+      "QUANTITY": "20",
+      "PRICE": "49.94"
+    },
+    {
+      "PART NUMBER": "CE311A ",
+      "PRODUCT DESCRIPTION": "HP 126A Cyan Toner Cartridge - cp1025",
+      "QUANTITY": "20",
+      "PRICE": "49.94"
+    },
+    {
+      "PART NUMBER": "CE312A                  ",
+      "PRODUCT DESCRIPTION": " HP 126A Yellow Toner Cartridge - cp1025",
+      "QUANTITY": "20",
+      "PRICE": "49.94"
+    },
+    {
+      "PART NUMBER": "CE410A",
+      "PRODUCT DESCRIPTION": "HP 305A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "20",
+      "PRICE": "80.88"
+    },
+    {
+      "PART NUMBER": "CE411A",
+      "PRODUCT DESCRIPTION": "HP 305A Cyan Original LaserJet Toner Cartridge",
+      "QUANTITY": "20",
+      "PRICE": "112.06"
+    },
+    {
+      "PART NUMBER": "CE412A",
+      "PRODUCT DESCRIPTION": "HP 305A Yellow Original LaserJet Toner Cartridge",
+      "QUANTITY": "20",
+      "PRICE": "115.53"
+    },
+    {
+      "PART NUMBER": "CE413A",
+      "PRODUCT DESCRIPTION": "HP 305A Magenta Original LaserJet Toner Cartridge",
+      "QUANTITY": "20",
+      "PRICE": "112.06"
+    },
+    {
+      "PART NUMBER": "CF350A",
+      "PRODUCT DESCRIPTION": "HP 130A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "10",
+      "PRICE": "53.40"
+    },
+    {
+      "PART NUMBER": "CF351A",
+      "PRODUCT DESCRIPTION": "HP 130A Cyan Original LaserJet Toner Cartridge",
+      "QUANTITY": "10",
+      "PRICE": "55.07"
+    },
+    {
+      "PART NUMBER": "CF352A",
+      "PRODUCT DESCRIPTION": "HP 130A Yellow Original LaserJet Toner Cartridge",
+      "QUANTITY": "10",
+      "PRICE": "55.07"
+    },
+    {
+      "PART NUMBER": "CF353A",
+      "PRODUCT DESCRIPTION": "HP 130A Magenta Original LaserJet Toner Cartridge",
+      "QUANTITY": "10",
+      "PRICE": "55.07"
+    },
+    {
+      "PART NUMBER": "CF211A",
+      "PRODUCT DESCRIPTION": "HP 131A Cyan Original LaserJet Toner Cartridge",
+      "QUANTITY": "16",
+      "PRICE": "81.00"
+    },
+    {
+      "PART NUMBER": "CF212A",
+      "PRODUCT DESCRIPTION": "HP 131A Yellow Original LaserJet Toner Cartridge",
+      "QUANTITY": "17",
+      "PRICE": "81.00"
+    },
+    {
+      "PART NUMBER": "CF213A",
+      "PRODUCT DESCRIPTION": "HP 131A Magenta Original LaserJet Toner Cartridge",
+      "QUANTITY": "15",
+      "PRICE": "81.00"
+    },
+    {
+      "PART NUMBER": "CF210A",
+      "PRODUCT DESCRIPTION": "HP 131A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "11",
+      "PRICE": "55.32"
+    },
+    {
+      "PART NUMBER": "CF380A",
+      "PRODUCT DESCRIPTION": "HP 312A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "15",
+      "PRICE": "86.82"
+    },
+    {
+      "PART NUMBER": "CF381A",
+      "PRODUCT DESCRIPTION": "HP 312A Cyan Original LaserJet Toner Cartridge",
+      "QUANTITY": "15",
+      "PRICE": "116.24"
+    },
+    {
+      "PART NUMBER": "CF382A",
+      "PRODUCT DESCRIPTION": "HP 312A Yellow Original LaserJet Toner Cartridge",
+      "QUANTITY": "15",
+      "PRICE": "116.24"
+    },
+    {
+      "PART NUMBER": "CF383A",
+      "PRODUCT DESCRIPTION": "HP 312A Magenta Original LaserJet Toner Cartridge",
+      "QUANTITY": "15",
+      "PRICE": "116.24"
+    },
+    {
+      "PART NUMBER": "CE285A",
+      "PRODUCT DESCRIPTION": "HP 85A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "10",
+      "PRICE": "65.02"
+    },
+    {
+      "PART NUMBER": "CF283A",
+      "PRODUCT DESCRIPTION": "HP 83A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "15",
+      "PRICE": "60.74"
+    },
+    {
+      "PART NUMBER": "CE390A",
+      "PRODUCT DESCRIPTION": "HP 90A Black LaserJet Toner Cartridge Toner Cartridge ",
+      "QUANTITY": "24",
+      "PRICE": "157.52"
+    },
+    {
+      "PART NUMBER": "CB543A ",
+      "PRODUCT DESCRIPTION": "HP Magenta Toner Cartridge/CP1515N",
+      "QUANTITY": "15",
+      "PRICE": "64.85"
+    },
+    {
+      "PART NUMBER": "CB542A",
+      "PRODUCT DESCRIPTION": "HP Yellow Toner Cartridge/CP1515N",
+      "QUANTITY": "14",
+      "PRICE": "64.85"
+    },
+    {
+      "PART NUMBER": "CB540A ",
+      "PRODUCT DESCRIPTION": "Hp black Toner Cartridge/CP1515N",
+      "QUANTITY": "22",
+      "PRICE": "70.26"
+    },
+    {
+      "PART NUMBER": "Q5950A",
+      "PRODUCT DESCRIPTION": "Hp Colour Laserjet (Black)",
+      "QUANTITY": "1",
+      "PRICE": "183.50"
+    },
+    {
+      "PART NUMBER": "Q5949A",
+      "PRODUCT DESCRIPTION": "Hp 49A Black Toner Cartridge",
+      "QUANTITY": "4",
+      "PRICE": "221.33"
+    },
+    {
+      "PART NUMBER": "Q6462A",
+      "PRODUCT DESCRIPTION": "Hp 644A Yellow Toner Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "342.00"
+    },
+    {
+      "PART NUMBER": "Q646OA",
+      "PRODUCT DESCRIPTION": "Hp 4730 Colour Laserjet mfp Black ",
+      "QUANTITY": "1",
+      "PRICE": "173.00"
+    },
+    {
+      "PART NUMBER": "Q6463A",
+      "PRODUCT DESCRIPTION": "Hp Colour Laserjet (Magenta)",
+      "QUANTITY": "1",
+      "PRICE": "342.00"
+    },
+    {
+      "PART NUMBER": "Q3962A",
+      "PRODUCT DESCRIPTION": "HP 122A Yellow Original LaserJet Toner Cartridge",
+      "QUANTITY": "3",
+      "PRICE": "335.52"
+    },
+    {
+      "PART NUMBER": "Q3960A",
+      "PRODUCT DESCRIPTION": "HP 122A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "Q3961A",
+      "PRODUCT DESCRIPTION": "HP 122A Cyan Original LaserJet Toner Cartridge",
+      "QUANTITY": "4",
+      "PRICE": "335.52"
+    },
+    {
+      "PART NUMBER": "Q6003A",
+      "PRODUCT DESCRIPTION": "HP 124A Magenta Original LaserJet Toner Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "223.60"
+    },
+    {
+      "PART NUMBER": "Q6002A",
+      "PRODUCT DESCRIPTION": "HP 124A Yellow Original LaserJet Toner Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "223.60"
+    },
+    {
+      "PART NUMBER": "Q6001A",
+      "PRODUCT DESCRIPTION": "HP 124A Cyan Original LaserJet Toner Cartridge",
+      "QUANTITY": "2",
+      "PRICE": "223.60"
+    },
+    {
+      "PART NUMBER": "Q6000A",
+      "PRODUCT DESCRIPTION": "HP 124A Black Original LaserJet Toner Cartridge ",
+      "QUANTITY": "1",
+      "PRICE": "204.20"
+    },
+    {
+      "PART NUMBER": "CN054AE",
+      "PRODUCT DESCRIPTION": "HP 933XL High Yield Cyan Original Ink Cartridge",
+      "QUANTITY": "14",
+      "PRICE": "11.39"
+    },
+    {
+      "PART NUMBER": "CN055AE",
+      "PRODUCT DESCRIPTION": "HP 933XL High Yield Magenta Original Ink Cartridge",
+      "QUANTITY": "14",
+      "PRICE": "11.39"
+    },
+    {
+      "PART NUMBER": "CN056AE ",
+      "PRODUCT DESCRIPTION": "HP 933XL High Yield Yellow Original Ink Cartridge",
+      "QUANTITY": "13",
+      "PRICE": "11.39"
+    },
+    {
+      "PART NUMBER": "CN053AE",
+      "PRODUCT DESCRIPTION": "HP 932XL High Yield Black Original Ink Cartridge",
+      "QUANTITY": "15",
+      "PRICE": "27.75"
+    },
+    {
+      "PART NUMBER": "CE272A",
+      "PRODUCT DESCRIPTION": "HP 650A Yellow Original LaserJet Toner Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "247.20"
+    },
+    {
+      "PART NUMBER": "CB400A",
+      "PRODUCT DESCRIPTION": "HP 642A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "4",
+      "PRICE": "339.13"
+    },
+    {
+      "PART NUMBER": "CE505A",
+      "PRODUCT DESCRIPTION": "HP 05A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "8",
+      "PRICE": "80.51"
+    },
+    {
+      "PART NUMBER": "C8543X",
+      "PRODUCT DESCRIPTION": "HP 43X Black Toner Cartridge",
+      "QUANTITY": "4",
+      "PRICE": "287.37"
+    },
+    {
+      "PART NUMBER": "CB386A",
+      "PRODUCT DESCRIPTION": "HP 824A Yellow LaserJet ",
+      "QUANTITY": "1",
+      "PRICE": "216.22"
+    },
+    {
+      "PART NUMBER": "Q7516A",
+      "PRODUCT DESCRIPTION": "HP 16A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "187.80"
+    },
+    {
+      "PART NUMBER": "Q5942A",
+      "PRODUCT DESCRIPTION": "HP 42A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "4",
+      "PRICE": "157.45"
+    },
+    {
+      "PART NUMBER": "Q5953A",
+      "PRODUCT DESCRIPTION": "HP 643A Magenta Original LaserJet Toner Cartridge",
+      "QUANTITY": "7",
+      "PRICE": "260.00"
+    },
+    {
+      "PART NUMBER": "C7115A",
+      "PRODUCT DESCRIPTION": "Compatible Q6511A Toner Cartridge",
+      "QUANTITY": "5",
+      "PRICE": "73.740"
+    },
+    {
+      "PART NUMBER": "CE390A",
+      "PRODUCT DESCRIPTION": "HP 90A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "26",
+      "PRICE": "60.16"
+    },
+    {
+      "PART NUMBER": "CF280A",
+      "PRODUCT DESCRIPTION": "HP 80A Black Original LaserJet Toner Cartridge ",
+      "QUANTITY": "6",
+      "PRICE": "90.49"
+    },
+    {
+      "PART NUMBER": "Q6511A",
+      "PRODUCT DESCRIPTION": "HP 11A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "5",
+      "PRICE": "83.80"
+    },
+    {
+      "PART NUMBER": "C8061A",
+      "PRODUCT DESCRIPTION": "HP 61A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "18",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "C4127A",
+      "PRODUCT DESCRIPTION": "HP 27A Colour Laserjet ",
+      "QUANTITY": "8",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "C4092A",
+      "PRODUCT DESCRIPTION": "HP 92A Black Original LaserJet Toner Cartridge",
+      "QUANTITY": "11",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "C9400A",
+      "PRODUCT DESCRIPTION": "HP 72 69-ml Yellow DesignJet Ink Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "62.44"
+    },
+    {
+      "PART NUMBER": "C5063A",
+      "PRODUCT DESCRIPTION": "HP 90 400-ml Magenta DesignJet Ink Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "151.00"
+    },
+    {
+      "PART NUMBER": "C5058A",
+      "PRODUCT DESCRIPTION": "HP 90 400-ml Black DesignJet Ink Cartridge ",
+      "QUANTITY": "1",
+      "PRICE": "135.00"
+    },
+    {
+      "PART NUMBER": "C5061A",
+      "PRODUCT DESCRIPTION": "HP 90 400-ml Cyan DesignJet Ink Cartridge ",
+      "QUANTITY": "1",
+      "PRICE": "151.00"
+    },
+    {
+      "PART NUMBER": "CE043A",
+      "PRODUCT DESCRIPTION": "HP 771 775-ml Photo Black DesignJet Ink Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "276.00"
+    },
+    {
+      "PART NUMBER": "C6657AEABB",
+      "PRODUCT DESCRIPTION": "HP 57 color Ink Cartridge",
+      "QUANTITY": "14",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "C9361HE",
+      "PRODUCT DESCRIPTION": "HP 136 Color Ink Cartridge",
+      "QUANTITY": "7",
+      "PRICE": "19.65"
+    },
+    {
+      "PART NUMBER": "C9383A",
+      "PRODUCT DESCRIPTION": "HP 72 Designjet Printhead - MAGENTA-CYAN",
+      "QUANTITY": "1",
+      "PRICE": "63.17"
+    }
+  ],
+  "DELL TONERS": [
+    {
+      "PART NUMBER": "7Y608",
+      "PRODUCT DESCRIPTION": "Dell P1500 (3000p) use & return toner",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "7Y610",
+      "PRODUCT DESCRIPTION": "Dell P1500 (6000p) use & returned toner",
+      "QUANTITY": "2",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "D593K",
+      "PRODUCT DESCRIPTION": "Dell 1235cn Color laser(1000p) Standard magenta toner",
+      "QUANTITY": "2",
+      "PRICE": "64.5"
+    },
+    {
+      "PART NUMBER": "DT615",
+      "PRODUCT DESCRIPTION": "Dell Colour Laser 1320c (2000 p) High Cap. Black Toner Cartr",
+      "QUANTITY": "6",
+      "PRICE": "85"
+    },
+    {
+      "PART NUMBER": "F479K",
+      "PRODUCT DESCRIPTION": "Dell 1235cn Color laser(1000p) Standard yellow toner",
+      "QUANTITY": "7",
+      "PRICE": "64.5"
+    },
+    {
+      "PART NUMBER": "H513C",
+      "PRODUCT DESCRIPTION": "Dell 3130cn ColourLaser (9000 p) High Capacity Cyan Toner",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "H514C",
+      "PRODUCT DESCRIPTION": "Dell 3130cn ColourLaser (9000 p) High Capacity Magenta Toner",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "H515C",
+      "PRODUCT DESCRIPTION": "Dell 3130cn ColourLaser (9000 p) High Capacity Yellow Toner",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "H516C",
+      "PRODUCT DESCRIPTION": "Dell 3130cn ColourLaser (9000 p) High Capacity Black Toner",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "HD767",
+      "PRODUCT DESCRIPTION": "Black use & return toner cartridge for Dell 5210n / 5310n.",
+      "QUANTITY": "6",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "HX756",
+      "PRODUCT DESCRIPTION": "Dell 2335dn MF (6000) High capacity blk toner cartridge",
+      "QUANTITY": "5",
+      "PRICE": "88"
+    },
+    {
+      "PART NUMBER": "K3756",
+      "PRODUCT DESCRIPTION": "Dell 17x0/n Laser (6000 p) High Cap. Black U&Return toner",
+      "QUANTITY": "10",
+      "PRICE": "80"
+    },
+    {
+      "PART NUMBER": "KU051O",
+      "PRODUCT DESCRIPTION": "Dell 1320c High Capacity Cyan (2000 p) Toner- Kit",
+      "QUANTITY": "2",
+      "PRICE": "85"
+    },
+    {
+      "PART NUMBER": "PN124O",
+      "PRODUCT DESCRIPTION": "Dell 1320c High Capacity Yellow (2000 p) Toner- Kit",
+      "QUANTITY": "2",
+      "PRICE": "85"
+    },
+    {
+      "PART NUMBER": "RF223",
+      "PRODUCT DESCRIPTION": "Dell 1815dn MF Black Toner Cartridge",
+      "QUANTITY": "5",
+      "PRICE": "67"
+    },
+    {
+      "PART NUMBER": "WM138O",
+      "PRODUCT DESCRIPTION": "Dell 1320c High Capacity Magenta (2000 p) Toner- Kit",
+      "QUANTITY": "1",
+      "PRICE": "85"
+    },
+    {
+      "PART NUMBER": "Y498D",
+      "PRODUCT DESCRIPTION": "Dell V313/V515/V715 standard capacity blk ink cartridge",
+      "QUANTITY": "9",
+      "PRICE": "27.5"
+    },
+    {
+      "PART NUMBER": "Y499D",
+      "PRODUCT DESCRIPTION": "Dell V313/V515/V715 standard capacity color ink cartridge",
+      "QUANTITY": "11",
+      "PRICE": "31"
+    },
+    {
+      "PART NUMBER": "Y924J",
+      "PRODUCT DESCRIPTION": "Dell 1235cn Color laser (1500p) Standard blk toner Cartridge",
+      "QUANTITY": "7",
+      "PRICE": "64.5"
+    },
+    {
+      "PART NUMBER": "C233R",
+      "PRODUCT DESCRIPTION": "Dell 3330dn High Capacity blk toner Cartridge",
+      "QUANTITY": "5",
+      "PRICE": "164.5"
+    },
+    {
+      "PART NUMBER": "H89YG",
+      "PRODUCT DESCRIPTION": "Dell 1250c & 1350cnw & 1355cn/cnw Standard Capacity Magenta",
+      "QUANTITY": "2",
+      "PRICE": "82"
+    },
+    {
+      "PART NUMBER": "J5567",
+      "PRODUCT DESCRIPTION": "Dell A922 Cartridge Color",
+      "QUANTITY": "2",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "JF333",
+      "PRODUCT DESCRIPTION": "Dell 725/ 810 ink cartridge tri color",
+      "QUANTITY": "10",
+      "PRICE": "26"
+    },
+    {
+      "PART NUMBER": "P238C",
+      "PRODUCT DESCRIPTION": "Dell 1320c/2130cn/2135cn (1000p) Standard cyan toner",
+      "QUANTITY": "1",
+      "PRICE": "68"
+    },
+    {
+      "PART NUMBER": "P239C",
+      "PRODUCT DESCRIPTION": "Dell 1320c/2130cn/2135cn (1000p) Standard yellow toner",
+      "QUANTITY": "1",
+      "PRICE": "68"
+    },
+    {
+      "PART NUMBER": "P240C",
+      "PRODUCT DESCRIPTION": "Dell 1320c/2130cn/2135cn (1000p) Standard magenta toner",
+      "QUANTITY": "1",
+      "PRICE": "68"
+    },
+    {
+      "PART NUMBER": "RY854",
+      "PRODUCT DESCRIPTION": "Dell 1320c Cyan Toner Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "RY855",
+      "PRODUCT DESCRIPTION": "Dell 1320c Magenta Toner Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "T0529",
+      "PRODUCT DESCRIPTION": "Dell A920 black ink Cartridge",
+      "QUANTITY": "4",
+      "PRICE": "32"
+    },
+    {
+      "PART NUMBER": "T0530",
+      "PRODUCT DESCRIPTION": "Dell A920 color ink Cartridge",
+      "QUANTITY": "16",
+      "PRICE": "35"
+    },
+    {
+      "PART NUMBER": "YPXY8",
+      "PRODUCT DESCRIPTION": "Dell 1250c & 1350cnw & 1355cn/cnw Standard Capacity Cyan",
+      "QUANTITY": "2",
+      "PRICE": "82"
+    },
+    {
+      "PART NUMBER": "7Y743",
+      "PRODUCT DESCRIPTION": "Dell A940 black ink Cartridge",
+      "QUANTITY": "35",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "7Y745",
+      "PRODUCT DESCRIPTION": "Dell A940/A960 color cartridge",
+      "QUANTITY": "36",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "2FV35",
+      "PRODUCT DESCRIPTION": "Dell 2150cn/cdn & 2155cn/cdn Standard Capacity Black",
+      "QUANTITY": "0",
+      "PRICE": "59"
+    },
+    {
+      "PART NUMBER": "9M2WC",
+      "PRODUCT DESCRIPTION": "Dell 2150cn/cdn & 2155cn/cdn Standard Capacity Magenta",
+      "QUANTITY": "1",
+      "PRICE": "79"
+    },
+    {
+      "PART NUMBER": "WHPFG",
+      "PRODUCT DESCRIPTION": "Dell 2150cn/cdn & 2155cn/cdn Standard Capacity Cyan",
+      "QUANTITY": "2",
+      "PRICE": "79"
+    },
+    {
+      "PART NUMBER": "NT6X2",
+      "PRODUCT DESCRIPTION": "Dell 2150cn/cdn & 2155cn/cdn Standard Capacity Yellow",
+      "QUANTITY": "2",
+      "PRICE": "79"
+    },
+    {
+      "PART NUMBER": "KGR81",
+      "PRODUCT DESCRIPTION": "Dell CTRG, DRUM unit, CNSMB, 215X for Dell 1320c printer",
+      "QUANTITY": "1",
+      "PRICE": "145"
+    },
+    {
+      "PART NUMBER": "AR205DR",
+      "PRODUCT DESCRIPTION": "Drum, Yeild: 50K",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    }
+  ],
+  "SHARP TONERS AND DRUM": [
+    {
+      "PART NUMBER": "MX235FV",
+      "PRODUCT DESCRIPTION": "Black Developer with yeild of 50K copies",
+      "QUANTITY": "7",
+      "PRICE": "18.75"
+    },
+    {
+      "PART NUMBER": "MX236FT",
+      "PRODUCT DESCRIPTION": "Black toner with yeild of 10K copies",
+      "QUANTITY": "12",
+      "PRICE": "37.89"
+    },
+    {
+      "PART NUMBER": "MX312GT",
+      "PRODUCT DESCRIPTION": "Sharp Toner Cartridge -Black for MXM260 -ORGINAL PACKED IN B",
+      "QUANTITY": "1",
+      "PRICE": "86.83"
+    },
+    {
+      "PART NUMBER": "AR205DR",
+      "PRODUCT DESCRIPTION": "Sharp drum yield 50k",
+      "QUANTITY": "10",
+      "PRICE": "34.28"
+    }
+  ],
+  "EPSON CARTRIDGES": [
+    {
+      "PART NUMBER": "C13S015086BA",
+      "PRODUCT DESCRIPTION": "Ribbon LQ2070/2170/2180",
+      "QUANTITY": "7",
+      "PRICE": "7.03"
+    },
+    {
+      "PART NUMBER": "C13S015262",
+      "PRODUCT DESCRIPTION": "Epson Black Fabric Ribbon Cartridge  LQ-680,",
+      "QUANTITY": "10",
+      "PRICE": "15.65"
+    },
+    {
+      "PART NUMBER": "C13S015384BA",
+      "PRODUCT DESCRIPTION": "DFX-9000 Ribbon Cartridge",
+      "QUANTITY": "18",
+      "PRICE": "20"
+    },
+    {
+      "PART NUMBER": "C13S015610BA",
+      "PRODUCT DESCRIPTION": "Epson LQ690 ribbon",
+      "QUANTITY": "30",
+      "PRICE": "9.71"
+    },
+    {
+      "PART NUMBER": "C43S015374",
+      "PRODUCT DESCRIPTION": "Epson ERC 38, color ribbon, blk(fits for TM-U 210,220,200,23",
+      "QUANTITY": "10",
+      "PRICE": "9.79"
+    }
+  ],
+  "CANON CARTRIDGES": [
+    {
+      "PART NUMBER": "0384B003AA",
+      "PRODUCT DESCRIPTION": "Canon GPR-18 Toner Cartridge - Black, OEM",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "CANBX3",
+      "PRODUCT DESCRIPTION": "Canon Catridge BX",
+      "QUANTITY": "2",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "7833A002AA",
+      "PRODUCT DESCRIPTION": "Canon Cartridge T for L400",
+      "QUANTITY": "2",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "CGPR18",
+      "PRODUCT DESCRIPTION": "Canon IR2016/2020 Toner",
+      "QUANTITY": "15",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "CGPR2016",
+      "PRODUCT DESCRIPTION": "Canon IR 2016/2018 Toner",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    }
+  ],
+  "TALLY RIBBONS": [
+    {
+      "PART NUMBER": "80294",
+      "PRODUCT DESCRIPTION": "Line Printers 6050/6100 ribbon 25m",
+      "QUANTITY": "1",
+      "PRICE": "14.68"
+    },
+    {
+      "PART NUMBER": "82725",
+      "PRODUCT DESCRIPTION": "T6212, T6215, T6218 6200 smart ribbon 250m",
+      "QUANTITY": "1",
+      "PRICE": "88"
+    },
+    {
+      "PART NUMBER": "86041",
+      "PRODUCT DESCRIPTION": "Tally Black Fabric Ribbon Cartridge, 60M Characters 4PK",
+      "QUANTITY": "4",
+      "PRICE": "56.25"
+    }
+  ],
+  "TAPE CARTRIDGES": [
+    {
+      "PART NUMBER": "A1484543",
+      "PRODUCT DESCRIPTION": "Dell LTO 4 800GB/1600GB tape cartridge ",
+      "QUANTITY": "331",
+      "PRICE": "33.6"
+    },
+    {
+      "PART NUMBER": "C8007A",
+      "PRODUCT DESCRIPTION": "HP DLT Tape Data Cartridge",
+      "QUANTITY": "3",
+      "PRICE": "0"
+    }
+  ],
+  "OTHER CARTRIDGES": [
+    {
+      "PART NUMBER": "BO378",
+      "PRODUCT DESCRIPTION": "Olivetti Ribbon",
+      "QUANTITY": "25",
+      "PRICE": "7"
+    },
+    {
+      "PART NUMBER": "LX23",
+      "PRODUCT DESCRIPTION": "Lexmark 24 Cartridge",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "09004447",
+      "PRODUCT DESCRIPTION": "OKI TONER-2K (Life 2,200k @ 5% densi",
+      "QUANTITY": "20",
+      "PRICE": "102"
+    },
+    {
+      "PART NUMBER": "44574302",
+      "PRODUCT DESCRIPTION": "OKI EP-CART-K-B411/431 25K",
+      "QUANTITY": "10",
+      "PRICE": "73"
+    },
+    {
+      "PART NUMBER": "52102001",
+      "PRODUCT DESCRIPTION": "OKI - Print ribbon - 1 x black - 3 million characters -",
+      "QUANTITY": "4",
+      "PRICE": "10.3"
+    }
+  ],
+  "SCANNERS": [
+    {
+      "PART NUMBER": "PA03609B001",
+      "PRODUCT DESCRIPTION": "Fujitsu model ScanSnap N1800 ScanSnap Network Scanner",
+      "QUANTITY": "1",
+      "PRICE": "1.485"
+    },
+    {
+      "PART NUMBER": "PA03610B101",
+      "PRODUCT DESCRIPTION": "Fujitsu model ScanSnap S1100i ScanSnap Network Scanner",
+      "QUANTITY": "14",
+      "PRICE": "212"
+    }
+  ],
+  "TRANSFER KIT": [
+    {
+      "PART NUMBER": "C9734B",
+      "PRODUCT DESCRIPTION": "HP Printer Transfer kit",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "CE979A",
+      "PRODUCT DESCRIPTION": "HP Color LaserJet transfer kit for CLJ CP5525",
+      "QUANTITY": "2",
+      "PRICE": "497"
+    },
+    {
+      "PART NUMBER": "Q7503A",
+      "PRODUCT DESCRIPTION": "HP Fuser Kit- 4700/4730 (220V)",
+      "QUANTITY": "3",
+      "PRICE": "272"
+    }
+  ],
+  "UPS MODELS": [
+    {
+      "PART NUMBER": "SUVTP30KH3B4S",
+      "PRODUCT DESCRIPTION": "APC Smart-UPS VT 30kVA 400V w/3 Batt Mod Exp to 4, Start-Up",
+      "QUANTITY": "1",
+      "PRICE": "9,001.40"
+    },
+    {
+      "PART NUMBER": "SUVTPF40KH3B4H",
+      "PRODUCT DESCRIPTION": "APC SMART UPS VT 40 KVA ,400V w/3 Batt Mod \r\nExp to 4 Startup",
+      "QUANTITY": "1",
+      "PRICE": "9,343.74"
+    },
+    {
+      "PART NUMBER": "SUVTP20KH2B4S",
+      "PRODUCT DESCRIPTION": "APC Smart-UPS VT 20KVA 400V w/2 Batt Mod Exp to 4, Int Maint",
+      "QUANTITY": "2",
+      "PRICE": "7,232.32"
+    },
+    {
+      "PART NUMBER": "SUVTP15KH2B4S",
+      "PRODUCT DESCRIPTION": "APC Smart-UPS VT 15kVA 400V w/2 Batt Mod Exp to 4,Startup 5x",
+      "QUANTITY": "1",
+      "PRICE": "6,535.01"
+    },
+    {
+      "PART NUMBER": "SURT15KRMXLI",
+      "PRODUCT DESCRIPTION": "APC Smart-UPS RT 15kVA RM 230V",
+      "QUANTITY": "1",
+      "PRICE": "14216.68"
+    },
+    {
+      "PART NUMBER": "SRT10KXLI",
+      "PRODUCT DESCRIPTION": "APC Smart UPS 10000VA",
+      "QUANTITY": "3",
+      "PRICE": "3921.96"
+    },
+    {
+      "PART NUMBER": "SUA5000RMI5U",
+      "PRODUCT DESCRIPTION": "APC Smart-UPS 5000VA 230V Rackmount/Tower",
+      "QUANTITY": "2",
+      "PRICE": "1893.62"
+    },
+    {
+      "PART NUMBER": "SMC3000RM12U",
+      "PRODUCT DESCRIPTION": "APC SMART UPS 3000VA",
+      "QUANTITY": "1",
+      "PRICE": "3793.96"
+    },
+    {
+      "PART NUMBER": "SMT2200I",
+      "PRODUCT DESCRIPTION": "APC Smart UPS 2200VA LCD 230V",
+      "QUANTITY": "3",
+      "PRICE": "710.55"
+    },
+    {
+      "PART NUMBER": "SMT2200RM12U",
+      "PRODUCT DESCRIPTION": "APC SMART - UPS 2200VA",
+      "QUANTITY": "1",
+      "PRICE": "942.13"
+    },
+    {
+      "PART NUMBER": "SUA1500I",
+      "PRODUCT DESCRIPTION": "APC Smart 1.5Kva",
+      "QUANTITY": "49",
+      "PRICE": "1806.809"
+    },
+    {
+      "PART NUMBER": "BX1400UI",
+      "PRODUCT DESCRIPTION": "APC Back-UPS 1400VA",
+      "QUANTITY": "45",
+      "PRICE": "148.09"
+    },
+    {
+      "PART NUMBER": "SMT1000I",
+      "PRODUCT DESCRIPTION": "APC Smart-UPS 1000VA USB & Serial 230V",
+      "QUANTITY": "5",
+      "PRICE": "342.98"
+    },
+    {
+      "PART NUMBER": "BX950UI",
+      "PRODUCT DESCRIPTION": "APC Back-UPS 950VA",
+      "QUANTITY": "10",
+      "PRICE": "98.72"
+    },
+    {
+      "PART NUMBER": "BX700UI",
+      "PRODUCT DESCRIPTION": "APC BACK - UPS 700VA",
+      "QUANTITY": "74",
+      "PRICE": "72.31"
+    }
+  ],
+  "BATTERIES AND UPS BATTERIES": [
+    {
+      "PART NUMBER": "SUVTXR6",
+      "PRODUCT DESCRIPTION": "APC smart ups VT FRM 613AT",
+      "QUANTITY": "2",
+      "PRICE": "8607.52"
+    },
+    {
+      "PART NUMBER": "BATTXP12V3000",
+      "PRODUCT DESCRIPTION": "XP12V3000 exide 12V VRLA battery",
+      "QUANTITY": "47",
+      "PRICE": "174"
+    },
+    {
+      "PART NUMBER": "12V7AH",
+      "PRODUCT DESCRIPTION": "Sealed lead acid 12 V 7AH UPS battery",
+      "QUANTITY": "24",
+      "PRICE": "7.1"
+    }
+  ],
+  "SURGE ARREST": [
+    {
+      "PART NUMBER": "PM5UK",
+      "PRODUCT DESCRIPTION": "APC SURGE ARREST",
+      "QUANTITY": "465",
+      "PRICE": "16.17"
+    }
+  ],
+  "AVRs MODELS": [
+    {
+      "PART NUMBER": "2030Y2020",
+      "PRODUCT DESCRIPTION": "Three-phase digital AVR Ortea ORION Y 20-20 20KVA",
+      "QUANTITY": "1",
+      "PRICE": "4218.44"
+    },
+    {
+      "PART NUMBER": "2030Y10520",
+      "PRODUCT DESCRIPTION": "ORION Y 105-20 Three-phase digital voltage stabiliser 105KVA",
+      "QUANTITY": "1",
+      "PRICE": "10722.22"
+    },
+    {
+      "PART NUMBER": "2030Y13520",
+      "PRODUCT DESCRIPTION": "ORION Y 135-20 Three-phase digital voltage stabiliser 135KVA",
+      "QUANTITY": "1",
+      "PRICE": "19655.1"
+    }
+  ],
+  "PROJECTORS AND PROJECTOR SCREEN": [
+    {
+      "PART NUMBER": "V11H654020",
+      "PRODUCT DESCRIPTION": "Epson EX 7235 LCD Projector,",
+      "QUANTITY": "3",
+      "PRICE": "2,926.03"
+    },
+    {
+      "PART NUMBER": "V11H328040",
+      "PRODUCT DESCRIPTION": "EPSON EB-S7 Video Projector",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "7609WU070012",
+      "PRODUCT DESCRIPTION": "Dell 7609WU Performance Projector",
+      "QUANTITY": "1",
+      "PRICE": "2667"
+    },
+    {
+      "PART NUMBER": "1420X162154",
+      "PRODUCT DESCRIPTION": "Dell 1420X Projector 220V Power Cord",
+      "QUANTITY": "1",
+      "PRICE": "555.00"
+    },
+    {
+      "PART NUMBER": "TS175",
+      "PRODUCT DESCRIPTION": "3M TS175 Universal Tripod screen 1.75 x1.75m",
+      "QUANTITY": "3",
+      "PRICE": "130"
+    }
+  ],
+  "DESKTOP": [
+    {
+      "PART NUMBER": "5124633020UK",
+      "PRODUCT DESCRIPTION": "Dell OptiPlex 3020 MT Ci3-4150 3.5GHz 4GB 500GB DVDRW W7PRO6",
+      "QUANTITY": "13",
+      "PRICE": "440"
+    },
+    {
+      "PART NUMBER": "XPS8300",
+      "PRODUCT DESCRIPTION": "Dell XPS 8300 Desktop",
+      "QUANTITY": "2",
+      "PRICE": "1035"
+    }
+  ],
+  "MONITORS": [
+    {
+      "PART NUMBER": "E1713S",
+      "PRODUCT DESCRIPTION": "Dell 17\" LCD Monitor",
+      "QUANTITY": "71",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "E2014H",
+      "PRODUCT DESCRIPTION": "Dell 20” LED UK & I Widescreen Flat",
+      "QUANTITY": "10",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "EM886AA",
+      "PRODUCT DESCRIPTION": "HP 17\" LE1711 LCD",
+      "QUANTITY": "8",
+      "PRICE": "128"
+    },
+    {
+      "PART NUMBER": "P2417H",
+      "PRODUCT DESCRIPTION": "Dell P2417H - LED monitor - 24\" - 1920 x 1080 - IPS - 250 cd/m2 - 1000:1 - 6 ms - HDMI, VGA, DisplayPort - black",
+      "QUANTITY": "6",
+      "PRICE": "246.3"
+    },
+    {
+      "PART NUMBER": "U2412M",
+      "PRODUCT DESCRIPTION": "Dell UltraSharp U2412M - LED monitor - 24\" - 1920 x 1200 - IPS - 300 cd/m2 - 1000:1 - 8 ms - DVI-D, VGA, DisplayPort",
+      "QUANTITY": "4",
+      "PRICE": "292"
+    }
+  ],
+  "SERVERS": [
+    {
+      "PART NUMBER": "132944R420",
+      "PRODUCT DESCRIPTION": "Dell PE PE R420 Xeon E5-2407 2.20GHz 2x4GB 2x300GB H310 DVDR + Ready Rails Sliding Rack Rails without Cable Management Arm",
+      "QUANTITY": "1",
+      "PRICE": "2140"
+    },
+    {
+      "PART NUMBER": "167819T320",
+      "PRODUCT DESCRIPTION": "Dell PE PE T320 Xeon E5-2407 2.20GHz 2x4GB 3x1TB DVDRW ID7E ",
+      "QUANTITY": "1",
+      "PRICE": "1899"
+    },
+    {
+      "PART NUMBER": "272492973",
+      "PRODUCT DESCRIPTION": "Compellent SC220 Enclosure (add-on enclosure )",
+      "QUANTITY": "1",
+      "PRICE": "14349.48"
+    },
+    {
+      "PART NUMBER": "272492980",
+      "PRODUCT DESCRIPTION": "Compellent SC200 Enclosure (1st enclosure of new array)",
+      "QUANTITY": "1",
+      "PRICE": "20402.64"
+    }
+  ],
+  "SWITCHES": [
+    {
+      "PART NUMBER": "WSC365048TDL",
+      "PRODUCT DESCRIPTION": "Cisco Catalyst 3650 48 Port Data 2x10G Uplink LAN Base",
+      "QUANTITY": "4",
+      "PRICE": "3575"
+    },
+    {
+      "PART NUMBER": "WSC365024TDL",
+      "PRODUCT DESCRIPTION": "Cisco Catalyst 3650 24 Port Data 2x10G Uplink LAN Base",
+      "QUANTITY": "2",
+      "PRICE": "2320"
+    },
+    {
+      "PART NUMBER": "DGS121048E",
+      "PRODUCT DESCRIPTION": "Dlink 48-Port 10/100/1000Mbps with 4 Combo SFP Smart Switch",
+      "QUANTITY": "1",
+      "PRICE": "596.75"
+    },
+    {
+      "PART NUMBER": "AIRCAP1602IEK9",
+      "PRODUCT DESCRIPTION": "802.11a/g/n Ctrlr-based AP, Int Ant, E Reg Domain",
+      "QUANTITY": "1",
+      "PRICE": "365"
+    }
+  ],
+  "PRINTERS": [
+    {
+      "PART NUMBER": "C11CA13041",
+      "PRODUCT DESCRIPTION": "Epson LQ690 printer",
+      "QUANTITY": "3",
+      "PRICE": "322"
+    },
+    {
+      "PART NUMBER": "CC436A",
+      "PRODUCT DESCRIPTION": "HP COLOR LASER CM2320NF MFP",
+      "QUANTITY": "7",
+      "PRICE": "970"
+    },
+    {
+      "PART NUMBER": "C8185A",
+      "PRODUCT DESCRIPTION": "Hp Officejet Pro K5400dn Printer",
+      "QUANTITY": "1",
+      "PRICE": "260.86"
+    },
+    {
+      "PART NUMBER": "HSJ7650",
+      "PRODUCT DESCRIPTION": "HP Scanjet 7650",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "C11C376024DA",
+      "PRODUCT DESCRIPTION": "Epson LQ 680 Dot Matrix Printer",
+      "QUANTITY": "2",
+      "PRICE": "1050"
+    },
+    {
+      "PART NUMBER": "C31C515012A0",
+      "PRODUCT DESCRIPTION": "Epson TM-U220D 1ST IMPACT PS NES,ECW, I/F-UB-U02III, PS -Yes",
+      "QUANTITY": "3",
+      "PRICE": "209"
+    },
+    {
+      "PART NUMBER": "C8144A",
+      "PRODUCT DESCRIPTION": "HP Officejet 9130",
+      "QUANTITY": "1",
+      "PRICE": "1010"
+    },
+    {
+      "PART NUMBER": "CE989A",
+      "PRODUCT DESCRIPTION": "HP LJ Enterprise 600 M601n",
+      "QUANTITY": "1",
+      "PRICE": "716.45"
+    },
+    {
+      "PART NUMBER": "DELL2135CN",
+      "PRODUCT DESCRIPTION": "Dell Laser Color MF 2135CN Printer + Ethernet",
+      "QUANTITY": "1",
+      "PRICE": "546"
+    },
+    {
+      "PART NUMBER": "DELL3330DN",
+      "PRODUCT DESCRIPTION": "Dell Laser 3330dn + Ethernet Cable",
+      "QUANTITY": "1",
+      "PRICE": "358"
+    },
+    {
+      "PART NUMBER": "C11C560021A1",
+      "PRODUCT DESCRIPTION": "PLQ20 Epson passbook printer",
+      "QUANTITY": "1",
+      "PRICE": "490"
+    },
+    {
+      "PART NUMBER": "43379",
+      "PRODUCT DESCRIPTION": "T5040 Tally passbook printer",
+      "QUANTITY": "1",
+      "PRICE": "490"
+    },
+    {
+      "PART NUMBER": "1282201",
+      "PRODUCT DESCRIPTION": "OKI B411d Mono printer,33ppm 64MB memory 2400x600dpi 250s du",
+      "QUANTITY": "1",
+      "PRICE": "198"
+    },
+    {
+      "PART NUMBER": "AR5623",
+      "PRODUCT DESCRIPTION": "Sharp copier AR-5623 copier",
+      "QUANTITY": "1",
+      "PRICE": "4,284"
+    },
+    {
+      "PART NUMBER": "CB028A",
+      "PRODUCT DESCRIPTION": "Office Jet H470wbt Mobile Printer ( Batt",
+      "QUANTITY": "1",
+      "PRICE": "522.94"
+    },
+    {
+      "PART NUMBER": "C8185A",
+      "PRODUCT DESCRIPTION": "Hp Officejet Pro K5400dn Printer",
+      "QUANTITY": "1",
+      "PRICE": "521.74"
+    }
+  ],
+  "LAPTOPS": [
+    {
+      "PART NUMBER": "DELLE5450",
+      "PRODUCT DESCRIPTION": "Dell Latitude 14 5000 Series Laptop (E5450)",
+      "QUANTITY": "1",
+      "PRICE": "705.64"
+    },
+    {
+      "PART NUMBER": "DELLV130",
+      "PRODUCT DESCRIPTION": "Dell Vostro V130 i3-380 13.3'' 4GB 1*4-- (02F1103)",
+      "QUANTITY": "1",
+      "PRICE": "759"
+    },
+    {
+      "PART NUMBER": "DELLIS3542",
+      "PRODUCT DESCRIPTION": "Dell Inspiron 3542 Laptop",
+      "QUANTITY": "1",
+      "PRICE": "502.64"
+    }
+  ],
+  "HARD DRIVES": [
+    {
+      "PART NUMBER": "413432001",
+      "PRODUCT DESCRIPTION": "80GB Sata (Fujitsu) for laptops",
+      "QUANTITY": "4",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "49Y18866",
+      "PRODUCT DESCRIPTION": "600GB 3.5'' 15k 6GB SAS HDD",
+      "QUANTITY": "4",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "507119003",
+      "PRODUCT DESCRIPTION": "HP 146GB SAS 10K 2.5in ENT HDD (9FJ066-085)",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "507129004",
+      "PRODUCT DESCRIPTION": "HP 300GB 10K SAS",
+      "QUANTITY": "2",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "641552001",
+      "PRODUCT DESCRIPTION": "HP 300GB SAS 10K 2.5in SC HDD",
+      "QUANTITY": "3",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "693569001",
+      "PRODUCT DESCRIPTION": "HDD (Hard Disk Drive) 300GB 2.5\" 10k SAS",
+      "QUANTITY": "6",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "9HH13A",
+      "PRODUCT DESCRIPTION": "80GB Sata (Seagate) for laptops (FJG84)",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "ENFIPLD320NB65",
+      "PRODUCT DESCRIPTION": "FIPS Opal Encrypted 28x 320GB 7200rpm Hard Drive for E6430",
+      "QUANTITY": "3",
+      "PRICE": "150"
+    },
+    {
+      "PART NUMBER": "ENFIPLITED320",
+      "PRODUCT DESCRIPTION": "320GB 7200rpm Hard Drive, FIPS Opal Encrypted",
+      "QUANTITY": "29",
+      "PRICE": "150"
+    },
+    {
+      "PART NUMBER": "FY291",
+      "PRODUCT DESCRIPTION": "500GB Sata 3.5'' 7200 Hard Drive for Desktop",
+      "QUANTITY": "3",
+      "PRICE": "72.34"
+    },
+    {
+      "PART NUMBER": "MK1656GSY",
+      "PRODUCT DESCRIPTION": "160GB 7200RPM SATA",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "ST3600002SS",
+      "PRODUCT DESCRIPTION": "Seagate 600 GB 3.5'' 10KRPM SAS Hard Drive",
+      "QUANTITY": "1",
+      "PRICE": "390"
+    },
+    {
+      "PART NUMBER": "UC004",
+      "PRODUCT DESCRIPTION": "60GB Sata (Hitachi) Laptop HDD",
+      "QUANTITY": "2",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "UX856",
+      "PRODUCT DESCRIPTION": "160GB Seagate Sata HDD",
+      "QUANTITY": "1",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "  695503003                    ",
+      "PRODUCT DESCRIPTION": "HP 3TB 7200RMP 3.5” SATA HDD                                                    ",
+      "QUANTITY": "4",
+      "PRICE": "218"
+    }
+  ],
+  "CABINET": [
+    {
+      "PART NUMBER": "GN0026627",
+      "PRODUCT DESCRIPTION": "Giganet 27u Floor Standip Cabinet 600x 600 glass door ",
+      "QUANTITY": "1",
+      "PRICE": "252.84"
+    },
+    {
+      "PART NUMBER": "GN0026618",
+      "PRODUCT DESCRIPTION": "Giganet 18u Std Cabinet (3fxd ) Sheves, 4w roof fan, \r\nCastors fld",
+      "QUANTITY": "2",
+      "PRICE": "271.8"
+    },
+    {
+      "PRODUCT DESCRIPTION": "Excel 9u cabinet",
+      "QUANTITY": "1",
+      "PRICE": "194.66"
+    },
+    {
+      "PART NUMBER": "G55TAB2",
+      "PRODUCT DESCRIPTION": "MGE Galaxy 5500 Empty Battery cabinet 1010mm",
+      "QUANTITY": "2",
+      "PRICE": "2360"
+    }
+  ],
+  "TRUNKING": [
+    {
+      "PART NUMBER": "450020",
+      "PRODUCT DESCRIPTION": "Excel Mini Trunking 25 x 38mm Trunking, 10 x 3 Mtr lengths",
+      "QUANTITY": "876",
+      "PRICE": "0"
+    },
+    {
+      "PART NUMBER": "501703COMP",
+      "PRODUCT DESCRIPTION": "50x170 3 Compactment",
+      "QUANTITY": "207",
+      "PRICE": "GHC 120.00"
+    },
+    {
+      "PART NUMBER": "TRUNKING100X100",
+      "PRODUCT DESCRIPTION": "Trunking 100X 100",
+      "QUANTITY": "8",
+      "PRICE": "GHC 102.00"
+    }
+  ]
+}

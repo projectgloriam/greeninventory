@@ -1,0 +1,18 @@
+<%= form_for(@serial) do |f| %>
+<%= error_messages_for(@serial) %>
+<h2>Equipment: <%= @serial.equipment.model %></h2>
+  <div class="field">
+    <div class="input-control modern text">
+      <%= f.text_field :serial_number %>
+      <span class="label"><%= f.label :serial_number %></span>
+      <span class="informer"><br>e.g. BBK7532</span>
+      <span class="placeholder">Serial Number</span>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :equipment_id, value: @serial.equipment.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

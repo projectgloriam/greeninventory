@@ -1,0 +1,58 @@
+<h1>Listing Equipment for Case: <%= @specification.case %></h1>
+
+    <% if @specification.tested == false then %>
+      <%= link_to({:action => 'tested'}, :class => 'button') do %>
+        <span class="mif-thumbs-up"> Finished
+      <% end %>
+    <% end %>
+  
+
+<table id="table_id" width="100%" class="display" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Equipment name</th>
+      <th>Model</th>
+      <th>Quantity</th>
+      <th>Date</th>
+      <th>Engineer</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @equipment.each_with_index do |equipment, index| %>
+      <script type="text/javascript">
+        $.contextMenu({
+            selector: '#context-menu-<%= index %>', 
+            trigger: 'right',
+            items: {
+              "serials": {name: '<%= link_to serials_path( :equipment_id => equipment.id ), :class => "serial"+index.to_s+" popupwindow" do %><span class="mif-barcode"></span> View Serial numbers<% end %>',
+                  callback: function(key, options) { $('.serial<%= index %>').get(0).click(); } },
+                "sep1": "---------",
+                "edit": {name: '<%= link_to edit_equipment_path(equipment), id: "edit"+index.to_s do %><span class="mif-pencil"></span> Edit<%end%>',
+                  callback: function(key, options) { $('#edit<%= index %>').get(0).click(); } },
+              "delete": {name: '<%= link_to equipment, method: :delete, data: {confirm:"Are you sure?"}, id: "delete"+index.to_s do %><span class="mif-bin"></span> Delete<%end%>',
+                  callback: function(key, options) {$('#delete<%= index %>').get(0).click();} }
+            }
+        });
+      </script>
+
+      <tr id="context-menu-<%= index %>" onclick="window.location='<%= url_for equipment %>';" >
+        <td><%= equipment.equipment_name %></td>
+        <td><%= equipment.model %></td>
+        <td><%= equipment.serials.count %></td>
+        <td><%= equipment.created_at.strftime("%-d %B, %Y %H:%M:%S (%A)") %></td>
+        <td><%= equipment.engineer %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+  <%= link_to new_equipment_path, class: 'button' do %>
+    <span class="mif-folder-plus"></span> New Equipment
+  <% end %>
+
+  <%= link_to specifications_path, :class => 'button' do %>
+      <span class="mif-keyboard-return"></span> Back
+  <% end %>

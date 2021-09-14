@@ -1,0 +1,11 @@
+<% if object.errors.any? %>
+	<script>
+	  $( document ).ready(function(){
+	    $.Notify({
+	      caption: 'Warning',
+	      content: '<strong><%= pluralize(object.errors.count, "error") %></strong> prohibited this form from being saved:<ul><% object.errors.full_messages.each do |message| %><li><%= message %></li><% end %></ul>',
+	    type: 'alert'
+	  });
+	});
+	</script>
+<% end %>

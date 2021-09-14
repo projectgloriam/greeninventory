@@ -1,0 +1,106 @@
+<%= form_for @specification, url: specifications_path, html: { multipart: true } do |f| %>
+<%= error_messages_for(@specification) %>
+
+<div class="grid">
+  <div class="row cells2">
+    <div class="cell">
+      <div class="field">
+        <div class="input-control modern text iconic">
+          <%= f.text_field :title %>
+          <span class="label"><%= f.label :title %></span>
+          <span class="informer"><br>e.g. Laptops for SSNIT</span>
+          <span class="placeholder">Title</span>
+          <span class="icon mif-file-text"></span>
+        </div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="field">
+        <label for="specifications[avatar]">Image of client specification</label> <br>
+        <div class="input-control file" data-role="input">
+          <%= f.file_field :avatar %>
+          <button class="button"><span class="mif-folder fg-blue"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row cells4">
+    <div class="cell">
+      <div class="field">
+        <div class="input-control modern text iconic">
+          <%= f.text_field :client, :class => "flexdatalist", :list => "clientlist" %>
+          <span class="label"><%= f.label :client %></span>
+          <span class="informer"><br><br>e.g. Sandvik Ghana</span>
+          <span class="placeholder">Client</span>
+          <span class="icon mif-organization"></span>
+        </div>
+      </div>
+      <datalist id="clientlist">
+        <% @specification_clients.each do |item|  %>
+          <option><%= item.client %></option>
+        <% end %>
+      </datalist>
+    </div>
+    <div class="cell">
+      <div class="field">
+        <div class="input-control modern text iconic">
+          <%= f.text_field :contact_person, :class => "flexdatalist", :list => "contactlist" %>
+          <span class="label"><%= f.label :contact_person %></span>
+          <span class="informer"><br>e.g. Joe Nunoo</span>
+          <span class="placeholder">Contact Person</span>
+          <span class="icon mif-profile"></span>
+        </div>
+      </div>
+      <datalist id="contactlist">
+        <% @specification_contact_persons.each do |item|  %>
+          <option><%= item.contact_person %></option>
+        <% end %>
+      </datalist>
+    </div>
+    <div class="cell">
+      <div class="field">
+        <div class="input-control modern text iconic">
+          <%= f.text_field :email, :class => "flexdatalist", :list => "emaillist" %>
+          <span class="label"><%= f.label :email %></span>
+          <span class="informer"><br>e.g. adjei@somewhere.com</span>
+          <span class="placeholder">Email Address</span>
+          <span class="icon mif-contacts-mail"></span>
+        </div>
+      </div>
+      <datalist id="emaillist">
+        <% @specification_emails.each do |item|  %>
+          <option><%= item.email %></option>
+        <% end %>
+      </datalist>
+    </div>
+    <div class="cell">
+      <div class="field">
+        <div class="input-control modern text iconic">
+            <%= f.text_field :telephone %>
+            <span class="label"><%= f.label :telephone %></span>
+            <span class="informer"><br>e.g. +233 244 424 141</span>
+            <span class="placeholder">Contact Telephone</span>
+            <span class="icon mif-contacts-dialer"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell">
+      <div class="field">
+        <%= f.label :comment %><br>
+        <div class="input-control textarea" data-role="input" data-text-auto-resize="true">
+          <%= f.text_area(:comment, size: '50x10', placeholder: 'Any additional comment') %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell">
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

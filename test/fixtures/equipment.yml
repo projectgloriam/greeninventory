@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  equipment_name: MyString
+  model: MyString
+  date: MyString
+  engineer: MyString
+  job_sheet_number: MyString
+  supplier: MyString
+  supplier_invoice_number: MyString
+  supplier_Warranty_start: MyString
+  supplier_Warranty_end: MyString
+  customer_Warranty_start: MyString
+  customer_Warranty_end: MyString
+  specification_id: 
+
+two:
+  equipment_name: MyString
+  model: MyString
+  date: MyString
+  engineer: MyString
+  job_sheet_number: MyString
+  supplier: MyString
+  supplier_invoice_number: MyString
+  supplier_Warranty_start: MyString
+  supplier_Warranty_end: MyString
+  customer_Warranty_start: MyString
+  customer_Warranty_end: MyString
+  specification_id: 

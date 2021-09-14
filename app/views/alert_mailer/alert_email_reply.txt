@@ -1,0 +1,12 @@
+Dear Logistics,
+
+Testing for the following equipment for Case: <%= @specification.case %> is complete:
+<% @specification.equipment.each do |spec| %>
+	* <%= spec.model %>
+		Technician's Report:
+		<%= spec.technician_report %>
+
+<% end %>
+
+
+inventory@fairgreenlimited.com
