@@ -1,4 +1,10 @@
-
+ <ul class="t-menu horizontal compact">
+  <li><a href="<%= url_for edit_serial_path(@serial) %>"><span class="icon mif-pencil"></span> Edit</a></li>
+  <li><a href="<%= url_for new_serial_path %>"><span class="icon mif-folder-plus"></span> New</a></li>
+  <li><a href="<%= url_for serials_path %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+ </ul>
+ <br>
+ <br>
 <div class="listview-outlook" data-role="listview">
     <div class="list">
         <div class="list-content">
@@ -8,7 +14,3 @@
         </div>
     </div>
 </div>
-
-<%= link_to 'Edit', edit_serial_path(@serial), class: 'button' %>
-<%= link_to 'New', new_serial_path, class: 'button' %>
-<%= link_to 'Back', serials_path, class: 'button' %>

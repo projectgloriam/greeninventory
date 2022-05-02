@@ -5,11 +5,10 @@ class Equipment < ActiveRecord::Base
   validates_presence_of :equipment_name
   validates_presence_of :model
   validates_presence_of :job_sheet_number
-  validates_presence_of :supplier
-  validates_presence_of :customer_Warranty_start
-  validates_presence_of :customer_Warranty_end
 
   belongs_to :specification
   has_many :serials
+
+  accepts_nested_attributes_for :serials, allow_destroy: true
 
 end

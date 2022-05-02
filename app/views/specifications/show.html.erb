@@ -1,102 +1,77 @@
-<div class="container page-content">
-  <div class="grid">
-    <div class="row cells2">
-      <div class="cell">
-        <div class="listview-outlook" data-role="listview">
-          <div class="list-group">
-            <span class="list-group-toggle">Specification Details</span> <!--Group title-->
-            <div class="list-group-content">
-              <!--The contents-->
-              <div class="list marked">
-                  <div class="list-content">
-                      <span class="list-title"></span>
-                      <span class="list-subtitle">Case</span>
-                      <span class="list-remark"><%= @specification.case %></span>
-                  </div>
-              </div>
-              <div class="list">
-                  <div class="list-content">
-                      <span class="list-title"></span>
-                      <span class="list-subtitle">Title</span>
-                      <span class="list-remark"><%= @specification.title %></span>
-                  </div>
-              </div>
-              <div class="list">
-                  <div class="list-content">
-                      <span class="list-title"></span>
-                      <span class="list-subtitle">Author</span>
-                      <span class="list-remark"><%= @specification.author %></span>
-                  </div>
-              </div>
-              <br>
-              <%= link_to equipment_index_path( :specification_id => @specification.id ), class: "button" do %>
-	              <% if @specification.tested != true then %>
-	              	<span class="mif-spell-check"></span> Test Equipment
-	              <% else %>
-	              	<span class="mif-checkmark fg-green"></span> Show Tested Equipment
-	              <% end %>
-              <% end %>
-              <br>
-              <div class="list">
-                  <div class="list-content">
-                      <span class="list-title"></span>
-                      <span class="list-subtitle">Image</span>
-                      <span class="list-remark"><div id="pdf" style="height: 600px;"></div><script>PDFObject.embed("<%= @specification.avatar.url %>", "#pdf");</script></span>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div data-role="charm" data-position="left" id="spec_details">
+    <dl class="horizontal">
+      <h1 class="text-light">Specification Details</h1>
+      <div class="text-light" style="padding: 20px;">
+        <dt>Case</dt>
+        <dd><%= @specification.case %></dd>
+        <dt>Title</dt>
+        <dd><%= @specification.title %></dd>
+        <dt>Author</dt>
+        <dd><%= @specification.author %></dd>
       </div>
-      <div class="cell">
-        <div class="listview-outlook" data-role="listview">
-          <div class="list-group">
-            <span class="list-group-toggle">Client Details</span> <!--Group title-->
-            <div class="list-group-content">
-              <!--The contents-->
-              <div class="list">
-                  <div class="list-content">
-                      <span class="list-title"></span>
-                      <span class="list-subtitle">Name</span>
-                      <span class="list-remark"><%= @specification.client %></span>
-                  </div>
-              </div>
-              <div class="list">
-                  <div class="list-content">
-                      <span class="list-title"></span>
-                      <span class="list-subtitle">Contact</span>
-                      <span class="list-remark"><%= @specification.contact_person %></span>
-                  </div>
-              </div>
-              <div class="list">
-                  <div class="list-content">
-                      <span class="list-title"></span>
-                      <span class="list-subtitle">Email</span>
-                      <span class="list-remark"><%= @specification.email %></span>
-                  </div>
-              </div>
-              <div class="list">
-                  <div class="list-content">
-                      <span class="list-title"></span>
-                      <span class="list-subtitle">Telephone</span>
-                      <span class="list-remark"><%= @specification.telephone %></span>
-                  </div>
-              </div>
-              <div class="list">
-                  <div class="list-content">
-                      <span class="list-title"></span>
-                      <span class="list-subtitle">Any additional comments</span>
-                      <span class="list-remark"><%= @specification.comment %></span>
-                  </div>
-              </div>
+      
+      <h1 class="text-light">Client Details</h1>
+      <div class="text-light" style="padding: 20px;">
+        <dt>Name</dt>
+        <dd><%= @specification.client %></dd>
+        <dt>Contact</dt>
+        <dd><%= @specification.contact_person %></dd>
+        <dt>Email</dt>
+        <dd><%= @specification.email %></dd>
+        <dt>Telephone</dt>
+        <dd><%= @specification.telephone %></dd>
+      </div>
 
-            </div>
-          </div>
-        </div>
+      <h1 class="text-light">Supplier Details</h1>
+      <div class="text-light" style="padding: 20px;">
+        <dt>Supplier</dt>
+        <dd><%= @specification.supplier %></dd>
+        <dt>Invoice Number</dt>
+        <dd><%= @specification.supplier_invoice_number %></dd>
+        <dt>Warranty Start</dt>
+        <dd><%= @specification.supplier_Warranty_start %></dd>
+        <dt>Warranty End</dt>
+        <dd><%= @specification.supplier_Warranty_end %></dd>
       </div>
-    </div>
+
+      <h1 class="text-light">Client Related info</h1>
+      <div class="text-light" style="padding: 20px;">
+      <dt>Warranty Status</dt>
+        <dd>
+          <% if @specification.warranty_alert == nil then %>
+            <span style="color:green;">Warranty is still valid</span>
+          <% elsif @specification.warranty_alert == 1 then %>
+            <span style="color:red;">90 days before warrant expires.</span>
+          <% elsif @specification.warranty_alert == 2 then %>
+            <span style="color:red;">The equipment warrant has expired.</span>
+          <% end %>
+        </dd>
+        <dt>Warranty Start</dt>
+        <dd><%= @specification.customer_Warranty_start %></dd>
+        <dt>Warranty end</dt>
+        <dd><%= @specification.customer_Warranty_end %></dd>
+      </div>
+
+      <h1 class="text-light">Any additional comments</h1>
+      <dd><div class="text-light" style="padding: 20px;"><%= @specification.comment %></div></dd>
+    </dl>
   </div>
-</div>
 
-  <%= link_to 'Edit', edit_specification_path(@specification), class: "button" %>
-  <%= link_to 'Back', specifications_path, class: "button" %>
+  <div class="grid">
+    <div class="row cells12">
+      <div class="cell colspan6">
+        <ul class="t-menu horizontal compact">
+          <li><a href="<%= url_for edit_specification_path(@specification) %>"><span class="icon mif-pencil"></span> Edit</a></li>
+          <li><a href="<%= url_for specifications_path %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+        </ul>
+        <br>
+        <h1>Attachment</h1>
+        <button class="button" onclick="toggleMetroCharm('#spec_details')"><span class="mif-chevron-thin-left mif-ani-horizontal mif-ani-slow"></span> Specification Details</button>
+        <%= @document %>
+      </div>
+      <div class="cell colspan6" id="equipment_container">
+        <iframe src="<%= url_for equipment_index_path( :specification_id => @specification.id ) %>" frameborder="0"
+    style="width: 100%;" onload="this.style.height=screen.availHeight+'px'"></iframe>
+      </div><!--cell-->
+    </div><!--row-->
+  </div><!--grid-->

@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
 	before_action :confirmed_logged_in
 	before_action :cancel_session #cancels session containing specification id
   	#before_action do
-    #	department("support")
+    	#department("support")
   	#end
   	before_action do
     	department("Domain Admins")

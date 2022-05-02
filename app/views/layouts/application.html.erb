@@ -1,22 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Green Inventory</title>
+  <title>Fairgreen Portal</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <%= render 'application/favicon' %>
   
-  <script type="text/javascript">
-    $(function(){
-      $('#table_id').DataTable({
-        ordering:  false
-      });
-      $(".popupwindow").popupwindow(
-        {height:400,width:400,scrollbars:1,resizable:1,center:1}
-        );
-      $('.flexdatalist').flexdatalist({ minLength: 2 });
-    });
-  </script>
 </head>
 
 <body class="metro">
@@ -38,29 +28,42 @@
 <% flash.discard %>
 
 <% if @datarole != "dialog" then %><!--If it's not a dialog, the navigation bar should appear-->
-  <div class="app-bar darcula">
-    <a href="<%= url_for :controller => :welcome, :action => :index %>" class="app-bar-element white">
-      <%= image_tag("fairgreen_logo.svg", size: "100x30") %> &nbsp;
-      <span class="mif-home fg-white"></span> 
-    Home</a>
-    
-    <ul class="app-bar-menu place-right">
-    <span class="app-bar-divider"></span>
-      <li>
-      <a href="" class="dropdown-toggle">
-      <span class="mif-user fg-white"></span>
-       &nbsp;<%= session[:user_name] %>
-      </a>
-        <ul class="d-menu" data-role="dropdown">
-          <li><a href="/signout"><span class="mif-switch fg-white"></span> Logout</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+  <% if !(controller_name == 'equipment' || controller_name == 'serials' || @no_application_bar == false) then %>
+    <div id="navigationbar" class="app-bar darcula">
+      <a href="<%= url_for :controller => :welcome, :action => :index %>" class="app-bar-element white">
+        <%= image_tag("fairgreen_logo_monochrome.svg", size: "100x30", id: "fairgreen-logo") %> &nbsp;
+        <span class="mif-home fg-white"></span> 
+      Home</a>
+      
+      <ul class="app-bar-menu place-right">
+        <span class="app-bar-divider" id="walkthrough_wrapper-x"></span>
+        <li>
+          <a href="" class="dropdown-toggle">
+            <span class="mif-user fg-white"></span>
+             &nbsp;<%= session[:user_name] %>
+          </a>
+          <ul class="d-menu" data-role="dropdown">
+            <li><a href="/signout"><span class="mif-switch fg-white"></span> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  <% end %>
 
-<%= yield %>
+  <%= yield %>
 
-  <% else %>
+  <% if @walkthrough == true then %> 
+    <button class="button cycle-button primary large-button" id="walkthrough-button" data-role="draggable, hint" 
+    data-hint-background="bg-blue" 
+    data-hint-position="top"
+    data-hint-color="fg-white"
+    data-hint-mode="2"
+    data-hint="Walkthrough|A brief walk through this page" style="position: fixed; bottom:30px; right: 30px;">
+      <span class="mif-steps mif-ani-shake"></span>
+    </button>
+  <% end %>
+
+<% else %>
 
      <style>
         .login-form {
@@ -103,6 +106,5 @@
       <%= yield %>
     </div>
 <% end %>
-
 </body>
 </html>

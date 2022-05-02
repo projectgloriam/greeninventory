@@ -14,11 +14,17 @@ class SessionsController < ApplicationController
         	user = User.return_and_create_from_adauth(ldap_user)
         	session[:user_id] = user.id
         	session[:user_name] = user.name
+        	session[:login] = user.login
         	grouping = user.group_strings.tr('[]"','') #user.group_strings is the department e.g. logistics. tr() removes [] and " because it's a string
         	grouping = grouping.split(', ') #split converts it into an array. incase the user belongs to many groups, it removes comma and space
         	session[:group] = grouping
         	flash[:success] = "Welcome #{session[:user_name]}"
-        	redirect_to(:controller => :welcome, :action => :index)
+        	
+        	unless session[:requested_page]
+        		redirect_to(:controller => :welcome, :action => :index)
+        	else
+        		redirect_to "#{session[:requested_page]}"
+        	end
         	# redirect_to root_path
     	else
         	# redirect_to root_path, :error => "Invalid Login"
@@ -31,6 +37,7 @@ class SessionsController < ApplicationController
 		#cancel every session before logout incase they don't end
 		session[:user_id] = nil
 		session[:user_name] = nil
+		session[:login] = nil
 		session[:group] = nil
 		cancel_session
 		flash[:info] = "You are now logged out"

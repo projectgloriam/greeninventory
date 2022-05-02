@@ -19,10 +19,8 @@
       <tr>
         <th>Equipment</th>
         <th>Model</th>
-        <th>Serial(s)</th>
         <th>Date</th>
         <th>Engineer</th>
-        <th>Supplier</th>
         <th>Job sheet no.</th>
         <th>Case</th>
         <th>Case Title</th>
@@ -30,20 +28,27 @@
         <th>Client</th>
         <th>Contact</th>
         <th>Email</th>
-        <th></th>
+        <th>Supplier</th>
       </tr>
     </thead>
     <tbody>
-      <% @equipment.each do |equipment| %>
-        <tr>
+      <% @equipment.each_with_index do |equipment, index| %>
+        <script type="text/javascript">
+          $.contextMenu({
+              selector: '#context-menu-<%= index %>', 
+              trigger: 'right',
+              items: {
+                "serials": {name: '<%= link_to serials_path( :equipment_id => equipment.id ), :class => "serial"+index.to_s+" popupwindow" do %><span class="mif-barcode"></span> View Serial numbers<% end %>',
+                    callback: function(key, options) { $('.serial<%= index %>').get(0).click(); } }
+              }
+          });
+        </script>
+
+        <tr id="context-menu-<%= index %>" onclick="window.location='<%= url_for equipment( specification_id: equipment.specification.id ) %>';" >
           <td><%= equipment.equipment_name %></td>
           <td><%= equipment.model %></td>
-          <td>
-            <%= link_to('S/N(s)', {:controller => 'serials', :equipment_id => equipment.id}, :class => "popupwindow button mini-button") %>
-          </td>
           <td><%= equipment.created_at.strftime("%-d %B, %Y %H:%M:%S (%A)") %></td>
           <td><%= equipment.engineer %></td>
-          <td><%= equipment.supplier %></td>
           <td><%= equipment.job_sheet_number %></td>
           <td><%= equipment.specification.case %></td>
           <td><%= equipment.specification.title %></td>
@@ -51,13 +56,7 @@
           <td><%= equipment.specification.client %></td>
           <td><%= equipment.specification.contact_person %></td>
           <td><%= equipment.specification.email %></td>
-          <td>
-            <span data-role="hint" data-hint-background="bg-white" data-hint-color="fg-black" data-hint-mode="2" data-hint="Show|More details">
-              <%= link_to({action: 'show', id: equipment.id, specification_id: equipment.specification.id}, class: 'popupwindow button mini-button') do %>
-                <span class="mif-folder-open"></span>
-              <% end %>
-            </span>
-          </td>
+          <td><%= equipment.specification.supplier %></td>
         </tr>
       <% end %>
     </tbody>

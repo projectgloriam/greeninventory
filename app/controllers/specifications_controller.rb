@@ -6,7 +6,7 @@ class SpecificationsController < ApplicationController
     #department("support")
     department("logistics")
   end
-  before_action :cancel_session #cancels session containing specification id
+  before_action :cancel_session, except: [:show] #cancels session containing specification id
 
   # GET /specifications
   # GET /specifications.json
@@ -25,6 +25,11 @@ class SpecificationsController < ApplicationController
   # GET /specifications/1
   # GET /specifications/1.json
   def show
+    @document = readDoc(@specification.avatar.path)
+
+    # Set specification ID for iframe object of equipment and serials
+    session[:specification_id] = @specification.id
+    session[:specification] = @specification.case
   end
 
   # GET /specifications/new
@@ -98,7 +103,7 @@ class SpecificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def specification_params
-      params.require(:specification).permit(:case, :title, :avatar, :client, :contact_person, :email, :telephone, :comment)
+      params.require(:specification).permit(:case, :title, :avatar, :client, :contact_person, :email, :telephone, :comment, :supplier, :supplier_invoice_number, :supplier_Warranty_start, :supplier_Warranty_end, :customer_Warranty_start, :customer_Warranty_end)
     end
 
 end

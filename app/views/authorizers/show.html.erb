@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @authorizer.full_name %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @authorizer.department %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @authorizer.level %>
+</p>
+
+<%= link_to 'Edit', edit_authorizer_path(@authorizer) %> |
+<%= link_to 'Back', authorizers_path %>

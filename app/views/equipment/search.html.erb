@@ -1,15 +1,26 @@
 <% @datarole = "page"
     @page_title = "Advanced Search"
+    @walkthrough = true
  %>
 
  <script>
-  $( document ).ready(function(){
-    $.Notify({
-      caption: 'Info',
-      content: 'You can choose to omit the other fields',
-      type: 'info'
-  });
-});
+
+    $(document).ready(function(){
+
+      // Set up tour
+      $('body').pagewalkthrough({
+          name: 'introduction',
+          steps: [{
+             popup: {
+                 content: '#walkthrough-1',
+                 type: 'modal'
+             }
+          }]
+      });
+
+      // Show the tour
+      $('body').pagewalkthrough('show');
+    });
   </script>
 
 <form method="GET" action="<%= url_for :action => :searchresult %>">
@@ -113,26 +124,7 @@
         </div>
       </div>
     </div>
-    <div class="row cells3">
-      <div class="cell">
-        <div class="field">
-          <div class="input-control modern text iconic">
-            <input type="text" id="supplier" name="supplier" class="flexdatalist" list="supplierlist" />
-            <span class="label">Supplier</span>
-            <span class="informer"><br>e.g. NSure</span>
-            <span class="placeholder">Supplier</span>
-            <span class="icon mif-truck"></span>
-          </div>
-          <datalist id="supplierlist">
-            <% @suppliers.each do |item| %>
-                    <option><%= item.supplier %></option>
-            <% end %>
-          </datalist>
-        </div>
-      </div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-    </div>
+
     <div class="row">
       <div class="cell"><h2 class="sub-leader">Specification Details</h2></div>
     </div>
@@ -185,6 +177,26 @@
           </datalist>
         </div>
       </div>
+    </div>
+    <div class="row cells3">
+      <div class="cell">
+        <div class="field">
+          <div class="input-control modern text iconic">
+            <input type="text" id="supplier" name="supplier" class="flexdatalist" list="supplierlist" />
+            <span class="label">Supplier</span>
+            <span class="informer"><br>e.g. NSure</span>
+            <span class="placeholder">Supplier</span>
+            <span class="icon mif-truck"></span>
+          </div>
+          <datalist id="supplierlist">
+            <% @suppliers.each do |item| %>
+                    <option><%= item.supplier %></option>
+            <% end %>
+          </datalist>
+        </div>
+      </div>
+      <div class="cell"></div>
+      <div class="cell"></div>
     </div>
     <div class="row">
       <div class="cell"><h2 class="sub-leader">Client Details</h2></div>
@@ -243,3 +255,12 @@
   <input type="submit" value="Search" class="button loading-pulse"/>
 </form>
 <a href="<%= url_for :action => :simplesearch %>" class="button link" >Simple Search</a>
+
+<div id="walkthrough-content">
+  <div id="walkthrough-1">
+    <h1>Advanced Search</h1>
+    You can write what you're looking for into <em>one or more</em> corresponding fields. 
+    <br><br>
+    You can leave the other fields blank.
+  </div>
+</div>

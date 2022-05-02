@@ -1,0 +1,2 @@
+module OemPartnersHelper
+end

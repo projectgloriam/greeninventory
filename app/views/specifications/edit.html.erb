@@ -1,6 +1,9 @@
 <h1>Editing Specification</h1>
 
-<%= render 'form' %>
+<ul class="t-menu horizontal compact">
+  <li><a href="<%= url_for @specification %>"><span class="icon mif-lamp"></span> Show</a></li>
+  <li><a href="<%= url_for specifications_path %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+</ul>
+<br>
 
-	<%= link_to 'Show', @specification, class: "button" %>
-	<%= link_to 'Back', specifications_path, class: "button" %>
+<%= render 'form' %>

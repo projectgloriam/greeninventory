@@ -1,0 +1,30 @@
+<% @no_application_bar = false %>
+<%= form_for(@distributor) do |f| %>
+  <% if @distributor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@distributor.errors.count, "error") %> prohibited this distributor from being saved:</h2>
+
+      <ul>
+      <% @distributor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :distributor_name %><br>
+    <%= f.text_field :distributor_name %>
+  </div>
+  <div class="field">
+    <%= f.label :currency %><br>
+    <%= f.text_field :currency, placeholder: 'Write the currency symbol e.g. $ or GHc' %>
+  </div>
+  <div class="field">
+    <%= f.label :fairgreen_price_formula %><br>
+    <%= f.text_field :fairgreen_price_formula, placeholder: 'Place your formula with the word "price" e.g. (price*20)+56' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,362 @@
+<script type="text/javascript">
+  var table;
+  $(function() {
+
+    $("#backtotop").scrollToTop({
+      upwards: 50, 
+      toTheLeft: 50, 
+      scrollSpeed: 1000,
+      elementTop: "#products_table_id"/*,
+      beforeScroll: function() {
+          var defaultPosition = $("#scroll_to_top_wrapper").offset().top;
+          $( "#scroll_to_top_wrapper" ).animate({
+            top: 0
+          }, 200);
+       }*/
+    });
+
+    table = $('#products_table_id').DataTable();
+
+    <% if session[:group].include?("sales") == false then %>
+      $( ".for-sales" ).remove();
+    <% end %>
+
+    $("#categories").height($(window).height() - $(".app-bar").height());
+
+  });
+
+  function groupRow(columnNumber){
+
+    $('#products_table_id').DataTable().destroy();
+
+    //set element data
+    // set 'options' for 'table' and later use
+    $("#products_table_id").data('options', {
+      "columnDefs": [
+        { "visible": false, "targets": columnNumber }
+      ],
+      "order": [[ columnNumber, 'asc' ]],
+      "displayLength": 25,
+      "paging": false,
+      "drawCallback": function ( settings ) {
+        var api = this.api();
+        var rows = api.rows( {page:'current'} ).nodes();
+        var last = null;
+
+        api.column(columnNumber, {page:'current'} ).data().each( function ( group, i ) {
+          if ( last !== group ) {
+            $(rows).eq( i ).before(
+              '<tr class="group"><td colspan="7">'+group+'</td></tr>'
+            );
+
+            last = group;
+          }
+        } );
+      }
+    });
+
+    var opts = $('#products_table_id').data('options');
+
+    //add element data to options
+    table = $('#products_table_id').DataTable(opts);
+
+    var groupName;
+
+    switch('title') {
+      case $(event.target).siblings('.title').attr('class'):
+          groupName = $(event.target).siblings('.title').text();
+          break;
+
+      case $(event.target).find('.title').attr('class'):
+          groupName = $(event.target).find('.title').text();
+          break;
+
+      case $(event.target).attr('class'):
+          groupName = $(event.target).text();
+          break;
+          
+      default:
+          groupName = "";
+    }
+
+    if(groupName != ""){
+      //$.trim() removes whitespaces
+      $( "td:contains('" + $.trim(groupName) + "')" ).animatescroll({scrollSpeed:2000,easing:'easeOutBack'});
+    }
+    
+  }
+</script>
+
+<ul class="m-menu">
+    <li>
+        <a href="#" class="dropdown-toggle">OEM Partners</a>
+        <div class="m-menu-container" data-role="dropdown" data-no-close="false">
+          <%=
+            # Renders the template with a local variable
+            render :template => "oem_partners/index", :locals => {:@oem_partners => OemPartner.order(:OEM_logo_file_name)}
+          %>
+        </div>
+    </li>
+    <li>
+        <a href="#" class="dropdown-toggle">Categories</a>
+        <div class="m-menu-container" data-role="dropdown" data-no-close="true">
+          <%= 
+            # Renders the template with a local variable
+            render :template => "product_categories/index", :locals => {:@product_categories => ProductCategory.all} 
+          %>
+        </div>
+    </li>
+    <li>
+        <a href="#" class="dropdown-toggle">Distributors</a>
+        <div class="m-menu-container" data-role="dropdown" data-no-close="true">
+          <%= 
+            # Renders the template with a local variable
+            render :template => "distributors/index", :locals => {:@distributors => Distributor.all} 
+          %>
+        </div>
+    </li>
+</ul>
+
+  <a href="#" id="backtotop" class="shortcut-button bg-cyan bg-active-darkBlue fg-white">
+      <span class="icon mif-rocket"></span>
+      <span class="title">Back to top</span>
+  </a>
+
+  </br>
+  <ul class="t-menu horizontal compact">
+    <li><a href="<%= url_for :controller => :welcome %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+    <li><button onclick="openDialog('<%= url_for :action => :new %>')" class="button link for-sales"><span class="icon mif-folder-plus"></span> New</button></li>
+        <li><button onclick="metroDialog.toggle('#bulk')" class="button link for-sales"><span class="icon mif-file-excel"></span> New Bulk</button></li>
+  </ul>
+  <br>
+
+  <table id="products_table_id" width="100%" class="display" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Part Number</th>
+        <th>Description</th>
+        <th>Distributor's Price</th>
+        <th>Fairgreen Price</th>
+        <th>Quantity</th>
+        <th>Distributor</th>
+        <th>Category</th>
+        <th>Original Equipment Manufacturer</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @products.each_with_index do |product, index| %>
+        <% if session[:group].include?("sales") == true then %>
+          <script type="text/javascript">
+            $.contextMenu({
+              selector: '#context-menu-<%= index %>', 
+              trigger: 'right',
+              items: {
+                "edit": {name: '<span class="mif-pencil"></span> Edit',
+                    callback: function(key, options) { openDialog('<%= url_for edit_product_path(product) %>'); } },
+                "delete": {name: '<%= link_to product, method: :delete, data: {confirm:"Are you sure?"}, id: "delete"+index.to_s do %><span class="mif-bin"></span> Delete<%end%>',
+                    callback: function(key, options) {$('#delete<%= index %>').get(0).click();} }
+              }
+            });
+          </script>
+        <% end %>
+        <tr id="context-menu-<%= index %>" onclick="openDialog('<%= url_for product %>');" >
+          <td><%= product.product_part_number %></td>
+          <td><%= product.product_description %></td>
+          <td><%= product.distributor.currency %><%= product.product_price %></td>
+          <!-- Calculates the price and converts it according to its distributor fairgreen formula -->
+          <% price = product.product_price.to_f
+             fairgreen_price = instance_eval product.distributor.fairgreen_price_formula
+             fairgreen_price = fairgreen_price.round(2)
+           %>
+          <td>GHC <%= fairgreen_price %></td>
+          <td><%= product.product_quantity %></td>
+          <td><%= product.distributor.distributor_name %></td>
+          <td><%= product.product_category.category_name %></td>
+          <td><%= product.oem_partner.OEM_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div data-role="dialog" id="bulk" data-close-button="true" data-width="640" data-height="480" data-overlay="true" data-overlay-color="op-dark">
+    <script type="text/javascript">
+      $(function() {
+        //make all element width, height the same as the dialog div
+        $("#bulkarea, #pastearea").height($("#bulk").height());
+        $("#bulkarea, #pastearea, #displayarea").width($("#bulk").width());
+      });
+
+      function editTable(){
+        //to edit the table, the z-index must be increase inorder for the table to be accessible.
+        //Because the table is behind the textarea.
+        $("#displayarea").css({"z-index": 2});
+
+        //Make all table cells editable
+        $("#displayarea td").attr('contenteditable','true');
+
+        //change edit button icon to 'save'
+        $("#editbulk span").attr('class','mif-checkmark');
+
+        //change edit button onclick attribute to saveTable()
+        $("#editbulk").attr('onclick','saveTable()');
+
+        //Change hint to display 'save'
+        $( "#editbulk" ).data( "hint", "Save|Save data to table" );
+
+        //Remove the class 'striped' to the table
+        $("#displayarea").removeClass("striped");
+
+      }
+
+      function saveTable(){
+        //to edit the table, the z-index must be increase inorder for the table to be accessible.
+        //Because the table is behind the textarea.
+        $("#displayarea").css({"z-index": -1});
+
+        //Make all table cells not editable
+        $("#displayarea td").attr('contenteditable','false');
+
+        //change edit button icon back to 'pencil'
+        $("#editbulk span").attr('class','mif-pencil');
+
+        //change edit button onclick attribute to editTable()
+        $("#editbulk").attr('onclick','editTable()');
+
+        //Change hint to display 'edit'
+        $( "#editbulk" ).data( "hint", "Edit|Edit table contents" );
+
+
+        //Add the class 'striped' to the table
+        $("#displayarea").addClass("striped");
+
+      }
+
+      function excelClipboard(value){
+        var distributor = prompt("Please enter the distributor (Note that if this distributor is not on the database, the currency and fairgreen price formula will be given defaults. These can later be changed): ");
+
+        if(distributor==""){
+        	alert("Please enter a distributor next time. Try pasting the table again.");
+        	//clear contents of textarea.
+        	$(event.target).val("");
+        	return;
+        }
+
+        var arr = SheetClip.parse(value);
+        var containsString = 0;
+        var category = "";
+        var fetchCategory;
+        var fetch_oem;
+
+        //arr is an array of arrays (2x2)
+        $.each(arr, function( index, val ) {
+          var row = "<tr>";
+
+          $.each(val, function( i, v ) {
+
+            //break the string into an array of words to fetch first word inorder to get the OEM
+            if(i==1){
+              fetch_oem = v.split(" ");
+            }
+
+            row += "<td>";
+
+            //Make sure the cell isnt empty
+            if ( v != "" ){
+              //count when this cell contains a value for this row
+              containsString += 1;
+
+              //incase the row ends up having only one cell, fetch the cell's value
+              fetchCategory = v;
+            }
+
+            row += v + "</td>";
+          });
+
+          //distributor
+          row += "<td>"+distributor+"</td>";
+
+          //if this row ended up having one cell having a value, its a category row
+          if(containsString == 1){
+            category = fetchCategory;
+          }
+
+          //for each row, add the category
+          row += "<td>" + category + "</td>"; 
+
+          row += "<td>" + fetch_oem[0] + "</td>";
+
+          row += "</tr>";
+
+          //IF THE ROW HAS ONE COLUMN, IT IS A ROW THAT DISPLAYS THE CATEGORY NAME
+          if(containsString > 1){
+            $( "#displayarea tbody" ).append( row );
+          }
+
+          //reset the increment for number of cells containing values back to zero
+          containsString = 0;
+
+        });
+
+        //clear contents of textarea.
+        $(event.target).val("");
+      }
+
+      function submitTableData(){
+
+        var bulklist = {};
+
+        bulklist.table = convertTabletoOject("#displayarea");
+
+        $.ajax({
+           type: "POST",
+           data: bulklist,
+           url: '/products/bulk',
+           success: function(msg){
+              $( "#products_table_id" ).load( "/products #products_table_id" );
+              $( "#categories" ).load( "/products #categories" );
+              console.log('Products Added');
+              $('#bulk').data('dialog').close();
+
+              $.Notify({
+                caption: 'Success',
+                content: 'New Products Added',
+                type: 'success',
+                timeout: 7000,
+                icon: '<span class="mif-thumbs-up"></span>'
+              });
+
+              //refresh the page
+              location.reload();
+           }
+        });
+
+      }
+    </script>
+    <div id="bulkarea" style="position: relative; overflow:auto;">
+      <table id="displayarea" class="table bordered striped" style="z-index: -1; position: absolute;">
+        <thead>
+          <th>Part Number</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Distributor</th>
+          <th>Category</th>
+          <th>Original Equipment Manufacturer</th>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <textarea id="pastearea" oninput="excelClipboard(this.value);" style="opacity: 0.2; position: absolute; z-index: 0;" autofocus></textarea>
+
+      <div class="toolbar" style="position: fixed; z-index: 2;">
+        <div class="toolbar-section">
+            <button id="submitbulk" class="toolbar-button" data-role="hint" data-hint-background="bg-darkCyan" data-hint-color="fg-white" data-hint-mode="2" data-hint-position="top" data-hint="Submit|Send data" onclick="submitTableData();"><span class="mif-floppy-disk"></span></button>
+
+            <button id="editbulk" class="toolbar-button" data-role="hint" data-hint-background="bg-darkCyan" data-hint-color="fg-white" data-hint-mode="2" data-hint-position="top" data-hint="Edit|Edit table contents" onclick="editTable();"><span class="mif-pencil"></span></button>
+            
+            <button id="clear" class="toolbar-button" data-role="hint" data-hint-background="bg-darkCyan" data-hint-color="fg-white" data-hint-mode="2" data-hint-position="top" data-hint="Clear|Clears table contents" onclick="$('#displayarea tbody').empty();"><span class="mif-bin"></span></button>
+        </div>
+      </div>
+    </div>   
+  </div>

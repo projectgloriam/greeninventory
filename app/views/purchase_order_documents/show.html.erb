@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<ul class="t-menu horizontal compact">
+  <li><a href="<%= url_for purchase_order_documents_path %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+  <li><a href="<%= url_for edit_purchase_order_document_path(@purchase_order_document) %>"><span class="icon mif-pencil"></span> Edit</a></li>
+</ul>
+<br>
+<br>
+
+<p>
+  <strong>Document title:</strong>
+  <h1 class="leader"><%= @purchase_order_document.document_title %></h1>
+</p>
+
+
+  <strong>Pdf attachment:</strong>
+	<%= @document %>
+
+<p>
+  <strong>Purchase order:</strong>
+  <%= @purchase_order_document.purchase_order.purchase_order_title %>
+</p>

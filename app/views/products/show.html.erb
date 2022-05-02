@@ -1,0 +1,36 @@
+<script type="text/javascript">
+  $(function() {
+    loadImage("<%= @product.product_description %>", ".product_image");
+  });
+</script>
+<% @no_application_bar = false %>
+
+<div class="grid">
+    <div class="row cells2">
+        <div class="cell">
+          <dl class="horizontal">
+              <dt>Part number</dt>
+              <dd><%= @product.product_part_number %></dd>
+              <dt>Description</dt>
+              <dd><%= @product.product_description %></dd>
+              <dt>Quantity</dt>
+              <dd><%= @product.product_quantity %></dd>
+              <dt>Price</dt>
+              <dd><%= @product.product_price %></dd>
+              <dt>Category</dt>
+              <dd><%= @product.product_category.category_name %></dd>
+              <dt>OEM</dt>
+              <dd><%= @product.oem_partner.OEM_name %></dd>
+          </dl>
+        </div>
+        <div class="cell product_image">
+
+          <div data-role="preloader" data-type="square" data-style="dark" style="margin: auto" class="preloader-square dark-style">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+        </div>
+    </div>
+</div>

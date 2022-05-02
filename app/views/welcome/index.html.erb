@@ -1,30 +1,617 @@
 <% @datarole = "page"
     @page_title = "Welcome"
+    @walkthrough = true
  %>
-<div class="tile-area tile-area-scheme-dark fg-white" style="height: 100%; max-height: 100% !important; background: url('<%= asset_path("fairgreen_logo.svg") %>') no-repeat center center fixed;">
-  <p style="color:green;">&nbsp; Please hover a tile for more details</p>
+ <script type="text/javascript">
+  $(document).ready(function() {
+/*    $('#screensaver').height($( window ).height());
+    // video screensaver
+    var x = $.webScreenSaver({
+      stagnantTrigger: true,
+      stagnantDelay: 5000,
+      videos: [{
+        mp4: '/Fairgreen Presentation.mp4'
+      }]
+    });*/
 
-  <span data-role="hint" data-hint-background="bg-grayDark" data-hint-position="top" data-hint-color="fg-white" data-hint="Search Inventory|Search for an equipment by model, client, contact, date and other details">
-  	<a href="<%= url_for :controller => :equipment, :action => :simplesearch %>" class="tile bg-green fg-white" data-role="tile">
+
+  $.ajax({ 
+    cache: false,
+    url: "/events.json", 
+    success: function( data ) {
+
+      function eventEditor(event, action) {
+        var sendData = {};
+        var key;
+        switch(event.type) {
+          case 'events':
+              key = 'events';
+              break;
+          case 'rounds':
+              key = 'rounds';
+              break;
+          case 'public_holidays':
+              key = 'public_holidays';
+              break;
+        }
+
+        sendData[key] = JSON.stringify(event);
+        sendData['CRUD'] = action;
+        $.post( "/process_events", sendData )
+        .done(function( data ) {
+          switch(action) {
+              case 'create':
+                  $('#calendar').fullCalendar('renderEvent', event, true); // stick? = true
+                  $('#calendar').fullCalendar('unselect');
+                  break;
+              case 'delete':
+                function checkEvent(item) {
+                    if (item.title == event.title)
+                    return true;
+                }
+
+                $('#calendar').fullCalendar( 'removeEvents' , checkEvent );
+                break;
+          }
+        }).fail(function() {
+          if ( action == 'update' ){
+            revertFunc();
+          }
+        });
+      }
+
+      //Get events or rounds
+      var public_holidays, next_day_rounds, upcoming_events = [];
+
+      //data is already an object. No need to parse it.
+
+      //public holidays in ghana for the event calendar
+      public_holidays = data.public_holidays;
+
+      next_day_rounds = data.rounds;
+      console.log(JSON.stringify(next_day_rounds));
+      
+      upcoming_events = data.events;
+
+      function isaweekend(date){
+        //moment().day(1) // this monday
+          switch(moment(date).weekday()) {
+              //if the date is a saturday or a sunday...
+              case 6:
+              case 0:
+                return {
+                  //return true
+                  isaweekend: true,
+                  //move date to the next monday
+                  weekday: moment(date).day(1).format('Y-MM-DD')
+                };
+                break;
+              default:
+                return {
+                  //return false
+                  isaweekend: false,
+
+                  //return original date
+                  weekday: date
+                };
+          }
+      }
+
+      var public_holidays_menu = {};
+
+      //browse through each item in public holiday and if they fall on a weekend then shift them to a weekday
+      $.each(public_holidays, function( index, value ) {
+        public_holidays_menu[index] = {name: value.title, callback: function(){
+          $.prompt({
+            holiday:{
+              title: value.title,
+              html: '<input type="text" name="' + index + '" value="' + moment(public_holidays[index].start).format("Do MMMM, YYYY") + '">',
+              buttons: { "Change": true},
+              submit: function(e,v,m,f){
+                //validate the date to see if it's an actual date
+                //console.log(f[index]);
+                if (moment(f[index],"Do MMMM, YYYY").isValid()==false){
+                  alert('That is not a correct date');
+                } else {
+                  console.log(f[index]);
+                  var eventData = {
+                    title: value.title,
+                    start: moment(f[index],"Do MMMM, YYYY").format("Y-MM-DD"),
+                    type: 'public_holidays'
+                  }
+
+                  eventEditor(eventData, "update");
+                }
+              }
+            }
+          });
+        } };
+        public_holidays[index].start = isaweekend(value.start);
+        public_holidays[index].start = public_holidays[index].start.weekday;
+      });
+
+      public_holidays_menu[public_holidays_menu.length-1] = "---------";
+
+      public_holidays_menu[public_holidays_menu.length] = {name: "New", callback: function(){
+        $.prompt({
+          holiday:{
+            title: "New Holiday",
+            html: '<input type="text" name="new_holiday_name" placeholder="Name of Holiday"></br>'+
+                  '<input type="text" name="new_holiday_date" placeholder="e.g. 31st December, 2017">',
+            buttons: { "Add": true},
+            submit: function(e,v,m,f){
+              //validate the date to see if it's an actual date
+              //console.log(f[index]);
+              if (moment(f.new_holiday_date,"Do MMMM, YYYY").isValid()==false){
+                alert('That is not a correct date');
+              } else {
+                var eventData = {
+                  title: f.new_holiday_name,
+                  start: moment(f.new_holiday_date,"Do MMMM, YYYY").format("Y-MM-DD"),
+                  type: 'public_holidays'
+                }
+
+                eventEditor(eventData, "create");
+              }
+            }
+          }
+        });
+      } };
+
+      var exception_list = [];
+      $.each( public_holidays, function( key, value ) {
+        exception_list.push(value.start);
+      });
+
+      $.contextMenu({
+          selector: '#calendar', 
+          trigger: 'right',
+          items: public_holidays_menu
+      });
+
+
+      //For leave days event calendar
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'leave,month,agendaWeek,agendaDay,listWeek'
+        },
+        views: {
+            leave: {
+                type: 'basicWeek',
+                duration: { weeks:9 },
+                buttonText: 'leave calendar'
+            }
+        },
+        navLinks: true, // can click day/week names to navigate views
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end) {
+
+          function eventObject(event_type){
+            var title = '';
+
+            switch (event_type) {
+              case 'rounds': 
+                title = 'Round-Trips';
+                break;
+              case 'events': 
+                title = 'Create an Event';
+                break;
+            }
+
+            var object = {
+              title: title,
+              html:'<label>Where?</br><input type="text" name="'+event_type+'-location" value="" ></label><br />'+
+                    '<label>What is happening?</br><input type="text" name="'+event_type+'-task" value="" ></label><br />'+
+                    'Who are going? </br>'+
+                    '<input type="text" name="'+event_type+'-staff" placeholder="Name of staff" data-min-length="2" '+
+                    'oninput="if($(this).val().length<2){$(this).attr(\'list\',\'\');}else{$(this).attr(\'list\', \'users\');if(($(this).next(\'input\').length==0)&&($.trim($(this).val())!=\'\')&&($(this).val().length>2)){$($(this).clone().attr(\'placeholder\',\'Another staff?\').val(\'\')).insertAfter(this);}}"></br>'+
+                    '<span>Click outside the input box when done to add another staff</span>'+
+                    '<datalist id="users"><% @users.each do |user| %> '+
+                    '<option value="<%= user %>"> <%= user %></option><% end %></datalist>',
+              buttons: { Back: -1, Done: 1 },
+              //focus: ":input:first",
+              submit:function(e,v,m,f){
+                switch (v) {
+                  case -1:
+                    $.prompt.goToState('main');
+                    break;
+                  case 1:
+                    f[event_type+'-staff'] = f[event_type+'-staff'].filter(function(v){return v!==''});
+                    var eventData = {
+                        title: f[event_type+'-location'],
+                        start: start,
+                        end: end,
+                        location: f[event_type+'-location'],
+                        task: f[event_type+'-task'],
+                        staff: f[event_type+'-staff'].toString(),
+                        type: event_type
+                    };
+
+                    console.log(JSON.stringify(eventData));
+
+                    eventEditor(eventData, 'create');
+                    $.prompt.close();
+                    break;
+                }
+
+                e.preventDefault();
+              }
+            };
+
+            return object;
+          }
+
+          function workingdays(start,end,exceptions){
+            var answer = moment().weekdayCalc({rangeStart:start,rangeEnd:end,weekdays:[1,2,3,4,5],exclusions:exceptions})-1;
+            if (answer <= <%= @leave_days_due %>){
+              return answer;
+            } else {
+              return false;
+            }
+          }
+
+          var menu = {
+            main: {
+              title: 'Main Menu',
+              html:'What do you want to do?',
+              buttons: { "Round-Trips for the next day": 1, "Take a Leave" : 2, "Announce an Event" : 3 },
+              //focus: "input[name='fname']",
+              submit:function(e,v,m,f){
+
+                e.preventDefault();
+                switch (v) {
+                  case 1:
+                    $.prompt.goToState('rounds');
+                    break;
+                  case 2:
+                    if(workingdays(start,end,exception_list)==false){
+                      alert('Please select the duration again according to leave days you have left this year.');
+                      $.prompt.close();
+                    } else {
+                      $.prompt.goToState('leave');
+                    }
+
+                    break;
+                  case 3:
+                    $.prompt.goToState('events');
+                    break;
+                }
+              }
+            },
+            rounds: eventObject('rounds'),
+            leave: {
+              title: "<b>Leave Application Form</b>", 
+              html:'<label>Annual Leave Entitlement <input type="text" name="entitlement" placeholder="Number of working days" '+
+                  'value="<%= @leave_days_entitled_to %>" disabled ></label><br />'+
+                    '<label>Total Leave Due <input type="text" name="due" placeholder="Number of working days" value="<%= @leave_days_due %>" disabled ></label><br />'+
+                    '<label>Number of Days applied for <input type="text" name="applied_for" placeholder="Number of working days" value="'+ 
+                    workingdays(start,end,exception_list) +'" disabled></label><br />'+
+                    '<label>Vacation Leave Address <input type="text" name="address" placeholder="Address, Contact Number or other details"></label><br />',
+              buttons: { Back: -1, Done: 1 },
+              focus: 1,
+              submit:function(e,v,m,f){
+
+                e.preventDefault();
+
+                switch (v) {
+                  case -1:
+                    $.prompt.goToState('main');
+                    break;
+                  case 1:
+                    //check if it falls on a weekend
+                    var check_start = isaweekend(start);
+                    var check_end = isaweekend(end);
+                    var info="";
+                    var shiftDate=false;
+
+                    if(check_start.isaweekend == true){
+                      info = "Your start date falls on a weekend and it will be shifted to " + moment(check_start.weekday).format('dddd, Do MMMM YYYY');
+                      info = info + ". You can cancel this form and reselect the date on a weekday."
+                      start = check_start.weekday;
+                      shiftDate=true;
+                    }
+
+                    if(check_end.isaweekend == true){
+                      info = info + "Your end date falls on a weekend and it will be shifted to " + moment(check_end.weekday).format('dddd, Do MMMM YYYY');
+                      info = info + ". You can cancel this form and reselect the date on a weekday."
+                      end = check_end.weekday;
+                      shiftDate=true;
+                    }
+
+                    info = info + " Your new working days will be " + workingdays(start,end,exception_list) + " if you continue.";
+
+                    //console.log(f);
+
+                    if(shiftDate==true){
+                      var proceed = confirm(info + " Are you sure you want to proceed with these changes?");
+                      if (proceed == true) {
+                        $.ajax({
+                          url: '<%= url_for( :controller=>"leaves", :action=>"create" ) %>', 
+                          data: {'leave[vacation_address]' : f.address, 
+                                'leave[commencement_date]' : start, 
+                                'leave[resumption_date]' : end, 
+                                'leave[days_applied_for]' : workingdays(start,end,exception_list)
+                                },
+                          type: 'POST',
+                          //on success, display alert
+                          success: function(){
+                            $.Notify({
+                              caption: 'Success',
+                              content: 'Leave Request sent',
+                              type: 'success',
+                              timeout: 7000
+                            });
+                          },
+                          //if not successful, show error
+                          error: function(){
+                            $.Notify({
+                              caption: 'An error occured',
+                              content: "Couldnt process the leave request.",
+                              type: 'warning',
+                              timeout: 7000
+                            });
+                          }
+                        });
+                      }
+                    }
+
+                    $.prompt.close();
+                    break;
+                }
+              }
+            },
+            events: eventObject('events')
+          };
+
+          $.prompt(menu);
+          
+        },
+        editable: true,
+        eventDrop: function(event, delta, revertFunc) {
+          var eventData = {
+              title: event.title,
+              start: event.start,
+              end: event.end,
+              location: event.location,
+              task: event.task,
+              staff: event.staff,
+              type: event.type
+          };
+          eventEditor(eventData, 'update');
+        },
+    
+        eventResize: function(event, delta, revertFunc) {
+          var eventData = {
+              title: event.title,
+              start: event.start,
+              end: event.end,
+              location: event.location,
+              task: event.task,
+              staff: event.staff,
+              type: event.type
+          };
+          eventEditor(eventData, 'update');
+        },
+        eventClick: function(event, element) {
+          var eventData = {
+              title: event.title,
+              start: event.start,
+              end: event.end,
+              location: event.location,
+              task: event.task,
+              staff: event.staff,
+              type: event.type
+          };
+
+          var buttons = { "OK": 1};
+          if(event.type != 'leave'){
+            buttons["Delete"] = -1;
+          }
+
+          var detail = moment(event.start).format("Do MMMM, YYYY");
+          if (moment(event.end).format("Do MMMM, YYYY")!='Invalid date'){
+            detail = "From: " + moment(event.start).format("Do MMMM, YYYY") + " to " + moment(event.end).format("Do MMMM, YYYY");
+          }
+
+          $.prompt(detail, {
+            title: event.title,
+            buttons: buttons,
+            submit: function(e,v,m,f){
+              switch (v) {
+                case 1:
+                  $.prompt.close();
+                  break;
+                case -1:
+                  var r = confirm("Are you sure you want to delete this task?");
+                  if (r == true) {
+                      eventEditor(eventData, 'delete');
+                      $.prompt.close();
+                  }
+                  break;
+              }
+            }
+          });
+
+        },
+        eventLimit: true, // allow "more" link when too many events
+        eventSources: [
+          // event sources
+          {
+            events: public_holidays,
+            backgroundColor: 'green',
+            editable: false
+          },
+          {
+            events: upcoming_events,
+            backgroundColor: 'gold'
+          },
+          {
+            events: next_day_rounds
+          }
+          // any other event sources...
+          <% if (@leaves.length > 0) then %>
+          ,
+          {
+            events:[
+              <% @leaves.each_with_index do |leave,index| %>
+                {title: '<%= leave.staff_name %> on leave', start: '<%= leave.commencement_date %>', end: '<%= leave.resumption_date %>', type: 'leave'}
+                <% if index != (@leaves.length-1) then %>
+                , 
+                <% end %>
+              <% end %>
+            ],
+            editable: false,
+            backgroundColor: 'red'
+          }
+          <% end %>
+        ]
+      });
+    } //end of success ajax call
+  });
+
+
+    $("#walkthrough-button").click(function(event){
+      //prevent it's default action: going to the link in its href attribute.
+      event.preventDefault();
+
+        // Set up tour
+        $('body').pagewalkthrough({
+            name: 'introduction',
+            steps: [{
+               popup: {
+                   content: '#walkthrough-1',
+                   type: 'modal'
+               }
+            }, {
+                wrapper: '#walkthrough_wrapper-2',
+                popup: {
+                    content: '#walkthrough-2',
+                    type: 'tooltip',
+                    position: 'right'
+                }
+            }, {
+                wrapper: '#walkthrough_wrapper-3',
+                popup: {
+                    content: '#walkthrough-3',
+                    type: 'tooltip',
+                    position: 'right'
+                }
+            }, {
+                wrapper: '#walkthrough_wrapper-4',
+                popup: {
+                    content: '#walkthrough-4',
+                    type: 'tooltip',
+                    position: 'right'
+                }
+            }, {
+                wrapper: '#walkthrough_wrapper-5',
+                popup: {
+                    content: '#walkthrough-5',
+                    type: 'tooltip',
+                    position: 'right'
+                }
+            }, {
+                wrapper: '#walkthrough_wrapper-x',
+                popup: {
+                    content: '#walkthrough-x',
+                    type: 'tooltip',
+                    position: 'bottom'
+                }
+            }]
+        });
+
+        // Show the tour
+        $('body').pagewalkthrough('show');
+    });
+  });
+ </script>
+
+<!-- <div id="screensaver" style="position:fixed; padding:0; margin:0; top:0; left:0; width: 100%; z-index: 0;" ></div> -->
+
+<div class="tile-area tile-area-scheme-dark fg-white" style="height: 100%; max-height: 100% !important; background: url('<%= asset_path("fairgreen_logo_monochrome.svg") %>') no-repeat center center fixed;" id="tilemenu">
+
+
+  	<a href="<%= url_for :controller => :equipment, :action => :simplesearch %>" id="walkthrough_wrapper-2" class="tile bg-green fg-white" data-role="tile">
       <div class="tile-content iconic">
-          <span class="icon mif-search"></span>
+          <span class="icon mif-search mif-ani-spanner mif-ani-slow"></span>
       </div>
 	  	<span class="tile-label">
 	  		Search Inventory
 	  	</span>
   	</a>
-  </span>
-  <span data-role="hint" data-hint-background="bg-grayDark" data-hint-position="top" data-hint-color="fg-white" data-hint="Look through Client Specifications|Work on a specification job, equipment testing, or check for any recent speciication job">
-  	<a href="<%= url_for :controller => :specifications, :action => :index %>" data-transition="slide" class="tile bg-green fg-white" data-role="tile">
+  	<a href="<%= url_for :controller => :specifications, :action => :index %>" data-transition="slide" id="walkthrough_wrapper-3" class="tile bg-green fg-white" data-role="tile">
           <div class="tile-content iconic">
-              <span class="icon mif-books"></span>
+              <span class="icon mif-books mif-ani-bounce"></span>
           </div>
         	<span class="tile-label">
-        		Look through Client Specifications
+        		Specification Ticket
         	</span>
           <% if @notifications != 0 then %>
             <span class="tile-badge bg-red"><%= @notifications %></span>
           <% end %>
   	</a>
-  </span>
+  	<a href="<%= url_for :controller => :purchase_orders, :action => :index %>" id="walkthrough_wrapper-4" class="tile bg-green fg-white" data-role="tile">
+      <div class="tile-content iconic">
+      	<span class="icon mif-file-pdf mif-ani-pass"></span>
+      </div>
+	  <span class="tile-label">
+	  	Purchase Orders
+	  </span>
+  	</a>
+  	<a href="<%= url_for :controller => :products, :action => :index %>" id="walkthrough_wrapper-5" class="tile bg-green fg-white" data-role="tile">
+      <div class="tile-content iconic">
+      	<span class="icon mif-shop mif-ani-heartbeat"></span>
+      </div>
+	  <span class="tile-label">
+	  	Our Products
+	  </span>
+  	</a>
+    <a href="#" id="leave" class="tile bg-green fg-white" data-role="tile" onclick="$( '#calendar' ).animatescroll({scrollSpeed:2000,easing:'easeOutBounce'});">
+      <div class="tile-content iconic">
+        <span class="icon mif-event-available mif-ani-bell"></span>
+      </div>
+    <span class="tile-label">
+      Leave & Events Calendar
+    </span>
+    </a>
+
+</div>
+
+<div id='calendar'></div>
+<div id="walkthrough-content">
+  <div id="walkthrough-1">
+    <h1>Introduction</h1>
+    This step is an <em>introduction</em>.
+    </br></br>
+    Welcome to <em>Fairgreen Portal</em>. 
+    </br></br>
+    Click next to start the tour...
+  </div>
+
+  <div id="walkthrough-2">
+    <em>Search</em> for a tested equipment
+  </div>
+
+  <div id="walkthrough-3">
+    
+    <ul class="simple-list large-bullet" style="font-family: 'GochiHand'; color: #ffffff;font-size: 22px; text-align: center;">
+        <li>Read or create a <em>case</em> - Logistics.</li>
+        <li><em>Testing</em> equipment - Support.</li>
+    </ul>
+  </div>
+
+  <div id="walkthrough-4">
+        Lookup <em>Purchase Order</em> documents.
+  </div>
+
+  <div id="walkthrough-5">
+        Look through the <em>products</em> Fairgreen has in <em>stock</em>.
+  </div>
+
+  <div id="walkthrough-x">
+    Logout from here.
+  </div>
 </div>

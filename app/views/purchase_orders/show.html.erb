@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<ul class="t-menu horizontal compact">
+  <li><a href="<%= url_for purchase_orders_path %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+  <li><a href="<%= url_for edit_purchase_order_path(@purchase_order) %>"><span class="icon mif-pencil"></span> Edit</a></li>
+</ul>
+<br>
+<br>
+
+<p>
+  <strong>Purchase order title:</strong>
+  <%= @purchase_order.purchase_order_title %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @purchase_order.client.name %>
+</p>

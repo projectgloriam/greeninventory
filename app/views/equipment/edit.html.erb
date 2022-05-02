@@ -1,6 +1,11 @@
 <h1>Editing Equipment</h1>
 
+ <ul class="t-menu horizontal compact">
+  <li><a href="<%= url_for action: 'show', id: @equipment.id %>"><span class="icon mif-lamp"></span> Show</a></li>
+  <li><a href="<%= url_for equipment_index_path %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+ </ul>
+ <br>
+
 <%= render 'form' %>
 
-	<%= link_to 'Show', {action: 'show', id: @equipment.id}, class: 'button' %>
-	<%= link_to 'Back', equipment_index_path, class: 'button' %>
+

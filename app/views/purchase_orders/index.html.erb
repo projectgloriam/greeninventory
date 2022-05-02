@@ -1,0 +1,74 @@
+<script type="text/javascript">
+  $(function() {
+    listView(); //changes the view of each list item to resemble windows explorer
+  });
+</script>
+<p id="notice"><%= notice %></p>
+
+<h1>Purchase Orders</h1>
+
+<ul class="t-menu horizontal compact">
+  <li><a href="<%= url_for :controller => :welcome %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+</ul>
+<br>
+<br>
+<br>
+
+<div class="set-border padding10 no-padding-top no-padding-bottom">
+    <label class="input-control radio small-check">
+        <input type="radio" name="r1" value="default">
+        <span class="check"></span>
+        <span class="caption">default</span>
+    </label>
+    <label class="input-control radio small-check">
+        <input type="radio" name="r1" value="list-type-icons">
+        <span class="check"></span>
+        <span class="caption">Icons</span>
+    </label>
+    <label class="input-control radio small-check">
+        <input type="radio" name="r1" value="list-type-tiles">
+        <span class="check"></span>
+        <span class="caption">Tiles</span>
+    </label>
+    <label class="input-control radio small-check">
+        <input type="radio" name="r1" value="list-type-listing">
+        <span class="check"></span>
+        <span class="caption">Listing</span>
+    </label>
+</div>
+
+<br>
+
+<div class="listview set-border padding10" data-role="listview" id="lv1" data-on-list-click="window.location=list.data('property');">
+  <div class="list" data-property="<%= url_for new_purchase_order_path %>" >
+    <%= image_tag("Folder Add.png", class: "list-icon") %>
+    <span class="list-title">Add New</span>
+  </div>
+  <% @purchase_orders.each_with_index do |purchase_order, index| %>
+
+    <script type="text/javascript">
+      $.contextMenu({
+          selector: '#context-menu-<%= index %>', 
+          trigger: 'right',
+          items: {
+            "show": {name: '<%= link_to purchase_order, :class => "show"+index.to_s do %> Open <% end %>',
+                callback: function(key, options) { $('.show<%= index %>').get(0).click(); } },
+            "delete": {name: '<%= link_to purchase_order, method: :delete, data: {confirm:"Are you sure? This folder might contain some files and they will be deleted."}, class: "delete"+index.to_s do %><span class="mif-bin"></span> Delete<%end%>',
+                callback: function(key, options) { $('.delete<%= index %>').get(0).click(); } },
+            "sep1": "---------",
+            "edit": {name: '<%= link_to edit_purchase_order_path(purchase_order), class: "edit"+index.to_s do %><span class="mif-pencil"></span> Properties<%end%>',
+              callback: function(key, options) { $('.edit<%= index %>').get(0).click(); } }
+          }
+      });
+    </script>
+
+    <div class="list" id="context-menu-<%= index %>" data-property="<%= url_for purchase_order_documents_path(:purchase_order_id => purchase_order.id) %>" >
+    <% if purchase_order.purchase_order_documents.count > 0 then %>
+      <%= image_tag("folder-documents.png", class: "list-icon") %>
+    <% else %>
+      <%= image_tag("Folder.png", class: "list-icon") %>
+    <% end %>
+        <span class="list-title"><%= purchase_order.purchase_order_title %></span>
+    </div>
+  <% end %>
+</div>

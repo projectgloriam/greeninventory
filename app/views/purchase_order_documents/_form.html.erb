@@ -1,0 +1,223 @@
+<script type="text/javascript">
+
+  function deleteFile(fileName){
+    /* ajax call to remove file*/
+    $.post( '/purchase_order_documents/combine_documents?remove='+fileName+'&authenticity_token='+encodeURIComponent( $('input[name=authenticity_token]').val() ), function( data ) {
+        console.log('Delete Success');
+    });
+  }
+
+  $(function() {
+
+    var loading_screen;
+
+    var wH = $(window).height();
+
+    $('.scroll').css({height: wH});
+
+    var colors = [
+      "red", "orange", "amber", "yellow",
+      "lime", "green", "emerald", "teal", "blue",
+      "cyan", "cobalt", "indigo", "violet", "pink", "magenta", "crimson"
+    ];
+
+    var color_index=0;
+
+    $(".uploader").upload({
+        action: '/purchase_order_documents/combine_documents?authenticity_token='+encodeURIComponent( $('input[name=authenticity_token]').val() )
+    }).on("fileprogress.uploader", onFileProgress)
+    .on("filecomplete.uploader", onFileComplete);
+
+
+    function onFileProgress(e, file, percent) {
+      console.log("File Progress");
+
+      loading_screen = pleaseWait({
+        logo: "/assets/fairgreen_logo.svg",
+        backgroundColor: 'grayLighter',
+        loadingHtml: "<p class='loading-message'>Please wait while the file uploads</p><div class='cell padding20 bg-white'><div data-role='preloader' data-type='ring' data-style='color' style='margin: auto'></div></div>"
+      });
+
+    }
+
+    function onFileComplete(e, file, response) {
+      console.log("File Upload Complete");
+      $(loading_screen._logoElem).css('position', 'absolute');
+      $(loading_screen._logoElem).animate({
+      left: 10,
+      top: 11,
+        width: 100,
+      height: 30
+      }, 500);
+      loading_screen.finish();
+      var load_color = colors[color_index];
+
+      if (color_index<(colors.length-1)){
+        color_index++;
+      }
+
+      //add page number and file name to response data
+      var html = $(response).prepend("<h2 class='no-margin-top'>"+file.name+"</h2> <hr class='bg-"+load_color+"' />");
+      console.log(load_color);
+      $('#results').append(html);
+    }
+
+    var editable = document.getElementById("results");
+    
+    var editableList = Sortable.create(editable, {
+      filter: '.js-remove',
+      onFilter: function (evt) {
+        var el = editableList.closest(evt.item); // get dragged item
+        el && el.parentNode.removeChild(el);
+
+        /* ajax call to remove file*/
+        deleteFile(el.id);
+      }
+    });
+
+  });
+
+
+  //function to combine documents 
+  function combiner(){
+      var pdf_document = {};
+      var pages = {};
+
+      //add the file name displayed on each heading of the list to the object "pages"
+      $("#results li").each(function(index){ 
+          pages[index+1] = $(this).children("h2").text();
+      });
+
+      pdf_document.pages = pages;
+
+      /* ajax call to combine files*/
+      $.ajax({
+         type: "POST",
+         data: pdf_document,
+         url: '/purchase_order_documents/combine_documents?combine=true&authenticity_token='+encodeURIComponent( $('input[name=authenticity_token]').val() ),
+         success: function(msg){
+            console.log('Files successfully combined');
+            //another ajax to delete temporary files
+            $("#results li").each(function(index){ 
+                deleteFile($(this).children("h2").text());
+            });
+         }
+      });
+  }
+
+  function submitDocument(){
+    var input=$.trim($("#purchase_order_document_document_title").val());
+
+    //if the list of pages is empty or the document title is empty
+    if(input.length<=0){
+      event.preventDefault();
+
+      $('body').pagewalkthrough({
+        name: 'alert-1',
+        steps: [{
+            wrapper: '#input-text',
+            popup: {
+                content: '#alert-1',
+                type: 'tooltip',
+                position: 'right'
+            }
+        }]
+      });
+
+      $('body').pagewalkthrough('show');
+    } else if(!$("#results").has("li").length){
+      event.preventDefault();
+
+      $('body').pagewalkthrough({
+        name: 'alert-2',
+        steps: [{
+            wrapper: '.scroll',
+            popup: {
+                content: '#alert-2',
+                type: 'tooltip',
+                position: 'left'
+            }
+        }]
+      });
+
+      $('body').pagewalkthrough('show');
+    } else {
+      //merge pages and submit the document
+      combiner();
+      $( "#new_purchase_order_document" ).submit();
+    }
+
+  }
+
+</script>
+
+<%= form_for @purchase_order_document, :html => { :multipart => true } do |f| %>
+  <% if @purchase_order_document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@purchase_order_document.errors.count, "error") %> prohibited this purchase_order_document from being saved:</h2>
+
+      <ul>
+      <% @purchase_order_document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="grid">
+    <div class="row cells2">
+      <div class="cell">
+          <div class="row">
+            <div class="cell">
+              <div class="field">
+                <br>
+                <div class="input-control modern text" data-role="input">
+                  <%= f.text_field :document_title %>
+                  <span class="label"><%= f.label :document_title %></span>
+                  <span class="informer">Please enter the title</span>
+                  <span class="placeholder" id="input-text">Document Title</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="cell">
+                <div class="upload_container">
+                  <div class="uploader"></div>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="progress gradient-bar" data-role="progress" style="display: none;"></div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <%= f.hidden_field :purchase_order_id, value: @purchase_order_document.purchase_order.id %>
+            </div>
+          </div>
+      </div>
+      <div class="cell scroll" style="overflow-y: scroll;">
+        <button class="command-button icon-right success" onclick="submitDocument()">
+          <span class="icon mif-stack3"></span>
+          Upload
+          <small>Merge page(s) & create document</small>
+        </button>
+        <ol id="results" class="step-list"></ol>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+<div id="walkthrough-content">
+  <div id="alert-1">
+    <h1>No document title</h1>
+    Please enter the <em>document title</em>
+  </div>
+
+  <div id="alert-2">
+    <h1>No pages</h1>
+    Please drop <em>at least one page or document</em>
+  </div>
+
+</div>

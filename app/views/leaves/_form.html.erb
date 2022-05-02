@@ -1,0 +1,56 @@
+<%= form_for(@leafe) do |f| %>
+  <% if @leafe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@leafe.errors.count, "error") %> prohibited this leafe from being saved:</h2>
+
+      <ul>
+      <% @leafe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :staff_name %><br>
+    <%= f.text_field :staff_name, disabled: true %>
+  </div>
+  <div class="field">
+    <%= f.label :department %><br>
+    <%= f.text_field :department, disabled: true %>
+  </div>
+  <div class="field">
+    <%= f.label :commencement_date %><br>
+    <%= f.text_field :commencement_date, disabled: true %>
+  </div>
+  <div class="field">
+    <%= f.label :days_applied_for %><br>
+    <%= f.number_field :days_applied_for, disabled: true %>
+  </div>
+  <div class="field">
+    <%= f.label :resumption_date %><br>
+    <%= f.text_field :resumption_date, disabled: true %>
+  </div>
+  <div class="field">
+    <%= f.label :vacation_address %><br>
+    <%= f.text_field :vacation_address, disabled: true %>
+  </div>
+  <% case @authorizer_level %>
+  <% when 2 %>
+    <div class="field">
+      <label class="input-control checkbox">
+        <%= f.check_box :authorizer, onclick:"if(this.checked == true){this.value='<%= session[:user_name] %>'; $(this).closest('form').submit();}else{this.value='';}" %>
+        <span class="check"></span>
+        <span class="caption">Approve</span>
+      </label>
+    </div>
+  <% when 3 %>
+    <div class="field">
+      <label class="input-control checkbox">
+        <%= f.check_box :final_authorizer, onclick:"if(this.checked == true){this.value='<%= session[:user_name] %>'; $(this).closest('form').submit();}else{this.value='';}" %>
+        <span class="check"></span>
+        <span class="caption">Approve</span>
+      </label>
+    </div>
+  <% end %>
+<% end %>

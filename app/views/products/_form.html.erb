@@ -1,0 +1,87 @@
+<% @no_application_bar = false %>
+<script type="text/javascript">
+  $("#navigation").change(function()
+  {
+      document.location.href = $(this).val();
+  });
+
+
+  $(document).ready(function(e) {
+    resumeState();
+    try {
+      $("body .select_with_images").msDropDown();
+    } catch(e) {
+      alert(e.message);
+    }
+  });
+
+</script>
+
+<%= form_for(@product) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="grid">
+        <div class="row cells2">
+            <div class="cell">
+                <div class="field">
+                  <%= f.label :product_part_number %><br>
+                  <%= f.text_field :product_part_number %>
+                </div>
+                <div class="field">
+                  <%= f.label :product_description %><br>
+                  <%= f.text_field :product_description %>
+                </div>
+                <div class="field">
+                  <%= f.label :product_quantity %><br>
+                  <%= f.number_field :product_quantity %>
+                </div>
+                <div class="field">
+                  <%= f.label :product_price %><br>
+                  <%= f.text_field :product_price %>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="field">
+                  <%= f.label :product_category_id %><br>
+                  <%= f.select(:product_category_id) do %>
+                    <option value="" disabled selected>Select the category</option>
+                    <%= options_from_collection_for_select(ProductCategory.all, :id, :category_name) %>
+                    <option value="<%= url_for :controller => :product_categories, :action => :new %>" class="new_option" > New... </option>
+                  <% end %>
+                </div>
+                <div class="field">
+                  <%= f.label :distributor_id %><br>
+                  <%= f.select(:distributor_id) do %>
+                    <option value="" disabled selected>Select the distributor</option>
+                    <%= options_from_collection_for_select(Distributor.all, :id, :distributor_name) %>
+                    <option value="<%= url_for :controller => :distributors, :action => :new %>" class="new_option" > New... </option>
+                  <% end %>
+                </div>
+                <div class="field">
+                  <label for="product_oem_partner_id">Original Equipment Manufacturer</label><br>
+                  <select name="product[oem_partner_id]" id="product_oem_partner_id" class="select_with_images"  style="width:250px;">
+                      <option value="" disabled selected>Select OEM</option>
+                      <% @oem_partners.each do |oem_partner| %>
+                        <option value="<%= oem_partner.id %>" data-image="<%= oem_partner.OEM_logo.url(:small) %>" data-description="<%= oem_partner.OEM_name %>"><%= oem_partner.OEM_name %></option>
+                      <% end %>
+                      <option value="<%= url_for :controller => :oem_partners, :action => :new %>" class="new_option" > New... </option>
+                  </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<div class="appbarextension">
+  <ul class="inline-list for-sales">
+    <li><a href="<%= url_for new_oem_partner_path %>">New</a></li>
+  </ul>
+  </br>
+  </br>
+
+  <% row_count=0 %>
+  <div class="grid">
+      <div class="row cells4">
+        <% @oem_partners.each_with_index do |oem_partner, index| %>
+          <% row_count = row_count + 1 %>
+          <div class="cell align-center" onclick="groupRow(7);">
+            <%= image_tag oem_partner.OEM_logo.url(:small), id: 'oem-context-menu-'+index.to_s %>
+            <p class="title"><%= oem_partner.OEM_name %></p>
+            <% if session[:group].include?("sales") == true then %>
+              <script type="text/javascript">
+                $.contextMenu({
+                  selector: '#oem-context-menu-<%= index %>', 
+                  trigger: 'right',
+                  items: {
+                    "show": {name: '<span class="mif-lamp"></span> Show',
+                        callback: function(key, options) { window.location = '<%= url_for oem_partner %>'; } },
+                    "edit": {name: '<span class="mif-pencil"></span> Edit',
+                        callback: function(key, options) { window.location = '<%= url_for edit_oem_partner_path(oem_partner) %>'; } },
+                    "delete": {name: '<%= link_to oem_partner, method: :delete, data: {confirm:"Are you sure?"}, id: "delete"+index.to_s do %><span class="mif-bin"></span> Delete<%end%>',
+                        callback: function(key, options) {$('#delete<%= index %>').get(0).click();} 
+                    }
+                  }
+                });
+              </script>
+            <% end %>
+          </div>
+          <% if (row_count==4 && index != (@oem_partners.length-1)) then 
+            row_count=0 
+          %>
+      </div>
+      <div class="row cells4">
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+</div>

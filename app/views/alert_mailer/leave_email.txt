@@ -1,0 +1,4 @@
+
+@msg.html_safe
+
+Please visit <%= @url %>

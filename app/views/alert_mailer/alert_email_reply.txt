@@ -9,4 +9,4 @@ Testing for the following equipment for Case: <%= @specification.case %> is comp
 <% end %>
 
 
-inventory@fairgreenlimited.com
+portal@fairgreenlimited.com

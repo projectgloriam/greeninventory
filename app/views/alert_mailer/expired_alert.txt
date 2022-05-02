@@ -2,4 +2,4 @@ Dear Support,
 <%= @equipment.model %> Warranty Status
 ===============================================
 Equipment: <%= @equipment.equipment_name %> (Model: <%= @equipment.model %>) warrant has expired.
-Expiry date: <%= @equipment.customer_Warranty_end %>.
+Expiry date: <%= @equipment.specification.customer_Warranty_end %>.

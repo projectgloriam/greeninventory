@@ -9,4 +9,4 @@ Client: <%= @spec.client %>.
 Any additional comments: <%= @spec.comment %>
 ========================
 
-inventory@fairgreenlimited.com
+portal@fairgreenlimited.com

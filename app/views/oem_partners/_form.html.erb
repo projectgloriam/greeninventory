@@ -1,0 +1,26 @@
+<% @no_application_bar = false %>
+<%= form_for @oem_partner, html: { multipart: true } do |f| %>
+  <% if @oem_partner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@oem_partner.errors.count, "error") %> prohibited this oem_partner from being saved:</h2>
+
+      <ul>
+      <% @oem_partner.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :OEM_name %><br>
+    <%= f.text_field :OEM_name %>
+  </div>
+  <div class="field">
+    <%= f.label :OEM_logo %><br>
+    <%= f.file_field :OEM_logo %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

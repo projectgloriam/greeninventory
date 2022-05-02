@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @distributor.distributor_name %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @distributor.currency %>
+</p>
+
+<p>
+  <strong>Fairgreen price formula:</strong>
+  <%= @distributor.fairgreen_price_formula %>
+</p>
+
+<%= link_to 'Edit', edit_distributor_path(@distributor) %> |
+<%= link_to 'Back', distributors_path %>

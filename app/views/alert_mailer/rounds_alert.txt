@@ -1,0 +1,3 @@
+<%= @message %>
+
+portal@fairgreenlimited.com

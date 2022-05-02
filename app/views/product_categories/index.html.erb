@@ -1,0 +1,31 @@
+<div class="appbarextension">
+  <ul class="inline-list for-sales">
+    <li><a href="<%= url_for new_product_category_path %>">New</a></li>
+  </ul>
+  <br>
+
+  <ul style="-moz-column-count: 5; -moz-column-gap: 10px; -webkit-column-count: 5; -webkit-column-gap: 10px; column-count: 5; column-gap: 10px; list-style-type: none;">
+    <% @product_categories.each_with_index do |product_category, index| %>
+      <li onclick="groupRow(6);">
+        <a href="#" class="title" id="category-context-menu-<%= index %>"><%= product_category.category_name %></a>
+        <% if session[:group].include?("sales") == true then %>
+          <script type="text/javascript">
+            $.contextMenu({
+              selector: '#category-context-menu-<%= index %>', 
+              trigger: 'right',
+              items: {
+                "show": {name: '<span class="mif-lamp"></span> Show',
+                    callback: function(key, options) { window.location = '<%= url_for product_category %>'; } },
+                "edit": {name: '<span class="mif-pencil"></span> Edit',
+                    callback: function(key, options) { window.location = '<%= url_for edit_product_category_path(product_category) %>'; } },
+                "delete": {name: '<%= link_to product_category, method: :delete, data: {confirm:"Are you sure?"}, id: "delete-cat-"+index.to_s do %><span class="mif-bin"></span> Delete<%end%>',
+                    callback: function(key, options) {$('#delete-cat-<%= index %>').get(0).click();} 
+                }
+              }
+            });
+          </script>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

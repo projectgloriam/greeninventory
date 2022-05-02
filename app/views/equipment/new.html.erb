@@ -1,5 +1,9 @@
 <h1>New Equipment</h1>
 
-	<%= render 'form' %>
+ <ul class="t-menu horizontal compact">
+  <li><a href="<%= url_for equipment_index_path %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+ </ul>
 
-<%= link_to 'Back', equipment_index_path, class: 'button' %>
+ <br>
+
+	<%= render 'form' %>

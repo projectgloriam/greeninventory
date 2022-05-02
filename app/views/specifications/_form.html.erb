@@ -1,9 +1,106 @@
-<%= form_for @specification, url: specifications_path, html: { multipart: true } do |f| %>
+<% @walkthrough = true %>
+ <script type="text/javascript">
+  $(document).ready(function() {
+    $("#walkthrough-button").click(function(event){
+      //prevent it's default action: going to the link in its href attribute.
+      event.preventDefault();
+
+        // Set up tour
+        $('body').pagewalkthrough({
+            name: 'introduction',
+            steps: [{
+               wrapper: '#walkthrough_wrapper-1',
+               popup: {
+                   content: '#walkthrough-1',
+                   type: 'tooltip',
+                   position: 'right'
+               }
+            }, {
+                wrapper: '#walkthrough_wrapper-2',
+                popup: {
+                    content: '#walkthrough-2',
+                    type: 'tooltip',
+                    position: 'left'
+                }
+            }, {
+                wrapper: '#walkthrough_wrapper-3',
+                popup: {
+                    content: '#walkthrough-3',
+                    type: 'tooltip',
+                    position: 'bottom'
+                }
+            }, {
+                wrapper: '#walkthrough_wrapper-4',
+                popup: {
+                    content: '#walkthrough-4',
+                    type: 'tooltip',
+                    position: 'top'
+                }
+            }, {
+                wrapper: '#walkthrough_wrapper-5',
+                popup: {
+                    content: '#walkthrough-5',
+                    type: 'tooltip',
+                    position: 'top'
+                }
+            }, {
+                wrapper: '#walkthrough_wrapper-6',
+                popup: {
+                    content: '#walkthrough-6',
+                    type: 'tooltip',
+                    position: 'top'
+                }
+            }]
+        });
+
+        // Show the tour
+        $('body').pagewalkthrough('show');
+    });
+
+    $('#two-inputs1').dateRangePicker({
+      format: 'dddd, Do MMMM, Y',
+      separator : ' to ',
+      getValue: function()
+      {
+        if ($('#specification_supplier_Warranty_start').val() && $('#specification_supplier_Warranty_end').val() )
+          return $('#specification_supplier_Warranty_start').val() + ' to ' + $('#specification_supplier_Warranty_end').val();
+        else
+          return '';
+      },
+      setValue: function(s,s1,s2)
+      {
+        $('#specification_supplier_Warranty_start').val(s1);
+        $('#specification_supplier_Warranty_end').val(s2);
+      }
+    });
+
+
+    $('#two-inputs2').dateRangePicker({
+      format: 'dddd, Do MMMM, Y',
+      separator : ' to ',
+      getValue: function()
+      {
+        if ($('#specification_customer_Warranty_start').val() && $('#specification_customer_Warranty_end').val() )
+          return $('#specification_customer_Warranty_start').val() + ' to ' + $('#specification_customer_Warranty_end').val();
+        else
+          return '';
+      },
+      setValue: function(s,s1,s2)
+      {
+        $('#specification_customer_Warranty_start').val(s1);
+        $('#specification_customer_Warranty_end').val(s2);
+      }
+    });
+
+  });
+ </script>
+
+<%= form_for @specification, html: { multipart: true } do |f| %>
 <%= error_messages_for(@specification) %>
 
 <div class="grid">
   <div class="row cells2">
-    <div class="cell">
+    <div class="cell" id="walkthrough_wrapper-1">
       <div class="field">
         <div class="input-control modern text iconic">
           <%= f.text_field :title %>
@@ -16,16 +113,17 @@
     </div>
     <div class="cell">
       <div class="field">
-        <label for="specifications[avatar]">Image of client specification</label> <br>
-        <div class="input-control file" data-role="input">
+        <label for="specifications[avatar]">Document (attachment)</label> <br>
+        <div class="input-control file full-size" data-role="input">
           <%= f.file_field :avatar %>
-          <button class="button"><span class="mif-folder fg-blue"></span></button>
+          <button class="button"><span class="mif-folder fg-grayLight"></span></button>
         </div>
       </div>
     </div>
   </div>
-  <div class="row cells4">
-    <div class="cell">
+
+  <div class="row cells3">
+    <div class="cell" id="walkthrough_wrapper-3">
       <div class="field">
         <div class="input-control modern text iconic">
           <%= f.text_field :client, :class => "flexdatalist", :list => "clientlist" %>
@@ -40,8 +138,7 @@
           <option><%= item.client %></option>
         <% end %>
       </datalist>
-    </div>
-    <div class="cell">
+
       <div class="field">
         <div class="input-control modern text iconic">
           <%= f.text_field :contact_person, :class => "flexdatalist", :list => "contactlist" %>
@@ -56,14 +153,13 @@
           <option><%= item.contact_person %></option>
         <% end %>
       </datalist>
-    </div>
-    <div class="cell">
+
       <div class="field">
         <div class="input-control modern text iconic">
           <%= f.text_field :email, :class => "flexdatalist", :list => "emaillist" %>
           <span class="label"><%= f.label :email %></span>
           <span class="informer"><br>e.g. adjei@somewhere.com</span>
-          <span class="placeholder">Email Address</span>
+          <span class="placeholder"> Client Email Address</span>
           <span class="icon mif-contacts-mail"></span>
         </div>
       </div>
@@ -72,8 +168,7 @@
           <option><%= item.email %></option>
         <% end %>
       </datalist>
-    </div>
-    <div class="cell">
+
       <div class="field">
         <div class="input-control modern text iconic">
             <%= f.text_field :telephone %>
@@ -83,10 +178,80 @@
             <span class="icon mif-contacts-dialer"></span>
         </div>
       </div>
+
+    </div>
+
+    <div class="cell" id="walkthrough_wrapper-4">
+      <div class="field">
+        <div class="input-control modern text iconic">
+          <%= f.text_field :supplier, class: "flexdatalist", list: "supplierlist"  %>
+          <span class="label"><%= f.label :supplier %></span>
+          <span class="informer"><br>e.g. Mitsumi</span>
+          <span class="placeholder">Equipment Supplier</span>
+          <span class="icon mif-truck"></span>
+        </div>
+        <datalist id="supplierlist">
+          <% @suppliers.each do |item|  %>
+            <option><%= item.supplier %></option>
+          <% end %>
+        </datalist>
+      </div>
+
+      <div class="field">
+        <div class="input-control modern text iconic">
+          <%= f.text_field :supplier_invoice_number %>
+          <span class="label"><%= f.label :supplier_invoice_number %></span>
+          <span class="informer"><br>e.g. H7160644</span>
+          <span class="placeholder">Supplier Invoice</span>
+          <span class="icon mif-file-text"></span>
+        </div>
+      </div>
+    </div>
+    <div class="cell" id="walkthrough_wrapper-5">
+          <div class="field">
+            <span id="two-inputs1">
+              <div class="input-control modern text iconic">
+                <%= f.text_field :supplier_Warranty_start %>
+                <span class="label"><%= f.label :supplier_Warranty_start %></span>
+                <span class="informer"><br>e.g. 5th June</span>
+                <span class="placeholder">Supplier Warranty Start</span>
+                <span class="icon mif-calendar"></span>
+              </div> 
+
+              <div class="input-control modern text iconic">
+                <%= f.text_field :supplier_Warranty_end %>
+                <span class="label"><%= f.label :supplier_Warranty_end %></span>
+                <span class="informer"><br>e.g. 10th June</span>
+                <span class="placeholder">Supplier Warranty End</span>
+                <span class="icon mif-calendar"></span>
+              </div>
+            </span>
+          </div>
+          <hr class="bg-grayLight">
+          <div class="field">
+            <span id="two-inputs2">
+              <div class="input-control modern text iconic">
+                <%= f.text_field :customer_Warranty_start %>
+                <span class="label"><%= f.label :customer_Warranty_start %></span>
+                <span class="informer"><br>e.g. 5th June</span>
+                <span class="placeholder">Client Warranty Start</span>
+                <span class="icon mif-calendar"></span>
+              </div>
+
+              <div class="input-control modern text iconic">
+                <%= f.text_field :customer_Warranty_end %>
+                <span class="label"><%= f.label :customer_Warranty_start %></span>
+                <span class="informer"><br>e.g. 10th June</span>
+                <span class="placeholder">Client Warranty End</span>
+                <span class="icon mif-calendar"></span>
+              </div>
+            </span>
+          </div>
     </div>
   </div>
+
   <div class="row">
-    <div class="cell">
+    <div class="cell" id="walkthrough_wrapper-6">
       <div class="field">
         <%= f.label :comment %><br>
         <div class="input-control textarea" data-role="input" data-text-auto-resize="true">
@@ -104,3 +269,29 @@
   </div>
 </div>
 <% end %>
+
+<div id="walkthrough-content">
+  <div id="walkthrough-1">
+   Write any <em>unique</em> title for the <em>case</em>.
+  </div>
+
+  <div id="walkthrough-2">
+    Upload your attachment: PDF or other documents containing the specifications.
+  </div>
+
+  <div id="walkthrough-3">
+    Write the client's information here.
+  </div>
+
+  <div id="walkthrough-4">
+    Write the supplier's name and the supplier's invoice number.
+  </div>
+  
+  <div id="walkthrough-5">
+    Type in the warranty date from the supplier to Fairgreen and from Fairgreen to client.
+  </div>
+
+  <div id="walkthrough-6">
+    Add any additional comments.
+  </div>
+</div>

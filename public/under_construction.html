@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Under Construction</title>
+	<!-- CSS -->	
+	<style type="text/css">
+		html, body {
+		height: 100%;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+	<link rel="stylesheet" type="text/css" href="css/twitter.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="javascript/sweetalert.min.js"></script>
+
+	<!--Script for selecting random images-->
+	<script type="text/javascript">
+		function getRandomImage() {
+		  var images = ["under_construction.jpg","under_construction2.png"];
+
+		  return images[Math.floor(Math.random() * images.length)];
+		}
+
+		$(document).ready(function(){
+			$('body').css({
+				"background-image":"url(images/" + getRandomImage()+")",
+				"background-repeat": "no-repeat",
+				"background-size": "contain"
+			});
+			sweetAlert("Oops...", "Site under construction.", "error");
+			setTimeout(function(){
+			    window.location="http://portal/signout";
+			  }, 5000);
+		});
+	</script>
+</head>
+<body>
+</body>
+</html>

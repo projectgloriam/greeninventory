@@ -1,14 +1,58 @@
+ <style type="text/css">
+   #image_frame{
+    width:300px;
+    height: 300px;
+   }
+ </style>
+ <script type="text/javascript">
+
+  function addSerial(barcode){
+    barcode = barcode.toString();
+    //alert(barcode);
+    $('#serial_tags').addTag(barcode);
+  }
+
+  $(document).ready(function() {
+
+    //Serial numbers in tags seperated by commas
+    $('#serial_tags').tagsInput({
+      'defaultText':'Serial(s)'
+    });
+
+    scanCode(addSerial);
+
+  });
+
+  // Init a timeout variable to be used below
+  var timeout = null;
+    // Listen for keystroke events
+  function thumbnailit(inputvalue){
+
+    // Clear the timeout if it has already been set.
+    // This will prevent the previous task from executing
+    // if it has been less than <MILLISECONDS>
+    clearTimeout(timeout);
+
+    // Make a new timeout set to go off in 800ms
+    timeout = setTimeout(function () {
+      //alert(inputvalue);
+        loadImage(inputvalue, "#image_frame");
+    }, 5000);
+
+  }
+
+  $( document ).ajaxStart(function() {
+    $( "#image_frame" ).html('<hr class="bg-grayDarker"><div data-role="preloader" data-type="square" data-style="dark"></div> Loading Image...');
+  });
+
+ </script>
+
 <%= form_for(@equipment) do |f| %>
 <%= error_messages_for(@equipment) %>
-<h2>Specification Case Number: <%= @equipment.specification.case %></h2>
 
 <div class="grid">
-  <div class="row cells3">
-    <div class="cell">
-    <h3>Specification Image</h3>
-    <div id="pdf" style="height: 600px;"></div><script>PDFObject.embed("<%= @equipment.specification.avatar.url %>", "#pdf");</script>
-    </div>
-    <div class="cell">
+  <div class="row cells2">
+    <div id="walkthrough_wrapper-2" class="cell">
         <div class="field">
           <h3>Type in the details of the equipment</h3>
           <br>
@@ -25,14 +69,15 @@
             <% end %>
           </datalist>
         </div>
-        <div class="field">
+        <div id="walkthrough_wrapper-3" class="field">
           <div class="input-control modern text iconic">
-            <%= f.text_field :model, class: "flexdatalist", list: "modellist" %>
+            <%= f.text_field :model, class: "flexdatalist", list: "modellist", onkeyup: "thumbnailit(this.value);" %>
             <span class="label"><%= f.label :model %></span>
             <span class="informer"><br>e.g. Optiplex 720</span>
             <span class="placeholder">Model Number</span>
             <span class="icon mif-versions"></span>
           </div>
+          <div id="image_frame"></div>
           <datalist id="modellist">
             <% @models.each do |item|  %>
               <option><%= item.model %></option>
@@ -53,77 +98,31 @@
             <% end %>
           </datalist>
         </div>
-        <div class="field">
-          <div class="input-control modern text iconic">
-            <%= f.text_field :supplier, class: "flexdatalist", list: "supplierlist"  %>
-            <span class="label"><%= f.label :supplier %></span>
-            <span class="informer"><br>e.g. Mitsumi</span>
-            <span class="placeholder">Equipment Supplier</span>
-            <span class="icon mif-truck"></span>
-          </div>
-          <datalist id="supplierlist">
-            <% @suppliers.each do |item|  %>
-              <option><%= item.supplier %></option>
-            <% end %>
-          </datalist>
+        
+        <!--fields for serial-->
+          
+        <div class="field" id="walkthrough_wrapper-3b">
+          <input id="serial_tags" name="serial_numbers" type="text" class="tags" data-role="hint" data-hint-background="bg-green" data-hint-color="fg-white" data-hint-mode="2" data-hint="Serial Number(s)|Seperate each serial number with commas" />
         </div>
+          
+        <!--end of fields for serial-->
+
         <div class="field">
-          <div class="input-control modern text iconic">
-            <%= f.text_field :supplier_invoice_number %>
-            <span class="label"><%= f.label :supplier_invoice_number %></span>
-            <span class="informer"><br>e.g. H7160644</span>
-            <span class="placeholder">Supplier Invoice</span>
-            <span class="icon mif-file-text"></span>
+          <div class="input-control textarea" data-role="input" data-text-auto-resize="true">
+            <%= f.text_area(:technician_report, size: '50x30', placeholder: "Technician's Report") %>
           </div>
         </div>
 
         <div class="field">
-          <%= f.label :supplier_Warranty_start %>
-          <div class="input-control text" data-role="datepicker" data-date="1972-12-21" data-format="d mmm, yyyy">
-            <%= f.text_field :supplier_Warranty_start %>
-            <button class="button"><span class="mif-calendar"></span></button>
-          </div>
-        </div>
-        <div class="field">
-          <%= f.label :supplier_Warranty_end %>
-          <div class="input-control text" data-role="datepicker" data-date="1972-12-21" data-format="d mmm, yyyy">
-            <%= f.text_field :supplier_Warranty_end %>
-            <button class="button"><span class="mif-calendar"></span></button>
-          </div>
-        </div>
-        <div class="field">
-          <%= f.label :customer_Warranty_start %>
-          <div class="input-control text" data-role="datepicker" data-date="1972-12-21" data-format="d mmm, yyyy">
-            <%= f.text_field :customer_Warranty_start %>
-            <button class="button"><span class="mif-calendar"></span></button>
-          </div>
-        </div>
-        <div class="field">
-          <%= f.label :customer_Warranty_end %>
-          <div class="input-control text" data-role="datepicker" data-date="1972-12-21" data-format="d mmm, yyyy">
-            <%= f.text_field :customer_Warranty_end %>
-            <button class="button"><span class="mif-calendar"></span></button>
-          </div>
-        </div>
-        <div class="field">
           <div class="input-control text">
-            <%= f.hidden_field :specification_id, value: @equipment.specification.id %>
+            <%= f.hidden_field :specification_id %>
           </div>
         </div>
-        <div class="actions">
+        <div id="walkthrough_wrapper-5" class="actions">
           <%= f.submit %>
         </div>
     </div>
-    <div class="cell">
-      <br> <br>
-      <div class="field">
-        <div class="input-control textarea" data-role="input" data-text-auto-resize="true">
-          <%= f.text_area(:technician_report, size: '50x30', placeholder: "Technician's Report") %>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
-
 
 <% end %>

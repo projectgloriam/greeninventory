@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Staff name:</strong>
+  <%= @leafe.staff_name %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @leafe.department %>
+</p>
+
+<p>
+  <strong>Commencement date:</strong>
+  <%= @leafe.commencement_date %>
+</p>
+
+<p>
+  <strong>Days applied for:</strong>
+  <%= @leafe.days_applied_for %>
+</p>
+
+<p>
+  <strong>Vacation address:</strong>
+  <%= @leafe.vacation_address %>
+</p>
+
+<p>
+  <strong>Authorizer:</strong>
+  <%= @leafe.authorizer %>
+</p>
+
+<p>
+  <strong>Final authorizer:</strong>
+  <%= @leafe.final_authorizer %>
+</p>
+
+<%= link_to 'Edit', edit_leafe_path(@leafe) %> |
+<%= link_to 'Back', leaves_path %>

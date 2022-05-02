@@ -57,10 +57,12 @@ Change the following:
 
 and
 
-<tt> 
-	config.action_mailer.smtp_settings = {
+<tt>
+
+config.action_mailer.smtp_settings = {
       :address              => "smtp.domain.com",
       :port                 => 25,
       :domain               => "example.com",
-	} 
+} 
+
 </tt>.

@@ -1,0 +1,34 @@
+<script type="text/javascript">
+  $(document).ready(function(e) {
+    resumeState();
+  });
+</script>
+<%= form_for(@purchase_order) do |f| %>
+  <% if @purchase_order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@purchase_order.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
+
+      <ul>
+      <% @purchase_order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :purchase_order_title %><br>
+    <%= f.text_field :purchase_order_title %>
+  </div>
+  <div class="field">
+    <%= f.label :client_id %><br>
+    <%= f.select(:client_id) do %>
+      <option value="" disabled selected>Select the client</option>
+      <%= options_from_collection_for_select(Client.all, :id, :name) %>
+      <option value="<%= url_for :controller => :clients, :action => :new %>" class="new_option" > New... </option>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

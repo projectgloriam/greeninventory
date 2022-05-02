@@ -1,8 +1,10 @@
 <h1>Editing Serial</h1>
 
-<%= render 'form' %>
+ <ul class="t-menu horizontal compact">
+  <li><a href="<%= url_for action: 'show', id: @serial.id %>"><span class="icon mif-lamp"></span> Show</a></li>
+  <li><a href="<%= url_for serials_path %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+ </ul>
+ <br>
+ <br>
 
-<div data-role="group" data-group-type="multi-state" data-button-style="class">
-	<%= link_to 'Show', action: 'show', id: @serial.id, class: 'button' %>
-	<%= link_to 'Back', serials_path, class: 'button' %>
-</div>
+<%= render 'form' %>

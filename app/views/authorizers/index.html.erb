@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Authorizers</h1>
+
+<table id="table_id" width="100%" class="hover" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Full name</th>
+      <th>Department</th>
+      <th>Level</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @authorizers.each do |authorizer| %>
+      <tr>
+        <td><%= authorizer.full_name %></td>
+        <td><%= authorizer.department %></td>
+        <td><%= authorizer.level %></td>
+        <td><%= link_to 'Show', authorizer %></td>
+        <td><%= link_to 'Edit', edit_authorizer_path(authorizer) %></td>
+        <td><%= link_to 'Destroy', authorizer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Authorizer', new_authorizer_path %>

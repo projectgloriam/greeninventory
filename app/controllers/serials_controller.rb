@@ -3,18 +3,15 @@ class SerialsController < ApplicationController
   before_action only: [:new, :create, :edit, :update, :destroy] do
     department("support")
   end
+  before_action :find_equipment
   before_action :readonly, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_serial, only: [:show, :edit, :update, :destroy]
-  before_action :find_equipment
 
   # GET /serials
   # GET /serials.json
   def index
     #@serials = Serial.all
     @serials = Serial.where("equipment_id = ?", session[:equipment_id])
-    flash[:default] = 'Use RFID scanner (Optional): Serial number will be automatically added to the list.'
-    @icon = '<span class="mif-qrcode"></span>'
-    @icon = @icon.html_safe
   end
 
   # GET /serials/1

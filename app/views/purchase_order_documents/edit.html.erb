@@ -1,0 +1,10 @@
+<h1>Editing Purchase Order Document</h1>
+
+<ul class="t-menu horizontal compact">
+  <li><a href="<%= url_for purchase_order_documents_path %>"><span class="icon mif-chevron-left"></span> Back</a></li>
+  <li><a href="<%= url_for @purchase_order_document %>"><span class="icon mif-lamp"></span> Show</a></li>
+</ul>
+<br>
+<br>
+
+<%= render 'form' %>

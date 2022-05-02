@@ -3,9 +3,9 @@ class EquipmentController < ApplicationController
   before_action only: [:new, :create, :edit, :update, :destroy] do
     department("support")
   end
+  before_action :find_specification, :except => [:simplesearch, :search, :searchresult, :search_params, :searchEngineWith12params]
   before_action :readonly, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_equipment, only: [:show, :edit, :update, :destroy]
-  before_action :find_specification, :except => [:simplesearch, :search, :searchresult, :search_params, :searchEngineWith12params]
 
   # GET /equipment
   # GET /equipment.json
@@ -21,6 +21,8 @@ class EquipmentController < ApplicationController
   # GET /equipment/new
   def new
     autocomplete
+    @specification = Specification.find(session[:specification_id])
+    @document = readDoc(@specification.avatar.path)
     @equipment = Equipment.new({:specification_id => session[:specification_id]})
   end
 
@@ -55,14 +57,33 @@ class EquipmentController < ApplicationController
     @equipment = Equipment.new(equipment_params)
     @equipment.engineer = session[:user_name]
 
-    respond_to do |format|
-      if @equipment.save
-        format.html { redirect_to @equipment, notice: 'Equipment was successfully created.' }
-        format.json { render :show, status: :created, location: @equipment }
-      else
-        autocomplete
-        format.html { render :new }
-        format.json { render json: @equipment.errors, status: :unprocessable_entity }
+    #forcing user to input serial number on the form
+    if params[:serial_numbers] == "" then
+      redirect_to :controller => 'equipment', :action => 'new'
+      flash[:warning] = "Serial number(s) field cant be empty."
+      return false
+    else
+      respond_to do |format|
+        if @equipment.save
+          serial_numbers = params[:serial_numbers].split(',')
+          p serial_numbers.to_s
+
+          serial_numbers.each { |serial| 
+            @serial = Serial.new({:serial_number => serial, :equipment_id => @equipment.id })
+            if @serial.save
+              p 'Serial number: ' + @serial.serial_number + ' saved.'
+            else
+              redirect_to :controller => 'equipment', :action => 'new'
+            end
+          }
+
+          format.html { redirect_to @equipment, notice: 'Equipment was successfully created.' }
+          format.json { render :show, status: :created, location: @equipment }
+        else
+          autocomplete
+          format.html { render :new }
+          format.json { render json: @equipment.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -100,20 +121,20 @@ class EquipmentController < ApplicationController
 
   def tested
     spec = Specification.find(session[:specification_id])
-    if spec.tested == true then
-      redirect_to :controller => "specifications", :action => "index"
+    if spec.tested == "true" then
+      redirect_to :controller => "equipment", :action => "index"
       flash[:warning] = "The specification's equipment have already been tested"
     elsif spec.equipment.count == 0 then
-      redirect_to :controller => "specifications", :action => "index"
+      redirect_to :controller => "equipment", :action => "index"
       flash[:warning] = "There are no equipment. Add them before you mark testing as complete"
     else
       if spec.update({:tested => true}) then
         AlertMailer.alert_email_reply(spec).deliver_later
-        redirect_to controller: "specifications", action: "index"
+        redirect_to controller: "equipment", action: "index"
         flash[:success] = "The specification has been tested successfully"
       end
     end
-  end 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -125,7 +146,7 @@ class EquipmentController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def equipment_params
-      params.require(:equipment).permit(:equipment_name, :model, :engineer, :job_sheet_number, :supplier, :supplier_invoice_number, :technician_report, :supplier_Warranty_start, :supplier_Warranty_end, :customer_Warranty_start, :customer_Warranty_end, :specification_id)
+      params.require(:equipment).permit(:equipment_name, :model, :engineer, :job_sheet_number, :technician_report, :specification_id)
     end
 
 
@@ -134,8 +155,9 @@ class EquipmentController < ApplicationController
       session[:equipment] = nil if session[:equipment]
 
       if session[:specification_id] == nil then
-        if params[:specification_id] then
-          @specification = Specification.find(params[:specification_id])
+        p 'session specification is nil'
+        if params[:equipment][:specification_id] then
+          @specification = Specification.find(params[:equipment][:specification_id])
           session[:specification_id] = @specification.id
           session[:specification] = @specification.case
         else
@@ -153,14 +175,16 @@ class EquipmentController < ApplicationController
       date = Date.parse(date) if date != ""
       rescue ArgumentError
       job = Equipment.where.any_of( {equipment_name: equipment}, {model: model}, 
-      "equipment.created_at LIKE '#{date}%'", {engineer: engineer}, {job_sheet_number: jobsheet}, {supplier: supplier} )
+      "equipment.created_at LIKE '#{date}%'", {engineer: engineer}, {job_sheet_number: jobsheet} )
 
       specs = Equipment.joins(:specification).where.any_of({specifications: {case: case_number}},
       {specifications: {title: title}}, {specifications: {author: author}}, {specifications: {client: client}}, 
-      {specifications: {contact_person: contact}}, {specifications: {email: email}} )
+      {specifications: {contact_person: contact}}, {specifications: {email: email}}, {specifications: {supplier: supplier}} )
 
       serials = Equipment.joins(:serials).where(serials: {serial_number: serial})
 
       @equipment = Equipment.where.any_of(job, specs, serials).distinct
-      end
+    end
+
+
 end

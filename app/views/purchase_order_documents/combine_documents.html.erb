@@ -1,0 +1,18 @@
+<li data-role="hint"
+    data-hint-background="bg-white"
+    data-hint-color="fg-darker" 
+    data-hint-timeout=2000 
+    data-hint-position="left"
+    data-hint-mode="2"
+    data-hint="Hint|You can sort page order by dragging this item" id="<%= @file_name %>">
+    <div class="image-container bordered">
+        <div class="frame"> <%= image_tag("/temp/#{@file_name}.png") %> </div>
+    </div>
+	<i class="js-remove" data-role="hint"
+    data-hint-background="bg-white"
+    data-hint-color="fg-darker" 
+    data-hint-timeout=2000 
+    data-hint-position="left"
+    data-hint-mode="2"
+    data-hint="Remove|Click to remove">✖</i></button>
+</li>

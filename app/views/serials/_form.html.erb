@@ -1,7 +1,32 @@
+ <script type="text/javascript">
+  $(document).ready(function() {
+    $("#walkthrough-button").click(function(event){
+      //prevent it's default action: going to the link in its href attribute.
+      event.preventDefault();
+
+        // Set up tour
+        $('body').pagewalkthrough({
+            name: 'introduction',
+            steps: [{
+                wrapper: '#walkthrough_wrapper-1',
+                popup: {
+                    content: '#walkthrough-1',
+                    type: 'tooltip',
+                    position: 'top'
+                }
+            }]
+        });
+
+        // Show the tour
+        $('body').pagewalkthrough('show');
+    });
+  });
+ </script>
+
 <%= form_for(@serial) do |f| %>
 <%= error_messages_for(@serial) %>
 <h2>Equipment: <%= @serial.equipment.model %></h2>
-  <div class="field">
+  <div id="walkthrough_wrapper-1" class="field">
     <div class="input-control modern text">
       <%= f.text_field :serial_number %>
       <span class="label"><%= f.label :serial_number %></span>
@@ -16,3 +41,11 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<div id="walkthrough-content">
+  <div id="walkthrough-1">
+    Type in the <em>serial number</em> and click <em>Create Serial</em> to add it.
+  </div>
+
+</div>
